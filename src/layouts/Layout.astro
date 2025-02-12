@@ -3,6 +3,7 @@ import "minireset.css";
 import Header from "../components/Header.astro";
 import Noise from "../components/common/Noise.astro";
 import Footer from "../components/Footer.astro";
+import ScrollBar from '../components/common/ScrollBar.astro'
 ---
 
 <!doctype html>
@@ -15,6 +16,7 @@ import Footer from "../components/Footer.astro";
     <title>Jorshh - Web Developer</title>
   </head>
   <body>
+    <ScrollBar />
     <Noise />
     <Header />
     <slot />
@@ -112,18 +114,4 @@ import Footer from "../components/Footer.astro";
     color: var(--title-color);
   }
 
-  html::-webkit-scrollbar-thumb {
-    background: var(--title-color);
-    height: 10px;
-  }
-
-
-  html::-webkit-scrollbar {
-    height: 50px;
-    width: 2px;
-  }
-
-  html::-webkit-scrollbar-track {
-  background: var(--bg-color);
-  }
 </style>
