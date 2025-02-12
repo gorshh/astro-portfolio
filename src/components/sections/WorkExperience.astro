@@ -14,11 +14,7 @@ import P from "../common/P.astro";
     >
     <div class="experiences_content">
       <div class="experiences">
-        <article
-          class="experience active"
-          data-experience="globant-1"
-          data-index="0"
-        >
+        <article class="experience" data-experience="globant-1" data-index="0">
           <div class="text">
             <P as="small">Web ui Sr</P>
             <P as="h3">Globant</P>
@@ -47,7 +43,7 @@ import P from "../common/P.astro";
       </div>
 
       <div class="experience-description">
-        <div class="work-description active">
+        <div class="work-description">
           <div style="display: flex;justify-content: space-between;">
             <P as="h4">Web UI Senior Developer at <P as="strong">Globant</P></P>
             <P>Marzo 2024 - Actualidad</P>
@@ -171,7 +167,7 @@ import P from "../common/P.astro";
 
 <style>
   .relevant-experience {
-    /* padding: 32px 0; */
+    padding: 32px 0;
     position: relative;
     /* height: 900px; */
   }
@@ -195,7 +191,7 @@ import P from "../common/P.astro";
     height: 100%;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
+    cursor: default;
     /* justify-content: space-between; */
     /* align-items: flex-start; */
   }
@@ -264,7 +260,6 @@ import P from "../common/P.astro";
     /* max-width: 70ch; 
     min-width: 50ch; 
     max-width: 960px; */
-    border: solid 1px black;
 
     .p {
       margin-bottom: 16px;
@@ -278,10 +273,10 @@ import P from "../common/P.astro";
 </style>
 
 <script>
-  const section = document.querySelector(".relevant-experience")!;
+  const section = document.getElementById("relevant-experience")!;
   const experiences = document.querySelectorAll(".experience");
   const workDescriptions = document.querySelectorAll(".work-description");
-  // const descriptionContainer = document.querySelector('.experience-description')! as HTMLDivElement;
+  
 
   const { body } = document;
 
@@ -302,15 +297,33 @@ import P from "../common/P.astro";
     });
   });
 
-  section.addEventListener("mouseleave", () => {
-    // body.removeAttribute("experience");
+  function handleIntersection(entries: IntersectionObserverEntry[]): void {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        document.body.setAttribute("experience", "globant-1");
+        const firstExperience = experiences[0];
+        workDescriptions[0].classList.add("active");
+        firstExperience.classList.add("active");
+      } else {
+        resetSection();
+      }
+    });
+  }
 
+  function resetSection() {
+    body.removeAttribute("experience");
     if (activeElement) {
-      // activeElement.classList.remove("active");
-      // workDescriptions.forEach((desc) => desc.classList.remove("active"));
-      // const firstExperience = experiences[0];
-      // workDescriptions[0].classList.add("active");
-      // firstExperience.classList.add("active");
+      activeElement.classList.remove("active");
+      workDescriptions.forEach((desc) => desc.classList.remove("active"));
+      const firstExperience = experiences[0];
+      workDescriptions[0].classList.add("active");
+      firstExperience.classList.add("active");
     }
+  }
+
+  const observer = new IntersectionObserver(handleIntersection, {
+    threshold: 0.7,
   });
+
+  observer.observe(section);
 </script>
