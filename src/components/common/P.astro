@@ -1,0 +1,133 @@
+---
+export interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "strong" | "small"; // Los elementos que soportará
+  class?: string; // Clase opcional para estilos personalizados
+}
+
+const { as = "p", class: className = "", ...rest }: Props = Astro.props;
+---
+
+{
+  as === "h1" && (
+    <h1 class:list={["p-h1", className]} {...rest}>
+      <slot />
+    </h1>
+  )
+}
+{
+  as === "h2" && (
+    <h2 class:list={["p-h2", className]} {...rest}>
+      <slot />
+    </h2>
+  )
+}
+{
+  as === "h3" && (
+    <h3 class:list={["p-h3", className]} {...rest}>
+      <slot />
+    </h3>
+  )
+}
+{
+  as === "h4" && (
+    <h4 class:list={["p-h4", className]} {...rest}>
+      <slot />
+    </h4>
+  )
+}
+{
+  as === "h5" && (
+    <h5 class:list={["p-h5", className]} {...rest}>
+      <slot />
+    </h5>
+  )
+}
+{
+  as === "p" && (
+    <p class:list={["p", className]} {...rest}>
+      <slot />
+    </p>
+  )
+}
+{
+  as === "small" && (
+    <p class:list={["p-small", className]} {...rest}>
+      <slot />
+    </p>
+  )
+}
+{
+  as === "strong" && (
+    <strong class:list={["strong", className]} {...rest}>
+      <slot />
+    </strong>
+  )
+}
+
+<style>
+  .p-h1,
+  .p-h2,
+  .p-h3,
+  .p-h4,
+  .p-h5 {
+    font-family: "PP Mori";
+    color: var(--title-color);
+    margin-bottom: 10px;
+  }
+
+  .p-h1 {
+    font-size: 72px;
+    letter-spacing: -2px;
+  }
+
+  .p-h2 {
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: -2px;
+
+    @media (max-width: 420px) {
+      font-size: 40px;
+    }
+  }
+
+  .p-h3 {
+    font-size: 40px; /* Nivel intermedio */
+    font-weight: 500; /* Más ligero para jerarquía */
+    letter-spacing: -2px;
+    
+  }
+
+  .p-h4 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .p-h5 {
+    font-size: 24px; /* Tamaño más pequeño pero aún visible */
+    font-weight: 400; /* Peso más ligero */
+    margin-bottom: 4px;
+  }
+
+  .p {
+    font-size: 24px; /* Tamaño base para párrafos */
+    color: var(--text-color);
+    margin-bottom: 8px;
+
+    @media (max-width: 420px) {
+      font-size: 20px;
+    }
+  }
+
+  .p-small,
+  span {
+    font-size: 16px; /* Tamaño base para párrafos */
+    color: var(--text-color);
+    margin-bottom: 8px;
+  }
+
+  .strong {
+    font-weight: 600;
+    color: var(--title-color);
+    font-size: inherit;
+  }
+</style>

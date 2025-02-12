@@ -1,0 +1,16 @@
+---
+const { class: className = "", ...rest } = Astro.props;
+---
+
+<svg
+  class={ className }
+  width="32"
+  height="26"
+  viewBox="0 0 32 26"
+  fill="none"
+  {...rest}
+>
+  <line x1="6" y1="6.5" x2="26" y2="6.5" stroke="currentColor"></line>
+  <line x1="6" y1="12.5" x2="26" y2="12.5" stroke="currentColor"></line>
+  <line x1="6" y1="18.5" x2="26" y2="18.5" stroke="currentColor"></line>
+</svg>

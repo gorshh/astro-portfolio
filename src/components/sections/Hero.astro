@@ -1,0 +1,65 @@
+---
+import P from "./../common/P.astro";
+import Container from "./../common/Container.astro";
+import Link from "./../common/Link.astro";
+import ScrollDown from "./../common/ScrollDown.astro";
+---
+
+<Container class="hero" as="section">
+    <P class="greeting">👋 Hi! I'm Jorge <sup>(hor-HEH)</sup></P>
+    <P as="h1" class="title">I enjoy create things for the web.</P>
+    <P>Web developer at <Link href="https://www.globant.com/">@Globant</Link></P>
+    <P>Specializing in responsive and adept at developing comprehensive design systems.</P>
+    <!-- TODO: only mobile -->
+    <ScrollDown />
+</Container>
+
+<style>
+  .hero {
+    /* border: solid 1px red; */
+    /* margin: 100px auto 0; */
+    margin-top: 50px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    /* margin-bottom: 500px; */
+  }
+
+  .title {
+    /* width: 90vw; */
+    /* max-width: 1400px;  */
+    /* border: solid 1px red; */
+    line-height: 1;
+    text-wrap: balance;
+    letter-spacing: -6px;
+    font-size: clamp(64px, 10vw, 140px);
+    /* line-height: 130px; */
+
+    @media (max-width: 420px) {
+      max-width: 960px;
+      letter-spacing: -2px;
+    }
+  }
+  .greeting{
+    margin-bottom: 24px;
+  }
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
+
+<script>
+  const section = document.querySelector(".hero")! as HTMLDivElement
+
+  section.style.height = `${window.innerHeight - 50}px` 
+
+  
+</script>

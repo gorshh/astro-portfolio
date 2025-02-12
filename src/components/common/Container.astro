@@ -1,0 +1,42 @@
+---
+interface Props {
+  id?: string;
+  as?: "div" | "section" | "nav";
+  class?: string;
+}
+
+const { class: className, as = "div", id, ...rest }: Props = Astro.props;
+
+const finalClasses = ["container", className];
+---
+
+{
+  as === "div" && (
+    <div id={id} class:list={finalClasses} {...rest}>
+      <slot />
+    </div>
+  )
+}
+
+{
+  as === "nav" && (
+    <nav id={id} role="navigation" class:list={finalClasses} {...rest}>
+      <slot />
+    </nav>
+  )
+}
+{
+  as === "section" && (
+    <section id={id} class:list={finalClasses} {...rest}>
+      <slot />
+    </section>
+  )
+}
+
+<style>
+  .container {
+    width: 90vw;
+    max-width: 1800px;
+    margin: 0 auto 64px;
+  }
+</style>

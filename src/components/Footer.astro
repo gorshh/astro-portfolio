@@ -1,0 +1,33 @@
+---
+import P from './common/P.astro'
+import Link from './common/Link.astro'
+---
+<footer id="cta">
+    <P class="get-in-touch">Get in <P as="strong">touch.</P></P>
+    <div class="contact">
+      <P>Let's build something together.</P>
+      <Link href='#'>hi@jorshh.com </Link>
+    </div>
+
+    <P>👋 Thanks for getting this far!</P>
+</footer>
+
+<style>
+  footer { 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-weight: 300;
+    width: 100%;
+    gap: 16px;
+  }
+  .get-in-touch {
+    letter-spacing: -2px;
+    font-size: 56px;
+  }
+  .contact {
+    text-align: center;
+  }
+</style>

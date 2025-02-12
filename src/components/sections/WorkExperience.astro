@@ -1,0 +1,316 @@
+---
+import Container from "../common/Container.astro";
+import P from "../common/P.astro";
+---
+
+<section class="relevant-experience" id="relevant-experience">
+  <Container>
+    <P as="h2">Relevant experience</P>
+    <P class="relevant-experience-description"
+      >I am a Full-stack developer with 5 years of experience and great
+      enthusiasm for creating new quality web experiences. Proficient in
+      development, testing and debugging processes with teams in agile
+      methodologies such as SCRUM.</P
+    >
+    <div class="experiences_content">
+      <div class="experiences">
+        <article
+          class="experience active"
+          data-experience="globant-1"
+          data-index="0"
+        >
+          <div class="text">
+            <P as="small">Web ui Sr</P>
+            <P as="h3">Globant</P>
+          </div>
+        </article>
+
+        <article class="experience" data-experience="globant-2" data-index="1">
+          <div class="text">
+            <P as="small">Web ui SSR</P>
+            <P as="h3">Globant</P>
+          </div>
+        </article>
+
+        <article class="experience" data-experience="upax" data-index="2">
+          <div class="text">
+            <P as="small">Frontend developer</P>
+            <P as="h3">UPAX</P>
+          </div>
+        </article>
+        <article class="experience" data-experience="imta" data-index="3">
+          <div class="text">
+            <P as="small">Fullstack developer</P>
+            <P as="h3">IMTA</P>
+          </div>
+        </article>
+      </div>
+
+      <div class="experience-description">
+        <div class="work-description active">
+          <div style="display: flex;justify-content: space-between;">
+            <P as="h4">Web UI Senior Developer at <P as="strong">Globant</P></P>
+            <P>Marzo 2024 - Actualidad</P>
+          </div>
+
+          <P as="h5">Descripción</P>
+          <P
+            >Como <P as="strong">Frontend Developer</P> en Acme Tech, fui responsable
+            del desarrollo e implementación de interfaces web dinámicas y optimizadas,
+            colaborando con equipos de diseño y backend para mejorar la experiencia
+            de usuario.</P
+          >
+
+          <P as="h5">Responsabilidades</P>
+          <ul>
+            <li>
+              Diseñé y desarrollé interfaces responsivas utilizando <P
+                as="strong">React.js y Next.js</P
+              >.
+            </li>
+            <li>
+              Optimizé el rendimiento de la aplicación, reduciendo el tiempo de
+              carga en un <P as="strong">35%</P>.
+            </li>
+            <li>
+              Colaboré con diseñadores UX/UI para transformar wireframes en
+              código funcional.
+            </li>
+            <li>
+              Implementé pruebas automatizadas con <P as="strong"
+                >Jest y Cypress</P
+              >
+              para garantizar la calidad del código.
+            </li>
+            <li>
+              Trabajé con metodologías ágiles (Scrum/Kanban) y herramientas como
+              Jira y Trello.
+            </li>
+          </ul>
+
+          <P as="h5">Logros Destacados</P>
+          <ul>
+            <li>
+              Reduje el tamaño de los assets en un <P as="strong">40%</P> mediante
+              optimización de imágenes y carga diferida.
+            </li>
+            <li>
+              Migré una aplicación heredada de <P as="strong">jQuery a React</P
+              >, mejorando la mantenibilidad del código.
+            </li>
+            <li>
+              Implementé una estrategia de <P as="strong">lazy loading</P> que mejoró
+              el rendimiento en dispositivos móviles.
+            </li>
+            <li>
+              Fui mentor de nuevos desarrolladores, capacitando en mejores
+              prácticas de desarrollo frontend.
+            </li>
+          </ul>
+
+          <P as="h5">Tecnologías Utilizadas</P>
+          <ul class="tech-stack">
+            <li>React.js / Next.js</li>
+            <li>JavaScript (ES6+), TypeScript</li>
+            <li>CSS3, Tailwind CSS, Styled Components</li>
+            <li>Webpack, Vite</li>
+            <li>REST APIs, GraphQL</li>
+            <li>Git, GitHub, CI/CD</li>
+          </ul>
+        </div>
+        <div class="work-description">
+          <div style="display: flex;justify-content: space-between;">
+            <P as="h4"
+              >Web UI Semi Senior Developer at <P as="strong">Globant</P></P
+            >
+            <P>NOV 2021 - MARZO 2024</P>
+          </div>
+
+          <P as="h5">Overview</P>
+          <P
+            >Technology company that offers software product development
+            services. The company offers services such as organizational
+            fitness, AI process, automation, strategy, push it live and build
+            and evolve.</P
+          >
+          <P as="h5">Role</P>
+          <P
+            >Reimagined the future of NZXT's desktop software by improving the
+            visual design, user experience and buisness needs. Took ownership of
+            foundational aspects of design for the next iteration of the
+            software, worked closely with engineers to focus on craft and polish
+            to bring the work to life.</P
+          >
+        </div>
+        <div class="work-description">
+          <div style="display: flex;justify-content: space-between;">
+            <P as="h4">Front end Developer at <P as="strong">UPAX</P></P>
+            <P>May 2021 - Nov 2021</P>
+          </div>
+          <P as="h5">Overview</P>
+          <P
+            >UPAX is a Mexican company specializing in research, strategy,
+            creativity, technology, and execution, collaborating with leading
+            brands like Nestlé, AT&T, Honda and Volaris to develop innovative
+            and high-impact solutions.</P
+          >
+          <P as="h5">Role</P>
+          <P
+            >Reimagined the future of NZXT's desktop software by improving the
+            visual design, user experience and buisness needs. Took ownership of
+            foundational aspects of design for the next iteration of the
+            software, worked closely with engineers to focus on craft and polish
+            to bring the work to life.</P
+          >
+        </div>
+        <div class="work-description">Descripción del cuarto elemento</div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .relevant-experience {
+    /* padding: 32px 0; */
+    position: relative;
+    /* height: 900px; */
+  }
+
+  .relevant-experience-description {
+    max-width: 1200px;
+  }
+
+  .experiences_content {
+    display: flex;
+    height: 100%;
+    margin-top: 64px;
+  }
+
+  .experience {
+    margin-bottom: 60px;
+  }
+
+  .experiences {
+    width: 360px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+  }
+
+  .text {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.5s ease;
+  }
+
+  .experience.active .text {
+    transform: translate3D(80px, 0, 0);
+  }
+
+  .experience-description {
+    flex-grow: 1;
+    width: 100%;
+    /* border: 1px solid red; */
+    position: relative;
+    /* background-color: #fff; */
+
+    ul {
+      margin-left: 16px;
+      list-style: decimal;
+      list-style-position: inside;
+      font-size: 22px;
+    }
+  }
+
+  body[experience="imta"] {
+    background-color: var(--imta);
+    #header {
+      background-color: var(--imta);
+    }
+  }
+
+  body[experience="upax"] {
+    background-color: var(--upax);
+    #header {
+      background-color: var(--upax);
+    }
+  }
+
+  body[experience="globant-2"] {
+    background-color: var(--globant-2);
+    #header {
+      background-color: var(--globant-2);
+    }
+  }
+
+  body[experience="globant-1"] {
+    background-color: var(--globant-1);
+    #header {
+      background-color: var(--globant-1);
+    }
+  }
+
+  .work-description {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s;
+    position: absolute;
+    /* max-width: 70ch; 
+    min-width: 50ch; 
+    max-width: 960px; */
+    border: solid 1px black;
+
+    .p {
+      margin-bottom: 16px;
+    }
+  }
+
+  .work-description.active {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+<script>
+  const section = document.querySelector(".relevant-experience")!;
+  const experiences = document.querySelectorAll(".experience");
+  const workDescriptions = document.querySelectorAll(".work-description");
+  // const descriptionContainer = document.querySelector('.experience-description')! as HTMLDivElement;
+
+  const { body } = document;
+
+  let activeElement: Element | null = null;
+
+  experiences.forEach((experience, index) => {
+    experience.addEventListener("mouseenter", () => {
+      experiences.forEach((item) => item.classList.remove("active"));
+      workDescriptions.forEach((desc) => desc.classList.remove("active"));
+
+      experience.classList.add("active");
+      workDescriptions[index].classList.add("active");
+
+      const experienceColor = experience.getAttribute("data-experience")!;
+      body.setAttribute("experience", experienceColor);
+
+      activeElement = experience;
+    });
+  });
+
+  section.addEventListener("mouseleave", () => {
+    // body.removeAttribute("experience");
+
+    if (activeElement) {
+      // activeElement.classList.remove("active");
+      // workDescriptions.forEach((desc) => desc.classList.remove("active"));
+      // const firstExperience = experiences[0];
+      // workDescriptions[0].classList.add("active");
+      // firstExperience.classList.add("active");
+    }
+  });
+</script>

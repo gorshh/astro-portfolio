@@ -1,0 +1,97 @@
+---
+import Container from "./common/Container.astro";
+import Link from "./common/Link.astro";
+import P from "./common/P.astro";
+import DarkLightIcon from "./icons/DarkLightIcon.astro"
+import Menu from "./icons/Menu.astro";
+---
+
+<header id="header">
+  <Container as="nav" class="nav">
+    <P as="strong" class="logo">{`jorshh`}</P>
+    <div class="left">
+      <!-- <Link href="#" class="cta">Lets talk</Link> -->
+      <DarkLightIcon class="icon theme-icon" id="theme" />
+      <!-- <Menu class="icon" /> -->
+    </div>
+  </Container>
+</header>
+
+<script>
+  const themeToggle = document.getElementById('theme')!;
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+
+  themeToggle.addEventListener('click', toggleTheme);
+
+  const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', savedTheme);
+</script>
+
+<style>
+  header {
+    height: 50px;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    background-color: rgba(var(--rgb-bg-color), 0.7);
+    transition: background-color 0.5s ease;
+    
+    z-index: 100;
+    top: 0px;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .logo {
+    font-weight: 650;
+    font-family: "Type Pro",Helvetica;
+    /* text-transform: lowercase; */
+    text-transform: capitalize;
+    font-size: 24px;
+    color: var(--title-color);
+    position: relative;
+  }
+
+  /* TODO: create svg */
+  .logo::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    /* background-color: var(--bg-color); */
+    top: 2px;
+    left: -1px;
+  }
+
+  .left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    /* color: green; */
+  }
+
+  .theme-icon {
+    transition: color 0.3s ease-in-out;
+  }
+
+  .cta{
+    font-weight: 600;
+  }
+</style>

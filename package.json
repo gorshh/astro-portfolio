@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.0.8"
+    "astro": "^5.1.0",
+    "minireset.css": "0.0.7"
   }
 }
