@@ -43,7 +43,7 @@ import ExperienceDescriptions from '../ExperienceDescriptions.astro'
 <script>
   const section = document.getElementById("relevant-experience")!;
   const experiences = document.querySelectorAll(".experience");
-  const workDescriptions = document.querySelectorAll(".work-description");
+  const jobDescriptions = document.querySelectorAll(".job-description");
 
   const { body } = document;
 
@@ -52,10 +52,10 @@ import ExperienceDescriptions from '../ExperienceDescriptions.astro'
   experiences.forEach((experience, index) => {
     experience.addEventListener("mouseenter", () => {
       experiences.forEach((item) => item.classList.remove("active"));
-      workDescriptions.forEach((desc) => desc.classList.remove("active"));
+      jobDescriptions.forEach((desc) => desc.classList.remove("active"));
 
       experience.classList.add("active");
-      workDescriptions[index].classList.add("active");
+      jobDescriptions[index].classList.add("active");
 
       const experienceColor = experience.getAttribute("data-experience")!;
       body.setAttribute("experience", experienceColor);
@@ -66,10 +66,11 @@ import ExperienceDescriptions from '../ExperienceDescriptions.astro'
 
   function handleIntersection(entries: IntersectionObserverEntry[]): void {
     entries.forEach((entry) => {
+      console.log(entry.isIntersecting)
       if (entry.isIntersecting) {
         document.body.setAttribute("experience", "globant-1");
         const firstExperience = experiences[0];
-        workDescriptions[0].classList.add("active");
+        jobDescriptions[0].classList.add("active");
         firstExperience.classList.add("active");
       } else {
         resetSection();
@@ -81,9 +82,9 @@ import ExperienceDescriptions from '../ExperienceDescriptions.astro'
     body.removeAttribute("experience");
     if (activeElement) {
       activeElement.classList.remove("active");
-      workDescriptions.forEach((desc) => desc.classList.remove("active"));
+      jobDescriptions.forEach((desc) => desc.classList.remove("active"));
       const firstExperience = experiences[0];
-      workDescriptions[0].classList.add("active");
+      jobDescriptions[0].classList.add("active");
       firstExperience.classList.add("active");
     }
   }
