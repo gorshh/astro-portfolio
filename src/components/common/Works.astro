@@ -1,29 +1,23 @@
 ---
 import P from "./P.astro";
+import WorkCard from './WorkCard.astro'
 ---
 
 <div class="works">
   <div class="col">
-    <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
-      <P as="small" class="company">Chat AI</P>
-      <P as="small" class="desc">Globant</P>
-    </div>
-    <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
-      <P as="small" class="company">Skillshare</P>
-      <P as="small" class="desc">Team member dashboard</P>
-    </div>
+    <WorkCard src="/works/skill.webp" title="Chat AI" description="Globant"/>
+
+    <WorkCard src="/works/skill.webp" title="Skillshare" description="Team member dashboard"/>
   </div>
 
   <div class="col">
     <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
+      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
       <P as="small" class="company">Skillshare</P>
       <P as="small" class="desc">Team member insights</P>
     </div>
     <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
+      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
       <P as="small" class="company">Globant</P>
       <P as="small" class="desc">The global website index</P>
     </div>
@@ -31,12 +25,12 @@ import P from "./P.astro";
 
   <div class="col">
     <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
+      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
       <P as="small" class="company">Globant</P>
       <P as="small" class="desc">AI landing page</P>
     </div>
     <div>
-      <img class="img" src={"/works/skill.png"} loading={"lazy"} />
+      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
       <P as="small" class="company">UPAX</P>
       <P as="small" class="desc">Reclutalia</P>
     </div>

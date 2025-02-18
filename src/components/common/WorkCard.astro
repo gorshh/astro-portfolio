@@ -1,0 +1,54 @@
+---
+import P from "./P.astro";
+
+interface Props {
+  src: string;
+  class?: string;
+  title: string;
+  description: string;
+}
+
+const {
+  class: className,
+  src,
+  title,
+  description,
+  ...rest
+}: Props = Astro.props;
+
+const isVideo = false;
+---
+
+<div class:list={["work-card", className]} {...rest}>
+  {
+    isVideo ? (
+      <video autoplay autoplay muted loop aria-label={description}>
+        <source src={src} type="video/mp4" />
+      </video>
+    ) : (
+      <img class="work-card__media" src={src} alt={title} loading={"lazy"} />
+    )
+  }
+  <P as="small" class="work-card__title">{title}</P>
+  <P as="small" class="work-card__description">{description}</P>
+</div>
+
+<style>
+  .work-card {
+    /* border: solid 1px red; */
+  }
+  .work-card__title {
+    color: var(--title-color);
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+  .work-card__description {
+    margin-bottom: 0px;
+  }
+
+  .work-card__media {
+    margin-bottom: 2px;
+    width: 100%;
+    object-fit: cover;
+  }
+</style>
