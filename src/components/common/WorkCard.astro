@@ -6,6 +6,7 @@ interface Props {
   class?: string;
   title: string;
   description: string;
+  mediaHeight?: number
 }
 
 const {
@@ -13,16 +14,17 @@ const {
   src,
   title,
   description,
+  mediaHeight,
   ...rest
 }: Props = Astro.props;
 
-const isVideo = false;
+const isVideo = src.endsWith(".webm");
 ---
 
 <div class:list={["work-card", className]} {...rest}>
   {
     isVideo ? (
-      <video autoplay autoplay muted loop aria-label={description}>
+      <video class="work-card__media" autoplay autoplay muted loop aria-label={description}>
         <source src={src} type="video/mp4" />
       </video>
     ) : (
@@ -50,5 +52,9 @@ const isVideo = false;
     margin-bottom: 2px;
     width: 100%;
     object-fit: cover;
+  }
+
+  .work-card__media.video{
+    height: 600px;
   }
 </style>

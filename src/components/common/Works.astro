@@ -5,34 +5,27 @@ import WorkCard from './WorkCard.astro'
 
 <div class="works">
   <div class="col">
+    <WorkCard src="/works/index.webm" title="Globant" description="The global website index"/>
+
+    <WorkCard src="/works/team-dashboard.png" title="Skillshare" description="Team member dashboard" mediaHeight={100}/>
+  </div>
+
+  <div class="col">
     <WorkCard src="/works/skill.webp" title="Chat AI" description="Globant"/>
-
-    <WorkCard src="/works/skill.webp" title="Skillshare" description="Team member dashboard"/>
-  </div>
-
-  <div class="col">
     <div>
-      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
-      <P as="small" class="company">Skillshare</P>
-      <P as="small" class="desc">Team member insights</P>
-    </div>
-    <div>
-      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
-      <P as="small" class="company">Globant</P>
-      <P as="small" class="desc">The global website index</P>
-    </div>
-  </div>
-
-  <div class="col">
-    <div>
-      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
-      <P as="small" class="company">Globant</P>
-      <P as="small" class="desc">AI landing page</P>
-    </div>
-    <div>
-      <img class="img" src={"/works/skill.webp"} loading={"lazy"} />
+      <img class="img" src={"/works/reclutalia.png"} style="height: 400px;" loading={"lazy"} alt="jaja" />
       <P as="small" class="company">UPAX</P>
       <P as="small" class="desc">Reclutalia</P>
+    </div>
+  </div>
+
+  <div class="col">
+
+    <WorkCard src="/works/ai-landing-page.webm" title="Globant" description="AI landing page"/>
+    <div>
+      <img class="img" src={"/works/team-insights.png"} loading={"lazy"} />
+      <P as="small" class="company">Skillshare</P>
+      <P as="small" class="desc">Team member insights</P>
     </div>
   </div>
 </div>
