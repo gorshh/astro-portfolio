@@ -86,7 +86,8 @@ const { as = "p", class: className = "", ...rest }: Props = Astro.props;
     letter-spacing: -2px;
 
     @media (max-width: 420px) {
-      font-size: 40px;
+      font-size: 32px;
+      text-wrap: pretty;
     }
   }
 
@@ -100,6 +101,10 @@ const { as = "p", class: className = "", ...rest }: Props = Astro.props;
   .p-h4 {
     font-size: 32px;
     font-weight: 500;
+
+    @media (max-width: 420px) {
+      font-size: 28px;
+    }
   }
 
   .p-h5 {
@@ -115,6 +120,9 @@ const { as = "p", class: className = "", ...rest }: Props = Astro.props;
 
     @media (max-width: 420px) {
       font-size: 20px;
+    }
+    strong {
+      font-weight: 600;
     }
   }
 
