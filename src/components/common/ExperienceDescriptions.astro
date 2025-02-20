@@ -5,7 +5,7 @@ import P from "./P.astro";
 ---
 <div class="job-descriptions">
   <div class="job-description">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between; flex-direction: column;">
       <P as="h4">Web UI Senior Developer</P>
       <P>March 2024 - Today</P>
     </div>
@@ -41,7 +41,7 @@ import P from "./P.astro";
     </ul>
   </div>
   <div class="job-description">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between; flex-direction: column;">
       <P as="h4">Web UI Semi Senior Developer</P>
       <P>NOV 2021 - MARCH 2024</P>
     </div>
@@ -63,7 +63,7 @@ import P from "./P.astro";
     >
   </div>
   <div class="job-description">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between; flex-direction: column;">
       <P as="h4">Front end Developer</P>
       <P>May 2021 - Nov 2021</P>
     </div>
@@ -85,7 +85,7 @@ import P from "./P.astro";
     >
   </div>
   <div class="job-description">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between; flex-direction: column;">
       <P as="h4">Fullstack Developer</P>
       <P>May 2019 - Aug 2021</P>
     </div>
@@ -113,8 +113,13 @@ import P from "./P.astro";
     flex-grow: 1;
     width: 100%;
     /* border: 1px solid red; */
-    position: relative;
+    position: static;
+    
     padding-left: 64px;
+    @media (max-width: 800px) {
+      padding-left: 0px;
+    }
+
 
     ul {
       margin-left: 16px;
@@ -125,12 +130,23 @@ import P from "./P.astro";
   }
 
   .job-description {
-    opacity: 0;
-    visibility: hidden;
+    
     transition:
       opacity 0.3s ease-in-out,
       visibility 0.3s;
     position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 0px;
+    
+    @media (max-width: 800px) {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgb(219, 219, 219);
+    }
     /* max-width: 70ch; 
     min-width: 50ch; 
     max-width: 960px; */

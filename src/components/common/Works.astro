@@ -1,32 +1,44 @@
 ---
 import P from "./P.astro";
-import WorkCard from './WorkCard.astro'
+import WorkCard from "./WorkCard.astro";
 ---
 
 <div class="works">
   <div class="col">
-    <WorkCard src="/works/index.webm" title="Globant" description="The global website index"/>
+    <WorkCard
+      src="/works/index.webm"
+      title="Globant"
+      description="The global website index"
+    />
 
-    <WorkCard src="/works/team-dashboard.png" title="Skillshare" description="Team member dashboard" mediaHeight={100}/>
+    <WorkCard
+      src="/works/team-dashboard.png"
+      title="Skillshare"
+      description="Team member dashboard"
+      mediaHeight={100}
+    />
   </div>
 
   <div class="col">
-    <WorkCard src="/works/skill.webp" title="Chat AI" description="Globant"/>
+    <WorkCard src="/works/skill.webp" title="Chat AI" description="Globant" />
     <div>
-      <img class="img" src={"/works/reclutalia.png"} style="height: 400px;" loading={"lazy"} alt="jaja" />
+      <img class="img" src={"/works/reclutalia.png"} loading={"lazy"} />
       <P as="small" class="company">UPAX</P>
       <P as="small" class="desc">Reclutalia</P>
     </div>
   </div>
 
   <div class="col">
-
-    <WorkCard src="/works/ai-landing-page.webm" title="Globant" description="AI landing page"/>
     <div>
       <img class="img" src={"/works/team-insights.png"} loading={"lazy"} />
       <P as="small" class="company">Skillshare</P>
       <P as="small" class="desc">Team member insights</P>
     </div>
+    <WorkCard
+      src="/works/games.webm"
+      title="Globant"
+      description="Games studio"
+    />
   </div>
 </div>
 
@@ -36,14 +48,18 @@ import WorkCard from './WorkCard.astro'
     gap: 16px;
     width: 100%;
     display: grid;
-    /* display: flex;
-    flex-direction: column; */
+
     grid-template-columns: repeat(3, minmax(0, 1fr));
     /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
 
     column-gap: 0.75rem;
     row-gap: 0.75rem;
     /* border: solid 1px red; */
+
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .col {

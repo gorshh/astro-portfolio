@@ -24,8 +24,8 @@ const isVideo = src.endsWith(".webm");
 <div class:list={["work-card", className]} {...rest}>
   {
     isVideo ? (
-      <video class="work-card__media" autoplay autoplay muted loop aria-label={description}>
-        <source src={src} type="video/mp4" />
+      <video class="work-card__media" autoplay playsinline preload="metadata" muted loop aria-label={description} poster={src.replace("webm","webp")}>
+        <source src={src} type="video/webm" />
       </video>
     ) : (
       <img class="work-card__media" src={src} alt={title} loading={"lazy"} />
