@@ -24,11 +24,11 @@ const isVideo = src.endsWith(".webm");
 <div class:list={["work-card", className]} {...rest}>
   {
     isVideo ? (
-      <video class="work-card__media" autoplay playsinline preload="metadata" muted loop aria-label={description} poster={src.replace("webm","webp")}>
+      <video class="work-card__media video" autoplay playsinline preload="metadata" muted loop aria-label={description} poster={src.replace("webm","webp")}>
         <source src={src} type="video/webm" />
       </video>
     ) : (
-      <img class="work-card__media" src={src} alt={title} loading={"lazy"} />
+      <img class="work-card__media" src={src} alt={description} loading={"lazy"} />
     )
   }
   <P as="small" class="work-card__title">{title}</P>
@@ -55,6 +55,6 @@ const isVideo = src.endsWith(".webm");
   }
 
   .work-card__media.video{
-    height: 600px;
+    aspect-ratio: 16/9;
   }
 </style>
