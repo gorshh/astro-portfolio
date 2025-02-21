@@ -1,19 +1,21 @@
 ---
-import P from './common/P.astro'
-import Link from './common/Link.astro'
+import P from "./common/P.astro";
+import Link from "./common/Link.astro";
+import Marquee from './common/Marquee.astro'
 ---
+
 <footer id="cta">
-    <P class="get-in-touch">Get in <P as="strong">touch.</P></P>
+    <Marquee><P as="h2" class="text">Lets talk</P></Marquee>  
     <div class="contact">
       <P>Let's build something together.</P>
       <Link href='#'>hi@jorshh.com </Link>
     </div>
 
-    <P>👋 Thanks for getting this far!</P>
+    <P>Made with love and astro</P>
 </footer>
 
 <style>
-  footer { 
+  footer {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -22,12 +24,24 @@ import Link from './common/Link.astro'
     font-weight: 300;
     width: 100%;
     gap: 16px;
-  }
-  .get-in-touch {
-    letter-spacing: -2px;
-    font-size: 56px;
+
+    /* height: 100vh; */
+    /* background-color: var(--title-color);
+    color: var(--bg-color); */
+    /* padding-top: 0; */
+    /* position: sticky; */
+    top: auto;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 2;
   }
   .contact {
     text-align: center;
+    /* color: var(--bg-color); */
+    .p {
+      color: var(--bg-color);
+    }
   }
+
+  
 </style>

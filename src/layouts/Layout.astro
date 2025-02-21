@@ -10,37 +10,55 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 <html lang="en" style="scroll-padding-top: 80px;">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>Jorshh - Web Developer | React, Next.js, Node.js</title>
-    <meta name="description" content="Full-Stack Developer with 5+ years of experience in React, Next.js, Node.js, AWS, RESTful APIs, and software architecture. Expert in testing, CI/CD, and agile development. Explore my work.">
-    <meta name="keywords" content="Full Stack Developer, React Developer, Next.js, Node.js, AWS, REST API, DynamoDB, Software Engineer, Software Architecture, Testing, CI/CD, Agile Development">
-    <meta name="author" content="Jorshh">
-    <meta name="robots" content="index, follow">
-  
+    <meta
+      name="description"
+      content="Full-Stack Developer with 5+ years of experience in React, Next.js, Node.js, AWS, RESTful APIs, and software architecture. Expert in testing, CI/CD, and agile development. Explore my work."
+    />
+    <meta
+      name="keywords"
+      content="Full Stack Developer, React Developer, Next.js, Node.js, AWS, REST API, DynamoDB, Software Engineer, Software Architecture, Testing, CI/CD, Agile Development"
+    />
+    <meta name="author" content="Jorshh" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph for Facebook & LinkedIn -->
-    <meta property="og:title" content="Jorshh - Full-Stack Developer | React, Next.js, Node.js">
-    <meta property="og:description" content="Software development expertise in React, Node.js, and AWS. Experience working at leading companies, building scalable web applications.">
+    <meta
+      property="og:title"
+      content="Jorshh - Full-Stack Developer | React, Next.js, Node.js"
+    />
+    <meta
+      property="og:description"
+      content="Software development expertise in React, Node.js, and AWS. Experience working at leading companies, building scalable web applications."
+    />
     <!-- <meta property="og:image" content="https://your-website.com/profile-image.jpg"> -->
-    <meta property="og:url" content="https://jorshh.com">
-    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jorshh.com" />
+    <meta property="og:type" content="website" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jorshh - Full-Stack Developer">
-    <meta name="twitter:description" content="Expert in React, Next.js, Node.js, RESTful APIs, AWS, and software architecture. Explore my portfolio and experience.">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jorshh - Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Expert in React, Next.js, Node.js, RESTful APIs, AWS, and software architecture. Explore my portfolio and experience."
+    />
     <!-- <meta name="twitter:image" content="https://jorshh.com/profile-image.jpg"> -->
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
   </head>
   <body>
     <ScrollBar />
     <Noise />
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
@@ -130,7 +148,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
       color 0.2s ease;
   }
 
-
   body[experience="imta"] {
     background-color: var(--imta);
     #header {
@@ -158,7 +175,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
       background-color: var(--globant-1);
     }
   }
-
 
   ::selection {
     background-color: rgb(80, 120, 243);
