@@ -61,7 +61,7 @@ import ScrollBar from "../components/common/ScrollBar.astro";
   <body>
     <ScrollBar />
     <!-- <Noise /> -->
-    <!-- <Header /> -->
+    <Header />
     <main>
       <slot />
     </main>
@@ -70,7 +70,7 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 </html>
 <style is:global>
   :root {
-    --black-rgb: 27, 27, 27;
+    --black-rgb: 10, 10, 10;
     --white-rgb: 240, 240, 240;
 
     --black-color: rgb(var(--black-rgb));
@@ -133,11 +133,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
       "Segoe UI",
       Roboto,
       Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Fira Sans",
-      "Droid Sans",
-      "Helvetica Neue",
       sans-serif;
     background-color: var(--bg-color);
     text-transform: uppercase;
@@ -152,30 +147,21 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 
   body[experience="imta"] {
     background-color: var(--imta);
-    #header {
-      background-color: var(--imta);
-    }
+    
   }
 
   body[experience="upax"] {
     background-color: var(--upax);
-    #header {
-      background-color: var(--upax);
-    }
+    
   }
 
   body[experience="globant-2"] {
     background-color: var(--globant-2);
-    #header {
-      background-color: var(--globant-2);
-    }
+    
   }
 
   body[experience="globant-1"] {
     background-color: var(--globant-1);
-    #header {
-      background-color: var(--globant-1);
-    }
   }
 
   ::selection {

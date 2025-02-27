@@ -1,21 +1,29 @@
 ---
 import Link from "./Link.astro";
+
+interface Props {
+  mode?: "light" | "dark";
+  class?: string;
+}
+
+const { mode = "light", class: className, ...rest } = Astro.props as Props;
+
+const finalClasses = ["logo", mode, className];
 ---
 
-<Link class="logo" href="#home">J</Link>
+<Link class:list={finalClasses} href="#home" {...rest}>J</Link>
 
 <style>
   .logo {
     font-family: "WienModern";
-    height: 40px;
-    width: 40px;
-    background-color: var(--white-color);
-    color: var(--bg-color);
+    height: 33px;
+    width: 33px;
+
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 2px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 20px;
     line-height: 0;
     user-select: none;
@@ -23,10 +31,25 @@ import Link from "./Link.astro";
     &::after {
       display: none;
     }
+  }
+
+  .light {
+    background-color: var(--white-color);
+    color: var(--bg-color);
 
     &:hover {
       color: rgba(var(--white-rgb), 0.8);
       background-color: var(--bg-color);
+    }
+  }
+
+  .dark {
+    color: var(--white-color);
+    background-color: var(--bg-color);
+
+    &:hover {
+      background-color: rgba(var(--white-rgb), 0.8);
+      color: var(--bg-color);
     }
   }
 </style>
