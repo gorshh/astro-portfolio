@@ -1,11 +1,151 @@
 ---
-import Container from '../common/Container.astro'
+import Container from "../common/Container.astro";
 ---
 
-<Container as="section">
-  About
-
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi aspernatur incidunt omnis voluptas earum, quo dolorem? Recusandae vero consequatur a, deserunt sed nam in culpa ab autem accusamus maiores magnam?
-
+<Container as="section" id="about">
+  <h2 class="about--title">About</h2>
+  <div class="about--content">
+    <p class="about--description">
+      Jorge <span>(hor-HEH)</span> Lorem ipsum, dolor sit amet consectetur adipisicing
+      elit. Laudantium illo magnam facilis id adipisci commodi minus perferendis,
+      fugiat corrupti magni modi neque molestias quae cum blanditiis soluta at aliquam
+    quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    </p>
+    <div class="about--current-job">
+      <p class="about--current-job--title-section">
+        Creating incredible products in the Argentine unicorn
+      </p>
+      <div class="about--current-job--detail">
+        <span class="about--current-job--img">
+          <img
+            src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png"
+            alt=""
+          />
+        </span>
+        <div class="about--current-job--description">
+          <p class="about--current-job--title">Senior Web Developer</p>
+          <p class="about--current-job--company">Globant</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </Container>
 
+<style>
+  #about {
+    color: var(--black-color);
+    background-color: var(--white-color);
+    display: flex;
+    /* padding: 6rem 0; */
+    min-height: 80vh;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    justify-content: space-between;
+    align-items: center;
+
+    .about--title {
+      font-weight: 500;
+      font-size: 5rem;
+      font-family: "PP Mori";
+    }
+
+    .about--content {
+      width: 70%;
+    }
+    .about--description {
+      align-self: auto;
+      margin-left: 0;
+      padding-left: 0;
+      font-family:
+        system-ui,
+        -apple-system;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 48.3194px;
+      margin-bottom: 33px;
+
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    .about--current-job--detail {
+      display: flex;
+    }
+
+    .about--current-job--img {
+      background-color: #0000001f;
+      border-radius: 0.6rem;
+      justify-content: center;
+      align-items: center;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1.25rem;
+      display: flex;
+
+      img {
+        filter: none;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        width: 1.9rem;
+        min-width: 1.9rem;
+      }
+    }
+
+    .about--current-job--description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .about--current-job {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about--current-job--title-section {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .about--current-job--title {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .about--current-job--company {
+      color: gray;
+      font-weight: 300;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar")!;
+    const triggerSection = document.getElementById("about")!;
+
+    let navbarVisible = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!navbarVisible) {
+            navbar.classList.add("show");
+            navbarVisible = true;
+          }
+        } else {
+          if (window.scrollY < triggerSection.offsetTop) {
+            navbar.classList.remove("show");
+            navbarVisible = false;
+          }
+        }
+      },
+      { threshold: 0.72 }
+    );
+
+    observer.observe(triggerSection);
+  });
+</script>

@@ -9,14 +9,16 @@ interface Props {
 const { mode = "light", class: className, ...rest } = Astro.props as Props;
 
 const finalClasses = ["logo", mode, className];
+// ADD scroll to top
 ---
 
-<Link class:list={finalClasses} href="#home" {...rest}>J</Link>
+<span class:list={finalClasses} {...rest}>J</span>
 
 <style>
   .logo {
     font-family: "WienModern";
     height: 33px;
+    cursor: pointer;
     width: 33px;
 
     display: flex;
@@ -53,3 +55,14 @@ const finalClasses = ["logo", mode, className];
     }
   }
 </style>
+
+<script>
+  const button = document.querySelector('.logo') as HTMLButtonElement
+
+
+  button.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.scrollTo({top:0})
+  })
+
+</script>
