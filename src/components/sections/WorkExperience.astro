@@ -67,7 +67,6 @@ import ExperienceDescriptions from '../common/ExperienceDescriptions.astro'
 
   function handleIntersection(entries: IntersectionObserverEntry[]): void {
     entries.forEach((entry) => {
-      console.log(entry.isIntersecting)
       if (entry.isIntersecting) {
         document.body.setAttribute("experience", "globant-1");
         const firstExperience = experiences[0];
