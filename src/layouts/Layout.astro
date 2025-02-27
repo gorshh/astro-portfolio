@@ -6,7 +6,7 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -98,15 +98,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
     --globant-2: var(--globant-2-dark);
   }
 
-  
-  @font-face {
-    font-family: "Type Pro";
-    src: url("/fonts/TypeProVF.woff2") format("woff2");
-    font-weight: 500 600 750;
-    font-style: normal;
-    font-display: swap;
-  }
-
   @font-face {
     font-family: "PP Mori";
     src: url("/fonts/PPMori-SemiBold.otf") format("opentype");
@@ -117,13 +108,13 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 
   @font-face {
     font-family: "WienModern";
-    src: url(/fonts/WienModern-Regular.otf);
+    src: url("/fonts/WienModern-Regular.otf");
     font-style: normal;
     font-weight: 400;
   }
 
   body {
-    font-family:
+    font-family:"Type Pro",
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
@@ -131,14 +122,11 @@ import ScrollBar from "../components/common/ScrollBar.astro";
       Roboto,
       Oxygen,
       sans-serif;
-    background-color: var(--bg-color);
     color: var(--text-color);
     font-size: 18px;
     font-weight: 300;
     will-change: background-color, color;
-    transition:
-      background-color 0.5s ease,
-      color 0.2s ease;
+    transition: background-color 0.5s ease,color 0.2s ease;
   }
 
   body[experience="imta"] {
