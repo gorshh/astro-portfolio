@@ -1,7 +1,6 @@
 ---
 import "minireset.css";
-import Header from "../components/Header.astro";
-import Noise from "../components/common/Noise.astro";
+import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
 ---
@@ -60,8 +59,7 @@ import ScrollBar from "../components/common/ScrollBar.astro";
   </head>
   <body>
     <ScrollBar />
-    <!-- <Noise /> -->
-    <Header />
+    <Navbar />
     <main>
       <slot />
     </main>
@@ -126,7 +124,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
 
   body {
     font-family:
-      "Type Pro",
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
@@ -135,7 +132,6 @@ import ScrollBar from "../components/common/ScrollBar.astro";
       Oxygen,
       sans-serif;
     background-color: var(--bg-color);
-    text-transform: uppercase;
     color: var(--text-color);
     font-size: 18px;
     font-weight: 300;

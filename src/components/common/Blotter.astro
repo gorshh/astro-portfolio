@@ -1,5 +1,5 @@
 <div id="canvas" class="content__text">
-  <span class="content__text-inner"/>
+  <span class="content__text-inner"></span>
 </div>
 
 <style>
@@ -10,8 +10,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    overflow-x: hidden;
-    height: 100vh;
+    overflow: hidden;
 
     .b-canvas {
       filter: invert(100%);
@@ -20,19 +19,20 @@
 </style>
 
 <script>
-  type n = number
+  type n = number;
 
   document.fonts.ready.then(() => {
     const MathUtils = {
-      lineEq: (y2:n, y1:n, x2:n, x1:n, val:n) => ((y2 - y1) / (x2 - x1)) * val + y1,
-      lerp: (a:n, b:n, n:n) => (1 - n) * a + n * b,
-      distance: (x1:n, x2:n, y1:n, y2:n) => Math.hypot(x1 - x2, y1 - y2),
+      lineEq: (y2: n, y1: n, x2: n, x1: n, val: n) =>
+        ((y2 - y1) / (x2 - x1)) * val + y1,
+      lerp: (a: n, b: n, n: n) => (1 - n) * a + n * b,
+      distance: (x1: n, x2: n, y1: n, y2: n) => Math.hypot(x1 - x2, y1 - y2),
     };
 
     let winSize = { width: window.innerWidth, height: window.innerHeight };
 
-    const debounce = (func: ()=>void, delay = 200) => {
-      let timeout:number;
+    const debounce = (func: () => void, delay = 200) => {
+      let timeout: number;
       return () => {
         clearTimeout(timeout);
         timeout = setTimeout(func, delay);
@@ -67,11 +67,11 @@
         family: "'WienModern'",
         weight: 800,
         size: 120,
-        paddingLeft: 250,
-        paddingRight: 250,
+        paddingLeft: 530,
+        paddingRight: 530,
         paddingTop: 350,
         paddingBottom: 350,
-        fill:'#181818'
+        fill: "#181818",
       });
 
       elem.removeChild(textEl);
@@ -84,7 +84,6 @@
       const blotter = new Blotter(material, { texts: text });
       const scope = blotter.forText(text);
       scope.appendTo(elem);
-
 
       const render = () => {
         const relMousePos = { x: mousePos.x, y: mousePos.y };

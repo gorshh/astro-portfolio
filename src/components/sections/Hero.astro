@@ -1,8 +1,8 @@
 ---
-import ScrollBar from '../common/ScrollDown.astro'
-import Blotter from '../common/Blotter.astro'
-import Link from '../common/Link.astro'
-import Logo from '../common/Logo.astro'
+import ScrollBar from "../common/ScrollDown.astro";
+import Blotter from "../common/Blotter.astro";
+import Link from "../common/Link.astro";
+import Logo from "../common/Logo.astro";
 ---
 
 <section id="home">
@@ -15,18 +15,16 @@ import Logo from '../common/Logo.astro'
     </div>
 
     <div class="navigation_social-links-button">
-      <Link href='#cta' class='cta'>Lets talk</Link>
+      <Link href="#cta" class="cta">Lets talk</Link>
     </div>
   </div>
 
-  <Blotter/>
-  <ScrollBar/>
-
-
+  <Blotter />
+  <ScrollBar />
 </section>
 
 <style>
-  .top-navigation_component {    
+  .top-navigation_component {
     color: var(--title-color);
     background-color: rgba(var(--white-rgb), 0.04);
 
@@ -85,5 +83,11 @@ import Logo from '../common/Logo.astro'
     justify-content: center;
     align-items: center;
   }
-  
 </style>
+
+<script>
+  const section = document.querySelector("#home")! as HTMLDivElement
+
+  section.style.height = `${window.innerHeight - 16}px` 
+
+</script>
