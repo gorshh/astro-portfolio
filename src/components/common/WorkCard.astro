@@ -37,12 +37,18 @@ const isVideo = src.endsWith(".webm");
 
 <style>
   .work-card {
-    /* border: solid 1px red; */
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+
   }
   .work-card__title {
     color: var(--title-color);
+    
     margin-bottom: 0px;
     font-weight: 400;
+    /* font-family: "PP Mori"; */
+    margin-top: 4px;
   }
   .work-card__description {
     margin-bottom: 0px;
