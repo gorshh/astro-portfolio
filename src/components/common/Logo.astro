@@ -29,6 +29,8 @@ const finalClasses = ["logo", mode, className];
     font-size: 20px;
     line-height: 0;
     user-select: none;
+    transition: background-color ease 0.2s, color ease 0.3s;
+
 
     &::after {
       display: none;
@@ -37,21 +39,21 @@ const finalClasses = ["logo", mode, className];
 
   .light {
     background-color: var(--white-color);
-    color: var(--bg-color);
+    color: var(--black-color);
 
     &:hover {
       color: rgba(var(--white-rgb), 0.8);
-      background-color: var(--bg-color);
+      background-color: var(--black-color);
     }
   }
 
   .dark {
     color: var(--white-color);
-    background-color: var(--bg-color);
+    background-color: var(--black-color);
 
     &:hover {
       background-color: rgba(var(--white-rgb), 0.8);
-      color: var(--bg-color);
+      color: var(--black-color);
     }
   }
 </style>

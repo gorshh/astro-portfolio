@@ -34,3 +34,20 @@ const isExternal = !href.startsWith("#")
     color: var(--title-color);
   }
 </style>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll("a[href='#contact']");
+
+    links.forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth"
+        });
+      });
+    });
+  });
+</script>
