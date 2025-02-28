@@ -4,33 +4,26 @@ import P from "./../common/P.astro";
 import Works from "./../common/Works.astro";
 ---
 
-<section class="selected-work">
-<Container>
+
+<Container class="selected-work">
   <P as="h2" class="text">Selected work</P>
-  <P class="selected-work__description"
-    >I’ve been fortunate to work on projects that have been published and
-    recognized on platforms with global reach.</P
-  >
+  <P class="selected-work__description">I’ve been fortunate to work on projects that have been published and
+    recognized on platforms with global reach.</P>
   <Works />
 </Container>
-</section>
+
 <style>
   .selected-work {
     padding-top: 100px;
-    /* background-color: var(--bg-color); */
-    /* color: white !important; */
+    padding-bottom: 100px;
+    background-color: var(--bg-color);
 
-    div.container .p, h2 {
-      /* background-color: var(--bg-color); */
-      /* color: white !important; */
-    }
   }
   .selected-work__description {
     max-width: 75ch;
   }
 
   .text{
-    /* color: var(--bg-color); */
     margin: 0;
   }
 </style>

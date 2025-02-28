@@ -1,16 +1,17 @@
 ---
 import Container from "../common/Container.astro";
+import P from "../common/P.astro";
 ---
 
 <Container as="section" id="about">
-  <h2 class="about--title">About</h2>
+  <P as="h2" size="display-xxl" class="about--title">About</P>
   <div class="about--content">
-    <p class="about--description">
+    <P size="heading-xl" class="about--description">
       Jorge <span>(hor-HEH)</span> Lorem ipsum, dolor sit amet consectetur adipisicing
       elit. Laudantium illo magnam facilis id adipisci commodi minus perferendis,
       fugiat corrupti magni modi neque molestias quae cum blanditiis soluta at aliquam
-    quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    </p>
+      quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </P>
     <div class="about--current-job">
       <p class="about--current-job--title-section">
         Creating incredible products at Argentina’s leading unicorn.
@@ -43,30 +44,43 @@ import Container from "../common/Container.astro";
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 920px) {
+      flex-direction: column;
+
+      padding-bottom: 2rem;
+      padding-top: 2rem;
+    }
+
     .about--title {
-      font-weight: 500;
-      font-size: 5rem;
-      font-family: "PP Mori";
+
+      @media (max-width: 920px) {
+        align-self: baseline;
+      }
     }
 
     .about--content {
       width: 70%;
+
+      @media (max-width: 920px) {
+        max-width: 75ch;
+        width: 100%;
+      }
+
+      @media (max-width: 522px) {
+        width: 100%;
+      }
+
+      
     }
     .about--description {
-      align-self: auto;
-      margin-left: 0;
-      padding-left: 0;
-      font-family:
-        system-ui,
-        -apple-system;
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 48.3194px;
       margin-bottom: 33px;
 
       span {
         font-size: 1rem;
       }
+
+
+
     }
 
     .about--current-job--detail {

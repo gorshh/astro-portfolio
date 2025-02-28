@@ -10,7 +10,7 @@ import Container from "../common/Container.astro";
 <Container as="section" id="home">
   <header class="hero-header">
     <div class="left-side">
-      <Logo />
+      <Logo class="logo-header" />
       <h1 class="heading-style-header">
         DEDICATED to pixel-perfect UI & smooth digital experiences.
       </h1>
@@ -72,5 +72,15 @@ import Container from "../common/Container.astro";
   .cta {
     font-size: 0.8rem;
     font-weight: 600;
+
+    @media (max-width: 670px) {
+      display: none;
+    }
+  }
+
+  .logo-header {
+    @media (max-width: 670px) {
+      display: none;
+    }
   }
 </style>
