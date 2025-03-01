@@ -1,8 +1,8 @@
-<div class="arrow" id="arrow"></div>
+<div class="scroll-down" id="scroll-down"></div>
 <script>
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
-      const arrow = document.getElementById("arrow")!;
+      const arrow = document.getElementById("scroll-down")!;
       if (window.scrollY <= 3) {
         arrow.classList.add("fade-in");
         arrow.classList.remove("fade-out");
@@ -15,7 +15,7 @@
 </script>
 
 <style>
-  .arrow {
+  .scroll-down {
     width: 45px;
     height: 45px;
     position: absolute;
@@ -25,9 +25,10 @@
     margin: auto;
     transition: ease-in;
     animation: down 1.5s infinite;
-    -webkit-animation: bounce 1.5s infinite;
+    -webkit-animation: scroll-down 1.5s infinite;
+    transform: rotate(0deg);
   }
-  .arrow::before {
+  .scroll-down::before {
     content: "";
     position: absolute;
     top: 11px;
@@ -40,7 +41,7 @@
     opacity: 0.4;
   }
 
-  @keyframes bounce {
+  @keyframes scroll-down {
     0% {
       transform: translate(0);
     }
@@ -52,7 +53,7 @@
     }
   }
 
-  @-webkit-keyframes bounce {
+  @-webkit-keyframes scroll-down {
     0% {
       transform: translate(0);
     }
