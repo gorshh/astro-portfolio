@@ -12,7 +12,7 @@ import Container from "../common/Container.astro";
     <div class="left-side">
       <Logo class="logo-header" />
       <h1 class="heading-style-header">
-        DEDICATED to pixel-perfect UI & smooth digital experiences.
+        Developer dedicated to pixel-perfect UI & smooth digital experiences.
       </h1>
     </div>
     <Link href="#contact" class="cta">Lets talk</Link>
@@ -32,7 +32,13 @@ import Container from "../common/Container.astro";
     padding-top: 1rem;
     position: sticky;
     top: 0;
+    font-family: "PP Mori";
     background-color: var(--black-color);
+
+    animation: fade-out auto ease-in-out;
+  animation-timeline: view();
+  /* Apply a custom animation range */
+  animation-range: exit 0% exit 100%;
 
     footer {
       position: absolute;
@@ -44,6 +50,20 @@ import Container from "../common/Container.astro";
       right: 1.5rem;
       font-size: 0.8rem;
       opacity: 0.6;
+    }
+
+    @keyframes fade-out {
+      0% {
+        background-color: red;
+        opacity: 1;
+        scale: 1;
+      }
+
+      100% {
+        opacity: 0;
+        background-color: blue;
+        scale: 0.5;
+      }
     }
   }
   .hero-header {
@@ -70,7 +90,7 @@ import Container from "../common/Container.astro";
   }
 
   .cta {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
 
     @media (max-width: 670px) {
