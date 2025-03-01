@@ -2,13 +2,13 @@
 import type { TypographyProps } from "../../types/typography";
 import { defaultSizes } from "../../types/typography"; // Importación sin "type"
 
-const { as = "p", size, align, class: customClass = "", ...rest }: TypographyProps = Astro.props;
+const { as = "p", size, align, class: customClass = "", fontFamily = "system", textTransform, ...rest }: TypographyProps = Astro.props;
 
 // Usa `defaultSizes` correctamente
 const appliedSize = size ?? defaultSizes[as] ?? "body";
 
 // Genera clases dinámicas
-const classes = [appliedSize, align ? `text-${align}` : "", customClass].filter(Boolean).join(" ");
+const classes = [appliedSize, align ? `text-${align}` : "", fontFamily, textTransform, customClass].filter(Boolean).join(" ");
 
 // 🔹 Define el elemento dinámico a renderizar (h1, p, etc.)
 const DynamicTag = as;
@@ -22,22 +22,27 @@ const DynamicTag = as;
   /* ---------------- TIPOGRAFÍA ---------------- */
 
   .display-xxl,
-  .display-xl,
-  .display-lg,
-  .heading-lg {
+  .display-xl {
     font-family: "PP Mori";
     color: inherit;
-    margin-bottom: 10px;
     letter-spacing: -1px;
+    color: var(--title-color);
+  }
+
+  .heading-lg,
+  .body,
+  .body-sm {
+    color: var(--text-color);
+
   }
 
   .display-xxl { font-size: 80px; font-weight: 700; letter-spacing: -2px; }
   .display-xl { font-size: 64px; font-weight: 600; letter-spacing: -2px; }
   .display-lg { font-size: 48px; font-weight: 500; letter-spacing: -2px; }
-  .heading-xl { font-size: 32px; font-weight: 500; line-height: 48.3194px; }
+  .heading-xl { font-size: 32px; font-weight: 500; line-height: 36px; }
   .heading-lg { font-size: 24px; font-weight: 400; margin-bottom: 4px; }
-  .body { font-size: 24px; color: inherit; margin-bottom: 8px; }
-  .body-sm { font-size: 13px; color: inherit; margin-bottom: 8px; }
+  .body { font-size: 18px; color: inherit; margin-bottom: 8px; }
+  .body-sm { font-size: 16px; color: inherit; margin-bottom: 8px; }
   .strong { font-weight: 600; color: inherit; font-size: inherit; }
 
   /* Alineaciones dinámicas */
@@ -54,6 +59,26 @@ const DynamicTag = as;
   @media (max-width: 920px) {
     .display-xxl { font-size: 48px; letter-spacing: 0; }
     .heading-xl { font-size: 20px; font-weight: 500; line-height: 25px; }
+  }
+
+  .system {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,cOxygen, sans-serif;
+  }
+
+  .pp-mori {
+    font-family: "PP Mori";
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .lowercase {
+    text-transform: lowercase;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
   }
 
 </style>

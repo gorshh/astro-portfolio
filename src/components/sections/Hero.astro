@@ -34,12 +34,7 @@ import Container from "../common/Container.astro";
     top: 0;
     font-family: "PP Mori";
     background-color: var(--black-color);
-
-    animation: fade-out auto ease-in-out;
-  animation-timeline: view();
-  /* Apply a custom animation range */
-  animation-range: exit 0% exit 100%;
-
+    color: rgba(var(--white-rgb), 0.8);
     footer {
       position: absolute;
       text-transform: uppercase;
@@ -50,6 +45,7 @@ import Container from "../common/Container.astro";
       right: 1.5rem;
       font-size: 0.8rem;
       opacity: 0.6;
+      
     }
 
     @keyframes fade-out {
@@ -67,7 +63,6 @@ import Container from "../common/Container.astro";
     }
   }
   .hero-header {
-    color: var(--text-color);
     border-radius: 0.6rem;
     justify-content: space-between;
     align-items: center;

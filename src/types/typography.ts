@@ -15,6 +15,8 @@ export interface TypographyProps {
   size?: TypographySize; // Tamaño tipográfico
   align?: TypographyAlign; // Alineación del texto
   class?: string; // Clases adicionales (colores, márgenes, etc.)
+  fontFamily?: "pp-mori" | "system";
+  textTransform?: 'capitalize' | 'uppercase' | 'lowercase'
 }
 
 export const defaultSizes: Partial<Record<keyof HTMLElementTagNameMap, TypographySize>> = {
