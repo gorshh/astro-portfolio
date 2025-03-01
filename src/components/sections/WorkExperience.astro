@@ -5,8 +5,8 @@ import ExperienceDesktopTitleList from '../common/ExperienceDesktopTitleList.ast
 import ExperienceDescriptions from '../common/ExperienceDescriptions.astro'
 ---
 
-<section class="relevant-experience" id="relevant-experience">
-  <Container>
+<Container class="relevant-experience" id="relevant-experience">
+  
     <P as="h2">Relevant experience</P>
     <P class="relevant-experience__description"
       >I'm a Full-Stack Developer with <strong>5+ years of experience</strong> in React, Next.js,
@@ -16,13 +16,14 @@ import ExperienceDescriptions from '../common/ExperienceDescriptions.astro'
       <ExperienceDesktopTitleList />  
       <ExperienceDescriptions />
     </div>
-  </Container>
-</section>
+</Container>
 
 <style>
   .relevant-experience {
     padding: 32px 0;
     position: static;
+    background-color: var(--black-color);
+    color: var(--white-color);
   }
 
   .relevant-experience__description {

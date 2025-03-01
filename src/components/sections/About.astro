@@ -139,7 +139,7 @@ import P from "../common/P.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const navbar = document.getElementById("navbar")!;
+    // const navbar = document.getElementById("navbar")!;
     const triggerSection = document.getElementById("about")!;
     const canvas = document.querySelector(".b-canvas")!;
 
@@ -149,13 +149,13 @@ import P from "../common/P.astro";
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!navbarVisible) {
-            navbar.classList.add("show");
+            // navbar.classList.add("show");
             navbarVisible = true;
             canvas.classList.add("hide")
           }
         } else {
           if (window.scrollY < triggerSection.offsetTop) {
-            navbar.classList.remove("show");
+            // navbar.classList.remove("show");
             navbarVisible = false;
             canvas.classList.remove("hide")
           }

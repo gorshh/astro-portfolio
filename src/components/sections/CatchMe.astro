@@ -1,0 +1,128 @@
+---
+import Container from "../common/Container.astro";
+import P from "../common/P.astro";
+
+
+---
+<Container class="catch-me">
+  <section class="hero">
+    <div class="hero-content">
+      <P class="fade-in" size="display-xxl" as="h2">
+        Frontend, Backend and Everything in Between. Let's create awesome digital products. <span class="arrow bounce"> 👉</span>
+      </P>
+    </div>
+  
+    <a href="#contact" class="catch-me-btn">Lets talk</a>
+  </section>
+</Container>
+
+<style>
+  .catch-me{
+    background-color: var(--white-color);
+    padding: 1rem;
+    height: 100vh;
+  }
+  /* Section layout */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 95vh;
+    background: var(--black-color);
+    color: var(--white-color);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+
+  /* Subtle grid background */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Heading animation */
+  .fade-in {
+    text-transform: uppercase;
+    max-width: 80%;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-out forwards;
+    color: var(--white-color);
+  }
+
+  /* Arrow */
+  .arrow {
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+
+  /* Catch me button */
+  .catch-me-btn {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: #ff0066;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.1s ease-out, background 0.3s;
+  }
+
+  /* Button hover effect */
+  .catch-me-btn:hover {
+    background: #ff3388;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+/* Bounce animation */
+.bounce {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(45deg); }
+    50% { transform: translateY(-10px) rotate(45deg); }
+  }
+
+</style>
+
+
+<script>
+  const button = document.querySelector(".catch-me-btn")! as HTMLButtonElement
+
+window.addEventListener("mousemove", (e) => {
+  const { clientX, clientY } = e;
+  const buttonRect = button.getBoundingClientRect();
+  
+  // Get button center
+  const buttonX = buttonRect.left + buttonRect.width / 2;
+  const buttonY = buttonRect.top + buttonRect.height / 2;
+
+  // Calculate the distance from the cursor to the button center
+  const deltaX = clientX - buttonX;
+  const deltaY = clientY - buttonY;
+
+  // Move away from the cursor
+  const moveX = deltaX * 0.2; // Adjust sensitivity
+  const moveY = deltaY * 0.2;
+
+  button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+});
+</script>
