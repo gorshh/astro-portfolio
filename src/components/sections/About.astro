@@ -6,11 +6,27 @@ import P from "../common/P.astro";
 <Container as="section" id="about">
   <P as="h2" size="display-xxl" class="about--title">About</P>
   <div class="about--content">
-    <P size="heading-xl" class="about--description">
-      Jorge <span>(hor-HEH)</span> Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Laudantium illo magnam facilis id adipisci commodi minus perferendis,
-      fugiat corrupti magni modi neque molestias quae cum blanditiis soluta at aliquam
-      quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    <div class="options">
+      <P data-attribute="option"  class="active">For everyone</P>
+      <P data-attribute="option" >Recruiters</P>
+      <P data-attribute="option" >Designers</P>
+      <P data-attribute="option" >Product Managers</P>
+      <P data-attribute="option" >Engineers</P>
+    </div>
+    <P size="heading-xl" data-attribute="option-description" class="about--description active">
+      👋 Hey! This is Jorge. He builds websites and digital tools that work smoothly, so people don’t have to think about the technology behind them. Whether it’s an app, a website, or a system, he ensures that everything is fast and easy to use.
+    </P>
+    <P size="heading-xl" data-attribute="option-description" class="about--description">
+      Web developer with 5+ years of experience working across startups and enterprise projects. He specializes in front-end frameworks and efficient workflows. With a strong background in React, Node.js and AWS. He helps teams ship high-quality.
+    </P>
+    <P size="heading-xl" data-attribute="option-description" class="about--description">
+      Jorge loves working with designers to bring pixel-perfect interfaces to life. He translates beautiful visuals into smooth, interactive experiences, always keeping performance and accessibility in mind. He values clean layouts and responsiveness.
+    </P>
+    <P size="heading-xl" data-attribute="option-description" class="about--description">
+      He understands that great products aren’t just about code—they’re about solving problems. He bridges the gap between design, development, and business goals. He thrives on collaborating with designers, product teams and engineers.
+    </P>
+    <P size="heading-xl" data-attribute="option-description" class="about--description">
+      Jorge is deep into frontend development but isn’t afraid to dive into the backend when needed. He speaks fluent TypeScript, CSS and Node.js and can debug faster than you can say<code class="inline-code">console.log()</code>. He’s always happy to share knowledge and clean up messy codebases.
     </P>
     <div class="about--current-job">
       <p class="about--current-job--title-section">
@@ -33,6 +49,15 @@ import P from "../common/P.astro";
 </Container>
 
 <style>
+     .inline-code {
+  
+  font-family: inherit;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  color: #555; /* Subtle contrast */
+}
+    
   #about {
     color: var(--black-color);
     background-color: var(--white-color);
@@ -46,6 +71,7 @@ import P from "../common/P.astro";
 
     @media (max-width: 920px) {
       flex-direction: column;
+      align-items: start;
 
       padding-bottom: 2rem;
       padding-top: 2rem;
@@ -53,6 +79,7 @@ import P from "../common/P.astro";
 
     .about--title {
 
+      align-self: baseline;
       @media (max-width: 920px) {
         align-self: baseline;
       }
@@ -61,6 +88,8 @@ import P from "../common/P.astro";
     .about--content {
       width: 70%;
 
+      /* border: solid 1px red; */
+      min-height: 100%;
       @media (max-width: 920px) {
         max-width: 75ch;
         width: 100%;
@@ -70,16 +99,41 @@ import P from "../common/P.astro";
         width: 100%;
       }
 
+      .options {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        .body {
+          /* background-color: red; */
+          padding: 12px 10px;
+          cursor: pointer;
+          opacity: 0.4;
+          font-size: 0.85rem;
+          font-weight: 500;
+
+          text-transform: uppercase;
+          transition: opacity 0.2s ease-out;
+
+          &.active {
+            opacity: 1;
+          }
+        }
+        
+        @media (max-width: 920px) {
+        display: none;
+      }
+      }
+
       
     }
     .about--description {
       margin-bottom: 33px;
+      display: none;
 
-      span {
-        font-size: 1rem;
+      &.active {
+        display: block;
       }
-
-
 
     }
 
@@ -134,12 +188,45 @@ import P from "../common/P.astro";
       font-weight: 300;
       font-size: 0.85rem;
     }
+
+    .console-effect {
+  font-family: monospace;
+  background: black;
+  color: lime;
+  padding: 3px 6px;
+  border-radius: 4px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.5; }
+}
+
+    
   }
 </style>
 
 <script>
+  const options = document.querySelectorAll('p[data-attribute="option"]')!;
+  const descriptions = document.querySelectorAll('p[data-attribute="option-description"]')
+  console.log(descriptions)
+  let activeOption = 0;
+  
+  options.forEach((option, index) => {
+    option.addEventListener("click", () => {
+      options[activeOption].classList.remove('active')
+      descriptions[activeOption].classList.remove('active')
+      
+      activeOption = index
+
+      option.classList.add("active")
+      descriptions[index].classList.add("active")
+
+    })
+  })
+
   document.addEventListener("DOMContentLoaded", () => {
-    // const navbar = document.getElementById("navbar")!;
+    const navbar = document.getElementById("navbar")!;
     const triggerSection = document.getElementById("about")!;
     const canvas = document.querySelector(".b-canvas")!;
 
@@ -149,13 +236,13 @@ import P from "../common/P.astro";
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!navbarVisible) {
-            // navbar.classList.add("show");
+            navbar.classList.add("show");
             navbarVisible = true;
             canvas.classList.add("hide")
           }
         } else {
           if (window.scrollY < triggerSection.offsetTop) {
-            // navbar.classList.remove("show");
+            navbar.classList.remove("show");
             navbarVisible = false;
             canvas.classList.remove("hide")
           }
@@ -166,4 +253,6 @@ import P from "../common/P.astro";
 
     observer.observe(triggerSection);
   });
+
+
 </script>
