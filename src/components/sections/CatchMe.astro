@@ -1,81 +1,99 @@
 ---
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
-
-
+import GradientText from '../common/GradientText.astro'
 ---
+
 <Container class="catch-me">
-  <section class="hero">
+  <section class="catch-me__hero">
     <div class="hero-content">
-      <P class="fade-in" size="display-xxl" as="h2">
-        Frontend, Backend and Everything in Between. Let's create awesome digital products. <span class="arrow bounce"> 👉</span>
+      <P class="catch-me__text" size="display-xxl" as="h2">
+        Frontend, Backend and Everything in Between. Let's <GradientText>create</GradientText> awesome digital products.
       </P>
     </div>
-  
-    <a href="#contact" class="catch-me-btn">Lets talk</a>
+
+    <a href="mailto:hi@jorshh.com" class="catch-me-btn">Lets talk</a>
   </section>
 </Container>
 
 <style>
-  .catch-me{
+  .catch-me {
     background-color: var(--white-color);
     padding: 1rem;
     height: 100vh;
   }
   /* Section layout */
-  .hero {
+  .catch-me__hero {
     display: flex;
-    flex-direction: column;
+
     justify-content: center;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
     height: 95vh;
     background: var(--black-color);
     color: var(--white-color);
     position: relative;
     overflow: hidden;
     border-radius: 1rem;
+    padding: 2rem;
   }
 
   /* Subtle grid background */
-  .hero::before {
+  .catch-me__hero::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
+    animation: moveGrid 5s linear infinite;
+    opacity: 0.8; /* Adjust to make it subtle */
   }
+
+@keyframes moveGrid {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-40px, -40px); /* Slow diagonal movement */
+  }
+}
 
   /* Heading animation */
-  .fade-in {
+  .catch-me__text {
     text-transform: uppercase;
-    max-width: 80%;
-    opacity: 0;
-    transform: translateY(50px);
-    animation: fadeInUp 1s ease-out forwards;
+    /* max-width: 80%; */
+    text-wrap: balance;
     color: var(--white-color);
-  }
-
-  /* Arrow */
-  .arrow {
-    display: inline-block;
   }
 
   /* Catch me button */
   .catch-me-btn {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
+    position: fixed;
     padding: 12px 24px;
-    font-size: 1.2rem;
+    width: max-content;
+    height: max-content;
+    font-size: 1.5rem;
     font-weight: 600;
-    background: #ff0066;
+    /* background: #ff0066; */
+    border: solid 1px #ff0066;
     color: #fff;
     border-radius: 8px;
     text-decoration: none;
     text-transform: uppercase;
-    transition: transform 0.1s ease-out, background 0.3s;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
   }
 
   /* Button hover effect */
@@ -83,45 +101,62 @@ import P from "../common/P.astro";
     background: #ff3388;
   }
 
-  /* Animations */
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .target-section {
+    width: 100%;
+    height: 50vh;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed #ccc;
+    overflow: hidden;
+    position: relative;
   }
-/* Bounce animation */
-.bounce {
-    animation: bounce 1s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0) rotate(45deg); }
-    50% { transform: translateY(-10px) rotate(45deg); }
-  }
-
 </style>
 
-
 <script>
-  const button = document.querySelector(".catch-me-btn")! as HTMLButtonElement
+  const button = document.querySelector(".catch-me-btn")! as HTMLHtmlElement;
+  const section = document.querySelector(".catch-me__hero") as HTMLElement;
 
-window.addEventListener("mousemove", (e) => {
-  const { clientX, clientY } = e;
-  const buttonRect = button.getBoundingClientRect();
-  
-  // Get button center
-  const buttonX = buttonRect.left + buttonRect.width / 2;
-  const buttonY = buttonRect.top + buttonRect.height / 2;
+  let isInside = false; 
+  section.addEventListener("mouseenter", () => {
+      isInside = true;
+      button.style.opacity = "1"; // Show the element
+    });
 
-  // Calculate the distance from the cursor to the button center
-  const deltaX = clientX - buttonX;
-  const deltaY = clientY - buttonY;
+    section.addEventListener("mousemove", (event) => {
+      if (!isInside) return; // Only move when inside the section
+      
+      const { clientX, clientY } = event;
 
-  // Move away from the cursor
-  const moveX = deltaX * 0.2; // Adjust sensitivity
-  const moveY = deltaY * 0.2;
+      button.animate(
+        {
+          left: `${clientX}px`,
+          top: `${clientY}px`
+        },
+        { duration: 3000, fill: "forwards" }
+      );
+    });
 
-  button.style.transform = `translate(${moveX}px, ${moveY}px)`;
-});
+    section.addEventListener("mouseleave", () => {
+      isInside = false;
+      button.style.opacity = "0"; // Hide the element
+    });
+
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isInside = true;
+        button.style.opacity = "1";
+      } else {
+        isInside = false;
+        button.style.opacity = "0";
+      }
+    },
+    { threshold: 0.8 }
+  );
+
+  observer.observe(section);
 </script>

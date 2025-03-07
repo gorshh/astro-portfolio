@@ -7,26 +7,61 @@ import P from "../common/P.astro";
   <P as="h2" size="display-xxl" class="about--title">About</P>
   <div class="about--content">
     <div class="options">
-      <P data-attribute="option"  class="active">For everyone</P>
-      <P data-attribute="option" >Recruiters</P>
-      <P data-attribute="option" >Designers</P>
-      <P data-attribute="option" >Product Managers</P>
-      <P data-attribute="option" >Engineers</P>
+      <P data-attribute="option" class="active">For everyone</P>
+      <P data-attribute="option">Recruiters</P>
+      <P data-attribute="option">Designers</P>
+      <P data-attribute="option">Product Managers</P>
+      <P data-attribute="option">Engineers</P>
     </div>
-    <P size="heading-xl" data-attribute="option-description" class="about--description active">
-      👋 Hey! This is Jorge. He builds websites and digital tools that work smoothly, so people don’t have to think about the technology behind them. Whether it’s an app, a website, or a system, he ensures that everything is fast and easy to use.
+    <P
+      size="heading-xl"
+      data-attribute="option-description"
+      class="about--description active"
+    >
+      👋 Hey! This is Jorge. He builds websites and digital tools that work
+      smoothly, so people don’t have to think about the technology behind them.
+      Whether it’s an app, a website, or a system, he ensures that everything is
+      fast and easy to use.
     </P>
-    <P size="heading-xl" data-attribute="option-description" class="about--description">
-      Web developer with 5+ years of experience working across startups and enterprise projects. He specializes in front-end frameworks and efficient workflows. With a strong background in React, Node.js and AWS. He helps teams ship high-quality.
+    <P
+      size="heading-xl"
+      data-attribute="option-description"
+      class="about--description"
+    >
+      Web developer with 5+ years of experience working across startups and
+      enterprise projects. He specializes in front-end frameworks and efficient
+      workflows. With a strong background in React, Node.js and AWS. He helps
+      teams ship high-quality.
     </P>
-    <P size="heading-xl" data-attribute="option-description" class="about--description">
-      Jorge loves working with designers to bring pixel-perfect interfaces to life. He translates beautiful visuals into smooth, interactive experiences, always keeping performance and accessibility in mind. He values clean layouts and responsiveness.
+    <P
+      size="heading-xl"
+      data-attribute="option-description"
+      class="about--description"
+    >
+      Jorge loves working with designers to bring pixel-perfect interfaces to
+      life. He translates beautiful visuals into smooth, interactive
+      experiences, always keeping performance and accessibility in mind. He
+      values clean layouts and responsiveness.
     </P>
-    <P size="heading-xl" data-attribute="option-description" class="about--description">
-      He understands that great products aren’t just about code—they’re about solving problems. He bridges the gap between design, development, and business goals. He thrives on collaborating with designers, product teams and engineers.
+    <P
+      size="heading-xl"
+      data-attribute="option-description"
+      class="about--description"
+    >
+      He understands that great products aren’t just about code—they’re about
+      solving problems. He bridges the gap between design, development, and
+      business goals. He thrives on collaborating with designers, product teams
+      and engineers.
     </P>
-    <P size="heading-xl" data-attribute="option-description" class="about--description">
-      Jorge is deep into frontend development but isn’t afraid to dive into the backend when needed. He speaks fluent TypeScript, CSS and Node.js and can debug faster than you can say<code class="inline-code">console.log()</code>. He’s always happy to share knowledge and clean up messy codebases.
+    <P
+      size="heading-xl"
+      data-attribute="option-description"
+      class="about--description"
+    >
+      Jorge is deep into frontend development but isn’t afraid to dive into the
+      backend when needed. He speaks fluent TypeScript, CSS and Node.js and can
+      debug faster than you can say<code class="inline-code">console.log()</code
+      >. He’s always happy to share knowledge and clean up messy codebases.
     </P>
     <div class="about--current-job">
       <p class="about--current-job--title-section">
@@ -49,15 +84,14 @@ import P from "../common/P.astro";
 </Container>
 
 <style>
-     .inline-code {
-  
-  font-family: inherit;
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 0.95em;
-  color: #555; /* Subtle contrast */
-}
-    
+  .inline-code {
+    font-family: inherit;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #555; /* Subtle contrast */
+  }
+
   #about {
     color: var(--black-color);
     background-color: var(--white-color);
@@ -78,7 +112,6 @@ import P from "../common/P.astro";
     }
 
     .about--title {
-
       align-self: baseline;
       @media (max-width: 920px) {
         align-self: baseline;
@@ -119,13 +152,11 @@ import P from "../common/P.astro";
             opacity: 1;
           }
         }
-        
-        @media (max-width: 920px) {
-        display: none;
-      }
-      }
 
-      
+        @media (max-width: 920px) {
+          display: none;
+        }
+      }
     }
     .about--description {
       margin-bottom: 33px;
@@ -134,7 +165,6 @@ import P from "../common/P.astro";
       &.active {
         display: block;
       }
-
     }
 
     .about--current-job--detail {
@@ -190,43 +220,42 @@ import P from "../common/P.astro";
     }
 
     .console-effect {
-  font-family: monospace;
-  background: black;
-  color: lime;
-  padding: 3px 6px;
-  border-radius: 4px;
-  animation: blink 1s steps(2, start) infinite;
-}
+      font-family: monospace;
+      background: black;
+      color: lime;
+      padding: 3px 6px;
+      border-radius: 4px;
+      animation: blink 1s steps(2, start) infinite;
+    }
 
-@keyframes blink {
-  50% { opacity: 0.5; }
-}
-
-    
+    @keyframes blink {
+      50% {
+        opacity: 0.5;
+      }
+    }
   }
 </style>
 
 <script>
   const options = document.querySelectorAll('p[data-attribute="option"]')!;
-  const descriptions = document.querySelectorAll('p[data-attribute="option-description"]')
-  console.log(descriptions)
+  const descriptions = document.querySelectorAll('p[data-attribute="option-description"]');
+  console.log(descriptions);
   let activeOption = 0;
-  
+
   options.forEach((option, index) => {
     option.addEventListener("click", () => {
-      options[activeOption].classList.remove('active')
-      descriptions[activeOption].classList.remove('active')
-      
-      activeOption = index
+      options[activeOption].classList.remove("active");
+      descriptions[activeOption].classList.remove("active");
 
-      option.classList.add("active")
-      descriptions[index].classList.add("active")
+      activeOption = index;
 
-    })
-  })
+      option.classList.add("active");
+      descriptions[index].classList.add("active");
+    });
+  });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const navbar = document.getElementById("navbar")!;
+    // const navbar = document.getElementById("navbar")!;
     const triggerSection = document.getElementById("about")!;
     const canvas = document.querySelector(".b-canvas")!;
 
@@ -236,15 +265,15 @@ import P from "../common/P.astro";
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!navbarVisible) {
-            navbar.classList.add("show");
+            // navbar.classList.add("show");
             navbarVisible = true;
-            canvas.classList.add("hide")
+            canvas.classList.add("hide");
           }
         } else {
           if (window.scrollY < triggerSection.offsetTop) {
-            navbar.classList.remove("show");
+            // navbar.classList.remove("show");
             navbarVisible = false;
-            canvas.classList.remove("hide")
+            canvas.classList.remove("hide");
           }
         }
       },
@@ -253,6 +282,4 @@ import P from "../common/P.astro";
 
     observer.observe(triggerSection);
   });
-
-
 </script>
