@@ -1,75 +1,40 @@
 ---
 
 ---
-<div class="marquee3">
-  <div class="marquee2_content">
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-    <div class="marquee2_custom-text">
-      🤙 Lets talk
-    </div>
-  </div>
+<div class="marquee-wrapper">
+  <div class="marquee-content"><span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span></div>
+  <div class="marquee-content"><span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span> <span>🤙 Let's talk</span></div>
 </div>
 
 <style>
-  .marquee3 {
-    /* color: #fff;
-    background-color: #000; */
-    color: var(--bg-color);
-    background-color: var(--title-color);
-    border-radius: 0.25rem;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    display: flex;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .marquee2_content {
-    display: flex;
-    width: max-content;
-    animation: scroll 10s linear infinite;
-  }
-
-  .marquee2_custom-text {
-    letter-spacing: -0.1875rem;
-    text-transform: uppercase;
-    flex: 0 0 auto;
-    margin-right: 1rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-size: 4rem;
-    font-weight: 500;
-    line-height: 1;
-    padding-right: 2rem;
-  }
-
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
+  .marquee-wrapper {
+      width: 100%; 
+      overflow: hidden;
+      position: relative;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
     }
-    to {
-      transform: translateX(-50%);
+
+    .marquee-content {
+      display: inline-block;
+      padding-right: 3rem;
+      font-size: 3rem;
+      font-weight: 600;
+      animation: marquee 30s linear infinite;
+      
+      span {
+        /* background-color: red; */
+        margin: 0 1rem;
+      }
     }
-  }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
 </style>

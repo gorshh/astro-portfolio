@@ -12,7 +12,7 @@ import GradientText from '../common/GradientText.astro'
       </P>
     </div>
 
-    <a href="mailto:hi@jorshh.com" class="catch-me-btn">Lets talk</a>
+    <a href="mailto:hi@jorshh.com" class="catch-me-btn">ping me a message</a>
   </section>
 </Container>
 
@@ -68,9 +68,9 @@ import GradientText from '../common/GradientText.astro'
   /* Heading animation */
   .catch-me__text {
     text-transform: uppercase;
-    /* max-width: 80%; */
-    text-wrap: balance;
+    text-wrap: pretty;
     color: var(--white-color);
+    font-family: "PP Mori";
   }
 
   /* Catch me button */
@@ -81,24 +81,25 @@ import GradientText from '../common/GradientText.astro'
     height: max-content;
     font-size: 1.5rem;
     font-weight: 600;
-    /* background: #ff0066; */
-    border: solid 1px #ff0066;
+    border: solid 1px #d5ff63;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
+    
 
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+    transition: color 0.3s ease-in-out, background 0.2s ease-in; /* Smooth fade effect */
   }
 
   /* Button hover effect */
   .catch-me-btn:hover {
-    background: #ff3388;
+    background: #d5ff63;
+    color: var(--black-color);
   }
 
   .target-section {
@@ -120,6 +121,9 @@ import GradientText from '../common/GradientText.astro'
   const section = document.querySelector(".catch-me__hero") as HTMLElement;
 
   let isInside = false; 
+  let isSectionOnViewport = false;
+
+
   section.addEventListener("mouseenter", () => {
       isInside = true;
       button.style.opacity = "1"; // Show the element
@@ -148,9 +152,11 @@ import GradientText from '../common/GradientText.astro'
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
+        // isSectionOnViewport = true
         isInside = true;
         button.style.opacity = "1";
       } else {
+        // isSectionOnViewport = false;
         isInside = false;
         button.style.opacity = "0";
       }

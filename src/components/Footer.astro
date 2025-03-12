@@ -2,35 +2,113 @@
 import P from "./common/P.astro";
 import Link from "./common/Link.astro";
 import Marquee from './common/Marquee.astro'
+import Container from './common/Container.astro'
 ---
 
 <footer id="contact">
-    <Marquee><P as="h2" class="text">Lets talk</P></Marquee>  
+    <!-- <Marquee><P as="h2" class="text">Lets talk</P></Marquee>   -->
+     <Container>
+
+     
     <div class="contact">
-      <P>Let's build something together.</P>
-      <Link href='#'>hi@jorshh.com </Link>
+      <div class="cta-footer-txt"><Link href="#">Lets <span>talk</span></Link></div>
+
+      <div class="arrow-footer"><img src="https://cdn.prod.website-files.com/64ff14294b934e94c9572c09/650079f0b3aa0823ed201805_arrow-up-right.svg" loading="lazy" alt="Arrow link, svg, lime" class="arrow-img"></div>
     </div>
 
     <P>Made with love and astro</P>
+  </Container>
 </footer>
 
 <style>
   footer {
-    height: 80vh;
-    background-color: var(--title-color);
-    color: var(--bg-color);
+    height: 85vh;
+    background-color: var(--black-color);
+    color: var(--white-color);
     position: sticky;
     bottom: 0;
-    z-index: -1;
-    padding-top: 4rem;
+    z-index: 1;
+    padding-top: 7rem;
   }
   .contact {
-    text-align: center;
-    /* color: var(--bg-color); */
-    .p {
-      color: var(--bg-color);
+    display: flex;
+  }
+
+  .cta-footer-txt{
+    
+    letter-spacing: -.02em;
+    font-size: 15.5em;
+    span {
+      color: #d5ff63;
     }
+
+    a {
+      color: #e3e3e3;
+      width: 100%;
+      font-family: "PP Mori";
+      &::after {
+      display: none;
+    }
+    }
+
+    
+  }
+
+ 
+  .cta-footer-txt:hover + .arrow-footer {
+    
+    /* background-color: red; */
   }
 
   
+
+  .arrow-footer {
+    width: 3em;
+    height: 3em;
+    margin-left: 16px;
+    overflow: visible;
+}
+  
 </style>
+<script>
+  const link = document.querySelector('.cta-footer-txt a')! as HTMLLinkElement;
+  const arrow = document.querySelector('.arrow-footer')! as HTMLImageElement;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let scale = 1;
+  let rotation = 0;
+
+  function lerp(start:number, end:number, factor:number) {
+    return start + (end - start) * factor;
+  }
+
+  function animate() {
+    currentX = lerp(currentX, targetX, 0.1);
+    currentY = lerp(currentY, targetY, 0.1);
+    scale = lerp(scale, targetX === 0 && targetY === 0 ? 1 : 1.3, 0.1);
+    // rotation = lerp(rotation, targetX !== 0 ? 15 : 0, 0.1);
+
+    arrow.style.transform = `
+      translate3d(${currentX}em, ${currentY}em, 0px) 
+      scale3d(${scale}, ${scale}, 1) 
+      rotateZ(${rotation}deg)
+    `;
+
+    requestAnimationFrame(animate);
+  }
+
+  link.addEventListener('mouseenter', () => {
+    targetX = 2.5;
+    targetY = -2.5;
+  });
+
+  link.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+  });
+
+  animate();
+</script>
