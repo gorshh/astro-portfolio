@@ -15,13 +15,23 @@ import P from "../common/P.astro";
     <article class="work">
       <img src="/work/games.webp" alt="" />
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
-          >Globant Games Studio Landing Page</P
-        >
-        <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
-        >
+        <P textTransform="uppercase" fontFamily="pp-mori">Globant Games Studio Landing Page</P>
+        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, architecto quos voluptates facere autem quaerat, dolore debitis incidunt accusamus alias a placeat illo reiciendis perspiciatis dolorum reprehenderit maiores dolores! Quaerat!</P>
+      </div>
+    </article>
+
+    <article class="work">
+      <img src="/work/index.webp" alt="" />
+      <div class="work--description">
+        <P fontFamily="pp-mori">Globant</P>
+        <P size="body-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore praesentium aperiam adipisci. Nam nostrum non unde cupiditate maiores iusto deleniti voluptatem, expedita quisquam molestiae sit aspernatur pariatur. Sunt, laborum ducimus.</P>
+      </div>
+    </article>
+    <article class="work">
+      <img src="/work/games.webp" alt="" />
+      <div class="work--description">
+        <P textTransform="uppercase" fontFamily="pp-mori">Globant Games Studio Landing Page</P>
+        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
       </div>
     </article>
 
@@ -53,31 +63,7 @@ import P from "../common/P.astro";
       <div class="work--description">
         <P fontFamily="pp-mori">Globant</P>
         <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
-        >
-      </div>
-    </article>
-    <article class="work">
-      <img src="/work/games.webp" alt="" />
-      <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
-          >Globant Games Studio Landing Page</P
-        >
-        <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
-        >
-      </div>
-    </article>
-
-    <article class="work">
-      <img src="/work/index.webp" alt="" />
-      <div class="work--description">
-        <P fontFamily="pp-mori">Globant</P>
-        <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
+          >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores natus soluta eius laudantium qui repudiandae blanditiis eaque placeat voluptates laborum, nihil quo itaque asperiores similique iste. Natus sit ut cumque.</P
         >
       </div>
     </article>
@@ -101,7 +87,6 @@ import P from "../common/P.astro";
     height: fit-content;
 
     text-wrap: balance;
-    /* background-color: red; */
   }
 
   .work--gallery {
@@ -110,32 +95,24 @@ import P from "../common/P.astro";
     display: grid;
 
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
 
     column-gap: 1rem;
-    row-gap: 1rem;
-
-    /* border: solid 1px red; */
+    row-gap: 3rem;
 
     article {
-      height: 100vh;
       padding-top: 0.7rem;
       padding-bottom: 0.7rem;
-      /* border: solid 1px green; */
 
       img {
         width: 100%;
-
-        height: 85vh;
+        height: 80vh;
         object-fit: cover;
-        border-radius: 1rem;
+        border-radius: 12px;
       }
 
-      width: 100%;
-
       .work--description {
+        max-width: 75ch;
         width: 100%;
-        /* height: 200px; */
         margin-top: 8px;
 
         .body {

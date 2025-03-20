@@ -1,19 +1,26 @@
 ---
 import P from "./common/P.astro";
 import Link from "./common/Link.astro";
-import Marquee from './common/Marquee.astro'
-import Container from './common/Container.astro'
+import Marquee from "./common/Marquee.astro";
+import Container from "./common/Container.astro";
 ---
 
 <footer id="contact">
-    <!-- <Marquee><P as="h2" class="text">Lets talk</P></Marquee>   -->
-     <Container>
-
-     
+  <!-- <Marquee><P as="h2" class="text">Lets talk</P></Marquee>   -->
+  <Container>
     <div class="contact">
-      <div class="cta-footer-txt"><Link href="#">Lets <span>talk</span></Link></div>
+      <div class="cta-footer-txt">
+        <Link href="#">Lets <span>talk</span></Link>
+      </div>
 
-      <div class="arrow-footer"><img src="https://cdn.prod.website-files.com/64ff14294b934e94c9572c09/650079f0b3aa0823ed201805_arrow-up-right.svg" loading="lazy" alt="Arrow link, svg, lime" class="arrow-img"></div>
+      <div class="arrow-footer">
+        <img
+          src="https://cdn.prod.website-files.com/64ff14294b934e94c9572c09/650079f0b3aa0823ed201805_arrow-up-right.svg"
+          loading="lazy"
+          alt="Arrow link, svg, lime"
+          class="arrow-img"
+        />
+      </div>
     </div>
 
     <P>Made with love and astro</P>
@@ -34,9 +41,8 @@ import Container from './common/Container.astro'
     display: flex;
   }
 
-  .cta-footer-txt{
-    
-    letter-spacing: -.02em;
+  .cta-footer-txt {
+    letter-spacing: -0.02em;
     font-size: 15.5em;
     span {
       color: #d5ff63;
@@ -47,32 +53,25 @@ import Container from './common/Container.astro'
       width: 100%;
       font-family: "PP Mori";
       &::after {
-      display: none;
+        display: none;
+      }
     }
-    }
-
-    
   }
 
- 
   .cta-footer-txt:hover + .arrow-footer {
-    
     /* background-color: red; */
   }
-
-  
 
   .arrow-footer {
     width: 3em;
     height: 3em;
     margin-left: 16px;
     overflow: visible;
-}
-  
+  }
 </style>
 <script>
-  const link = document.querySelector('.cta-footer-txt a')! as HTMLLinkElement;
-  const arrow = document.querySelector('.arrow-footer')! as HTMLImageElement;
+  const link = document.querySelector(".cta-footer-txt a")! as HTMLLinkElement;
+  const arrow = document.querySelector(".arrow-footer")! as HTMLImageElement;
 
   let targetX = 0;
   let targetY = 0;
@@ -81,7 +80,7 @@ import Container from './common/Container.astro'
   let scale = 1;
   let rotation = 0;
 
-  function lerp(start:number, end:number, factor:number) {
+  function lerp(start: number, end: number, factor: number) {
     return start + (end - start) * factor;
   }
 
@@ -100,12 +99,12 @@ import Container from './common/Container.astro'
     requestAnimationFrame(animate);
   }
 
-  link.addEventListener('mouseenter', () => {
+  link.addEventListener("mouseenter", () => {
     targetX = 2.5;
     targetY = -2.5;
   });
 
-  link.addEventListener('mouseleave', () => {
+  link.addEventListener("mouseleave", () => {
     targetX = 0;
     targetY = 0;
   });

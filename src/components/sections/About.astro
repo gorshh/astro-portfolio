@@ -60,7 +60,7 @@ import P from "../common/P.astro";
     >
       Jorge is deep into frontend development but isn’t afraid to dive into the
       backend when needed. He speaks fluent TypeScript, CSS and Node.js and can
-      debug faster than you can say<code class="inline-code">console.log()</code
+      debug faster than you can say<span class="inline-code">console.log()</span
       >. He’s always happy to share knowledge and clean up messy codebases.
     </P>
     <div class="about--current-job">
@@ -96,8 +96,7 @@ import P from "../common/P.astro";
     color: var(--black-color);
     background-color: var(--white-color);
     display: flex;
-    padding-bottom: 13rem;
-    padding-top: 13rem;
+    height: 100dvh;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     justify-content: space-between;
@@ -112,7 +111,6 @@ import P from "../common/P.astro";
     }
 
     .about--title {
-      align-self: baseline;
       @media (max-width: 920px) {
         align-self: baseline;
       }
@@ -122,7 +120,7 @@ import P from "../common/P.astro";
       width: 70%;
 
       /* border: solid 1px red; */
-      min-height: 100%;
+      /* min-height: 100%; */
       @media (max-width: 920px) {
         max-width: 75ch;
         width: 100%;
@@ -218,21 +216,6 @@ import P from "../common/P.astro";
       font-weight: 300;
       font-size: 0.85rem;
     }
-
-    .console-effect {
-      font-family: monospace;
-      background: black;
-      color: lime;
-      padding: 3px 6px;
-      border-radius: 4px;
-      animation: blink 1s steps(2, start) infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0.5;
-      }
-    }
   }
 </style>
 
@@ -255,7 +238,7 @@ import P from "../common/P.astro";
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    // const navbar = document.getElementById("navbar")!;
+    const navbar = document.getElementById("navbar")!;
     const triggerSection = document.getElementById("about")!;
     const canvas = document.querySelector(".b-canvas")!;
 
@@ -265,13 +248,13 @@ import P from "../common/P.astro";
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!navbarVisible) {
-            // navbar.classList.add("show");
+            navbar.classList.add("show");
             navbarVisible = true;
             canvas.classList.add("hide");
           }
         } else {
           if (window.scrollY < triggerSection.offsetTop) {
-            // navbar.classList.remove("show");
+            navbar.classList.remove("show");
             navbarVisible = false;
             canvas.classList.remove("hide");
           }
