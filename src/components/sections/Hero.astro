@@ -3,7 +3,6 @@ import ScrollBar from "../common/ScrollDown.astro";
 import Blotter from "../common/Blotter.astro";
 import Link from "../common/Link.astro";
 import Logo from "../common/Logo.astro";
-import P from "../common/P.astro";
 import Container from "../common/Container.astro";
 ---
 
@@ -17,11 +16,6 @@ import Container from "../common/Container.astro";
     </div>
     <Link href="#contact" class="cta">Lets talk</Link>
   </header>
-
-  <footer>
-    <p>Last updated 2025-02-27</p>
-    <p>© 2025</p>
-  </footer>
   <Blotter />
   <ScrollBar />
 </Container>
@@ -35,32 +29,7 @@ import Container from "../common/Container.astro";
     font-family: "PP Mori";
     background-color: var(--black-color);
     color: rgba(var(--white-rgb), 0.8);
-    footer {
-      position: absolute;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      bottom: 1rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      font-size: 0.8rem;
-      opacity: 0.6;
-      
-    }
 
-    @keyframes fade-out {
-      0% {
-        background-color: red;
-        opacity: 1;
-        scale: 1;
-      }
-
-      100% {
-        opacity: 0;
-        background-color: blue;
-        scale: 0.5;
-      }
-    }
   }
   .hero-header {
     border-radius: 0.6rem;

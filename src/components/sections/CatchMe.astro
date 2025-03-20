@@ -3,7 +3,6 @@ import Container from "../common/Container.astro";
 import P from "../common/P.astro";
 import GradientText from '../common/GradientText.astro'
 ---
-
 <Container class="catch-me">
   <section class="catch-me__hero">
     <div class="hero-content">
@@ -22,13 +21,11 @@ import GradientText from '../common/GradientText.astro'
     padding: 1rem;
     height: 100vh;
   }
-  /* Section layout */
+
   .catch-me__hero {
     display: flex;
-
     justify-content: center;
     align-items: center;
-    /* text-align: center; */
     height: 95vh;
     background: var(--black-color);
     color: var(--white-color);
@@ -38,7 +35,6 @@ import GradientText from '../common/GradientText.astro'
     padding: 2rem;
   }
 
-  /* Subtle grid background */
   .catch-me__hero::before {
     content: "";
     position: absolute;
@@ -53,19 +49,18 @@ import GradientText from '../common/GradientText.astro'
       linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
     animation: moveGrid 5s linear infinite;
-    opacity: 0.8; /* Adjust to make it subtle */
+    opacity: 0.8;
   }
 
-@keyframes moveGrid {
-  from {
-    transform: translate(0, 0);
+  @keyframes moveGrid {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(-40px, -40px);
+    }
   }
-  to {
-    transform: translate(-40px, -40px); /* Slow diagonal movement */
-  }
-}
 
-  /* Heading animation */
   .catch-me__text {
     text-transform: uppercase;
     text-wrap: pretty;
@@ -73,12 +68,9 @@ import GradientText from '../common/GradientText.astro'
     font-family: "PP Mori";
   }
 
-  /* Catch me button */
   .catch-me-btn {
     position: fixed;
     padding: 12px 24px;
-    width: max-content;
-    height: max-content;
     font-size: 1.5rem;
     font-weight: 600;
     border: solid 1px #d5ff63;
@@ -86,17 +78,12 @@ import GradientText from '../common/GradientText.astro'
     border-radius: 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
-    
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: color 0.3s ease-in-out, background 0.2s ease-in; /* Smooth fade effect */
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    pointer-events: none;
   }
 
-  /* Button hover effect */
   .catch-me-btn:hover {
     background: #d5ff63;
     color: var(--black-color);
@@ -117,52 +104,54 @@ import GradientText from '../common/GradientText.astro'
 </style>
 
 <script>
-  const button = document.querySelector(".catch-me-btn")! as HTMLHtmlElement;
-  const section = document.querySelector(".catch-me__hero") as HTMLElement;
+  const button = document.querySelector(".catch-me-btn")! as HTMLButtonElement;
+  const section = document.querySelector(".catch-me__hero")! as HTMLElement;
 
-  let isInside = false; 
+  let isInside = false;
   let isSectionOnViewport = false;
 
-
-  section.addEventListener("mouseenter", () => {
-      isInside = true;
-      button.style.opacity = "1"; // Show the element
-    });
-
-    section.addEventListener("mousemove", (event) => {
-      if (!isInside) return; // Only move when inside the section
-      
-      const { clientX, clientY } = event;
-
-      button.animate(
-        {
-          left: `${clientX}px`,
-          top: `${clientY}px`
-        },
-        { duration: 3000, fill: "forwards" }
-      );
-    });
-
-    section.addEventListener("mouseleave", () => {
-      isInside = false;
-      button.style.opacity = "0"; // Hide the element
-    });
-
-
+  // 👇 Intersection Observer to track viewport visibility
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
-        // isSectionOnViewport = true
-        isInside = true;
-        button.style.opacity = "1";
+        isSectionOnViewport = true;
+        button.style.opacity = "1"; // Show only if in viewport
+        button.style.pointerEvents = "auto"; // Make it interactive
       } else {
-        // isSectionOnViewport = false;
-        isInside = false;
-        button.style.opacity = "0";
+        isSectionOnViewport = false;
+        button.style.opacity = "0"; // Hide when out of viewport
+        button.style.pointerEvents = "none"; // Disable interaction
       }
     },
-    { threshold: 0.8 }
+    { threshold: 0.6 } // Trigger when 60% of section is in view
   );
 
   observer.observe(section);
+
+  // ✅ Mouse Events Only Work If Section is Visible
+  section.addEventListener("mouseenter", () => {
+    if (!isSectionOnViewport) return;
+    isInside = true;
+    button.style.opacity = "1";
+  });
+
+  section.addEventListener("mousemove", (event) => {
+    if (!isInside || !isSectionOnViewport) return;
+
+    const { clientX, clientY } = event;
+
+    button.animate(
+      {
+        left: `${clientX}px`,
+        top: `${clientY}px`,
+      },
+      { duration: 3000, fill: "forwards" }
+    );
+  });
+
+  section.addEventListener("mouseleave", () => {
+    if (!isSectionOnViewport) return;
+    isInside = false;
+    button.style.opacity = "0";
+  });
 </script>
