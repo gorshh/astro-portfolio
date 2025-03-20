@@ -1,0 +1,202 @@
+---
+import Container from "../common/Container.astro";
+import P from "../common/P.astro";
+---
+
+<Container as="section" id="experience">
+    <P size="display-xxl" as="h2">Experience</P>
+    <P size="heading-lg" class="experience--description">
+
+      I'm a Full-Stack Developer with 5+ years of experience in React, Next.js,
+      Astro, Node.js, AWS, RESTful APIs and software architecture. Expert in
+      testing, CI/CD and agile development.
+    </P>
+  
+   
+  <div class="experience--list">
+    <article class="experience--item">
+      <div class="experience--logo">
+        <img
+          src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png"
+          alt="Globant Logo"
+        />
+      </div>
+
+      <div class="experience--info">
+        <P class="experience--position" size="body">Web UI Senior Developer</P>
+        <P class="experience--company" size="body-sm">Globant • <Full-></Full->time</P>
+        <P class="experience--date">March 2024 - Today</P>
+      </div>
+    </article>
+
+    <article class="experience--item">
+      <div class="experience--logo">
+        <img
+          src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png"
+          alt="Globant Logo"
+        />
+      </div>
+
+      <div class="experience--info">
+        <P class="experience--position" size="body">Web UI Semi Senior Developer</P>
+        <P class="experience--company" size="body-sm">Globant • <Full-></Full->time</P>
+        <P class="experience--date">Nov 2021 - March 2024</P>
+      </div>
+    </article>
+
+
+    <article class="experience--item">
+      <div class="experience--logo">
+        <img
+          src="https://media.glassdoor.com/sqll/1817884/upax-squarelogo-1645706364688.png"
+          alt="Globant Logo"
+        />
+      </div>
+
+      <div class="experience--info">
+        <P class="experience--position" size="body">Front End Developer</P>
+        <P class="experience--company" size="body-sm">Upax • <Full-></Full->time</P>
+        <P class="experience--date">May 2021 - Nov 2021</P>
+      </div>
+    </article>
+
+
+    <article class="experience--item">
+      <div class="experience--logo">
+        <img
+          src="https://blogdelagua.com/wp-content/uploads/2013/05/imta.jpg"
+          alt="Globant Logo"
+        />
+      </div>
+
+      <div class="experience--info">
+        <P class="experience--position" size="body">Fullstack Developer</P>
+        <P class="experience--company" size="body-sm">IMTA • <Full-></Full->time</P>
+        <P class="experience--date">May 2019 - Aug 2021</P>
+      </div>
+    </article>
+
+  </div>
+</Container>
+
+<style>
+  #experience {
+    padding: 4rem 1rem;
+    background-color: var(--white-color);
+    color: var(--text-color);
+  }
+
+  .experience--description {
+    max-width: 75ch;
+  }
+
+  .experience--list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .experience--item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;    
+    background-color: #eeeeee;
+  }
+
+  .experience--logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    padding: 0.5rem;
+    background-color: var(--white-color);
+  }
+
+  .experience--logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .experience--info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .experience--position {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    
+  }
+
+  .experience--company {
+    margin: 0;
+  }
+
+  .experience--date {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(136, 136, 136);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 500px) {
+    .experience--item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .experience--logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .experience--position {
+      font-size: 1.1rem;
+    }
+
+    .experience--company,
+    .experience--date {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+<!-- 
+<style>
+  #experience {
+    background-color: var(--white-color);
+  }
+
+  .experience--list{
+    /* border: 1px red solid; */
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+
+    article {
+      background-color: #f3f3f3;
+      border-radius: 1rem;
+      display: flex;
+      padding: 1rem;
+      gap: 1rem;
+
+      img {
+        /* border: solid 1px red; */
+        aspect-ratio: 1/1;
+        padding: 1rem;
+        background-color: var(--white-color);
+        border-radius: 12px;
+      }
+    }
+  }
+</style> -->

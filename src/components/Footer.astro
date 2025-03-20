@@ -1,12 +1,11 @@
 ---
 import P from "./common/P.astro";
 import Link from "./common/Link.astro";
-import Marquee from "./common/Marquee.astro";
 import Container from "./common/Container.astro";
 ---
 
 <footer id="contact">
-  <!-- <Marquee><P as="h2" class="text">Lets talk</P></Marquee>   -->
+  
   <Container>
     <div class="contact">
       <div class="cta-footer-txt">
@@ -44,6 +43,9 @@ import Container from "./common/Container.astro";
   .cta-footer-txt {
     letter-spacing: -0.02em;
     font-size: 15.5em;
+    @media (max-width: 500px) {
+      font-size: 4.5em;
+    }
     span {
       color: #d5ff63;
     }
@@ -56,10 +58,6 @@ import Container from "./common/Container.astro";
         display: none;
       }
     }
-  }
-
-  .cta-footer-txt:hover + .arrow-footer {
-    /* background-color: red; */
   }
 
   .arrow-footer {

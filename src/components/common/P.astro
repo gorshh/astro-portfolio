@@ -4,13 +4,13 @@ import { defaultSizes } from "../../types/typography"; // Importación sin "type
 
 const { as = "p", size, align, class: customClass = "", fontFamily = "system", textTransform, ...rest }: TypographyProps = Astro.props;
 
-// Usa `defaultSizes` correctamente
+
 const appliedSize = size ?? defaultSizes[as] ?? "body";
 
-// Genera clases dinámicas
+
 const classes = [appliedSize, align ? `text-${align}` : "", fontFamily, textTransform, customClass].filter(Boolean).join(" ");
 
-// 🔹 Define el elemento dinámico a renderizar (h1, p, etc.)
+
 const DynamicTag = as;
 ---
 
@@ -54,6 +54,7 @@ const DynamicTag = as;
     .display-xl { font-size: 40px; }
     .heading-xl { font-size: 28px; }
     .body { font-size: 20px; }
+    .heading-lg{font-size: 20px;}
   }
 
   @media (max-width: 920px) {
