@@ -1,0 +1,130 @@
+---
+import P from "../common/P.astro";
+
+// Aquí puedes agregar lógica si lo necesitas, por ejemplo, props o imports
+// Para este ejemplo no es necesario importar nada extra
+---
+
+<style>
+  :root {
+    --underline-width: 1lh;
+    --underline-block-width: 400vmax;
+    --underline-color: hsl(0 0% 50% / 0.15);
+    --underline-transition: 5s;
+    --finish-fill: hsl(0 0% 100%);
+    --accent: hsla(0, 0%, 100%, 0.452);
+    --fill: hsl(0, 0%, 60%);
+  }
+
+  
+
+  .text-reveals {
+    font-size: 24px;
+    color: var(--color);
+    background-image: linear-gradient(
+        90deg,
+        transparent calc(100% - 8ch),
+        var(--accent) calc(100% - 8ch)
+      ),
+      linear-gradient(90deg, var(--fill), var(--fill)),
+      linear-gradient(90deg, var(--underline-color), var(--underline-color));
+    background-size:
+      var(--underline-block-width) var(--underline-width),
+      var(--underline-block-width) var(--underline-width),
+      100% var(--underline-width);
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: 100%;
+    background-clip: text;
+    color: var(--finish-fill);
+  }
+
+  main {
+    height: 800vh;
+    background-color: black;
+  }
+
+  section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    text-align: center;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      main {
+        view-timeline-name: --section;
+      }
+
+      .text-reveals {
+        background-position-x: calc(var(--underline-block-width) * -1),calc(var(--underline-block-width) * -1), 0;
+        color: transparent;
+        animation-name: fill-up, color-in;
+        animation-fill-mode: both;
+        animation-timing-function: linear;
+        animation-timeline: --section;
+        animation-range:
+          entry 100% cover 50%,
+          cover 50% exit 0%;
+      }
+
+      @keyframes fill-up {
+        to {
+          background-position-x: 0, 0, 0;
+        }
+      }
+
+      @keyframes color-in {
+        to {
+          color: var(--finish-fill);
+        }
+      }
+    }
+  }
+</style>
+
+<main>
+  <section>
+    <P class="about--title" fontFamily="pp-mori">Who am I? </P>
+    <P size="display-xxl" class="about--title"
+      >👋 Hey, I'm Jorge — a developer who cares <em>just as much</em> about smooth animations
+      and crisp layouts as clean, scalable code.</P
+    >
+    <span  class="text-reveals"
+      >With 5+ years of experience, I’ve contributed to fast-moving startups and
+      large-scale platforms. My sweet spot is modern frontend development
+      (React, Astro, TypeScript), but I’m just as comfortable in the backend
+      when needed.
+      <i>I build smooth, responsive and user-friendly websites. Designers love me because I care about details. PMs trust me because I hit deadlines. Engineers appreciate me because my pull requests don’t break things (<em>well, usually</em>).</i
+      ></span>
+  </section>
+</main>
+
+<style>
+  .about--title {
+    margin-bottom: 4rem;
+    color: var(--white-color);
+  }
+
+
+  .text-reveals {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+
+    i {
+      font-style: normal;
+      opacity: 0.7;
+      font-size: 20px;
+      max-width: 600px;
+      margin: 2rem auto 0;
+      display: block;
+      /* text-wrap: pretty; */
+    }
+  }
+</style>

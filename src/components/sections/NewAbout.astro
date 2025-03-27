@@ -1,0 +1,62 @@
+---
+import Container from "../common/Container.astro";
+import P from "../common/P.astro";
+---
+
+<Container as="section" id="about">
+  <div class="about--container">
+    <P class="about--title" fontFamily="pp-mori">Who am I? </P>
+    <P size="display-xxl" class="about--title"
+      >I'm Jorge — a developer who cares <i>just as much</i> about smooth animations
+      and crisp layouts as clean, scalable code.</P
+    >
+    <P size="heading-lg" class="about--first--description"
+      >With 5+ years of experience, I’ve contributed to fast-moving startups and
+      large-scale platforms. My sweet spot is modern frontend development
+      (React, Astro, TypeScript), but I’m just as comfortable in the backend
+      when needed.</P
+    >
+    <P class="about--first--small-description"
+      > I work closely with designers to turn beautiful mockups into
+      delightful web experiences. If the spacing is off by 2 pixels,
+      yes — I will notice.</P
+    >
+  </div>
+</Container>
+
+<style>
+  #about {
+    color: var(--black-color);
+    background-color: var(--white-color);
+    /* background-color: red; */
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+
+    .about--container {
+      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+
+    .about--title {
+      margin-bottom: 4rem;
+    }
+
+    .about--first--description {
+      max-width: 800px;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    }
+    .about--first--small-description{
+      max-width: 450px;
+      margin: 0 auto;
+      opacity: 0.8;
+    }
+
+
+    
+  }
+</style>

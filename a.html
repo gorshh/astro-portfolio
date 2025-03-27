@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Follow Cursor Effect</title>
+</head>
+<body>
+  <style>
+    html, body { padding-top:100px; height: 200vh; margin: 0; }
+
+    .target-section {
+      width: 100%;
+      height: 50vh;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 2px dashed #ccc;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #move {
+      background: linear-gradient(to right, #ff8e8e, #ff006a);
+      height: 80px;
+      width: 80px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+      pointer-events: none; /* Prevent accidental selection */
+    }
+  </style>
+
+  <div class="target-section">
+    <h2>Move your mouse here!</h2>
+  </div>
+
+  <div id="move"></div>
+
+  <script>
+    const move = document.getElementById("move");
+    const section = document.querySelector(".target-section");
+
+    let isInside = false; // Track if the cursor is inside the section
+
+    section.addEventListener("mouseenter", () => {
+      isInside = true;
+      move.style.opacity = "1"; // Show the element
+    });
+
+    section.addEventListener("mousemove", (event) => {
+      if (!isInside) return; // Only move when inside the section
+      
+      const { clientX, clientY } = event;
+
+      move.animate(
+        {
+          left: `${clientX}px`,
+          top: `${clientY}px`
+        },
+        { duration: 3000, fill: "forwards" }
+      );
+    });
+
+    section.addEventListener("mouseleave", () => {
+      isInside = false;
+      move.style.opacity = "0"; // Hide the element
+    });
+  </script>
+</body>
+</html>
