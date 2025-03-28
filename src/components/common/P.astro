@@ -50,17 +50,19 @@ const DynamicTag = as;
   .text-center { text-align: center; }
   .text-right { text-align: right; }
 
+  @media (max-width: 920px) {
+    .display-xxl { font-size: 48px; line-height: normal;}
+    .heading-xl { font-size: 20px; font-weight: 500; line-height: 25px; }
+  }
+
   @media (max-width: 420px) {
+    .display-xxl { font-size: 32px; line-height: normal;}
     .display-xl { font-size: 40px; }
     .heading-xl { font-size: 28px; }
     .body { font-size: 20px; }
     .heading-lg{font-size: 20px;}
   }
 
-  @media (max-width: 920px) {
-    .display-xxl { font-size: 48px; letter-spacing: 0; }
-    .heading-xl { font-size: 20px; font-weight: 500; line-height: 25px; }
-  }
 
   .system {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;

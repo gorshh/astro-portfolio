@@ -1,20 +1,17 @@
 ---
 import P from "../common/P.astro";
-
-
 ---
 
 <style>
   :root {
-  --underline-width: 1lh;
-  --underline-block-width: 400vmax;
-  --underline-color: hsl(0 0% 20% / 0.1);        /* más suave en claro */
-  --underline-transition: 5s;
-  --finish-fill: hsl(0, 0%, 10%);                /* texto final: casi negro */
-  --accent: hsla(0, 0%, 0%, 0.3);                /* acento: gris oscuro translúcido */
-  --fill: hsl(0, 0%, 30%);                       /* relleno previo: gris medio */
-}
-
+    --underline-width: 1lh;
+    --underline-block-width: 400vmax;
+    --underline-color: hsl(0 0% 20% / 0.1); /* más suave en claro */
+    --underline-transition: 5s;
+    --finish-fill: var(--black-color); /* texto final: casi negro */
+    --accent: hsla(0, 0%, 0%, 0.3); /* acento: gris oscuro translúcido */
+    --fill: hsl(0, 0%, 30%); /* relleno previo: gris medio */
+  }
 
   .text-reveals {
     font-size: 24px;
@@ -35,6 +32,11 @@ import P from "../common/P.astro";
     background-position-y: 100%;
     background-clip: text;
     color: var(--finish-fill);
+
+    @media (max-width: 420px) {
+      font-size: 20px;
+    }
+    
   }
 
   .about {
@@ -54,6 +56,11 @@ import P from "../common/P.astro";
     padding-top: 10rem;
     padding-bottom: 10rem;
     text-align: center;
+
+    @media (max-width: 420px) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
   }
 
   @supports (animation-timeline: scroll()) {
@@ -63,7 +70,8 @@ import P from "../common/P.astro";
       }
 
       .text-reveals {
-        background-position-x: calc(var(--underline-block-width) * -1),calc(var(--underline-block-width) * -1), 0;
+        background-position-x: calc(var(--underline-block-width) * -1),
+          calc(var(--underline-block-width) * -1), 0;
         color: transparent;
         animation-name: fill-up, color-in;
         animation-fill-mode: both;
@@ -91,39 +99,49 @@ import P from "../common/P.astro";
 
 <main class="about" id="about">
   <section>
-    <P class="section--name" fontFamily="pp-mori">Who am I? </P>
+    <P class="section--name" fontFamily="pp-mori">About me</P>
     <P size="display-xxl" class="about--title"
-      >👋 Hey, I'm Jorge — a developer who cares <em>just as much</em> about smooth animations
-      and crisp layouts as clean, scalable code.</P
+      >👋 Hey, I'm Jorge — a developer who cares <em>just as much</em> about smooth
+      animations and crisp layouts as clean, scalable code.</P
     >
-    <span  class="text-reveals"
-      >With 5+ years of experience, I’ve contributed to fast-moving startups and
+    <span class="text-reveals">
+      With 5+ years of experience, I’ve contributed to fast-moving startups and
       large-scale platforms. My sweet spot is modern frontend development
-      (<span class="tech">⚛️ React</span>,
-      <span class="tech">🪐 Astro</span>,
-      <span class="tech">🧠 TypeScript</span>), but I’m just as comfortable in the backend
+      (React, Astro, TypeScript), but I’m just as comfortable in the backend
       when needed.
-      <i>Designers love me because I care about details. PMs trust me because I hit deadlines. Engineers appreciate me because my pull requests don’t break things (<em>well, usually</em>).</i
-      ></span>
+      <i
+        >Designers love me because I care about details. PMs trust me because I
+        hit deadlines. Engineers appreciate me because my pull requests don’t
+        break things (<em>well, usually</em>).
+      </i>
+    </span>
   </section>
 </main>
 
 <style>
-
-  .section--name{
+  .section--name {
     font-weight: 100;
     margin-bottom: 3rem;
+    @media (max-width: 420px) {
+      margin-bottom: 1rem;
+    }
+    
   }
   .about--title {
     margin-bottom: 4rem;
+    @media (max-width: 420px) {
+      margin-bottom: 2rem;
+    }
   }
-
 
   .text-reveals {
     max-width: 800px;
     margin: 0 auto;
     margin-bottom: 2rem;
 
+    @media (max-width: 420px) {
+      margin-bottom: 1rem;
+    }
     i {
       font-style: normal;
       opacity: 0.9;
@@ -132,7 +150,11 @@ import P from "../common/P.astro";
       margin: 2rem auto 0;
       display: block;
       text-wrap: pretty;
+
+      @media (max-width: 420px) {
+        margin: 1rem auto 0;
+        font-size: 16px;
+    }
     }
   }
-
 </style>
