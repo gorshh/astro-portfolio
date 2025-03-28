@@ -57,6 +57,12 @@ import P from "../common/P.astro";
     padding-bottom: 10rem;
     text-align: center;
 
+    @media (max-width: 420px) {
+      padding-top: 5rem;
+    padding-bottom: 5rem;
+    height: 90vh;
+    }
+
   }
 
   @supports (animation-timeline: scroll()) {
