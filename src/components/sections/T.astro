@@ -1,4 +1,5 @@
 ---
+import Container from "../common/Container.astro";
 import P from "../common/P.astro";
 
 
@@ -6,16 +7,15 @@ import P from "../common/P.astro";
 
 <style>
   :root {
-    --underline-width: 1lh;
-    --underline-block-width: 400vmax;
-    --underline-color: hsl(0 0% 50% / 0.15);
-    --underline-transition: 5s;
-    --finish-fill: hsl(0 0% 100%);
-    --accent: hsla(0, 0%, 100%, 0.452);
-    --fill: hsl(0, 0%, 60%);
-  }
+  --underline-width: 1lh;
+  --underline-block-width: 400vmax;
+  --underline-color: hsl(0 0% 20% / 0.1);        /* más suave en claro */
+  --underline-transition: 5s;
+  --finish-fill: hsl(0, 0%, 10%);                /* texto final: casi negro */
+  --accent: hsla(0, 0%, 0%, 0.3);                /* acento: gris oscuro translúcido */
+  --fill: hsl(0, 0%, 30%);                       /* relleno previo: gris medio */
+}
 
-  
 
   .text-reveals {
     font-size: 24px;
@@ -38,9 +38,10 @@ import P from "../common/P.astro";
     color: var(--finish-fill);
   }
 
-  main {
+  .about {
     height: 800vh;
-    background-color: black;
+    background-color: var(--white-color);
+    color: var(--black-color);
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
@@ -58,7 +59,7 @@ import P from "../common/P.astro";
 
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
-      main {
+      .about {
         view-timeline-name: --section;
       }
 
@@ -89,9 +90,9 @@ import P from "../common/P.astro";
   }
 </style>
 
-<main>
+<main class="about" id="about">
   <section>
-    <P class="about--title" fontFamily="pp-mori">Who am I? </P>
+    <P class="section--name" fontFamily="pp-mori">Who am I? </P>
     <P size="display-xxl" class="about--title"
       >👋 Hey, I'm Jorge — a developer who cares <em>just as much</em> about smooth animations
       and crisp layouts as clean, scalable code.</P
@@ -107,9 +108,13 @@ import P from "../common/P.astro";
 </main>
 
 <style>
+
+  .section--name{
+    font-weight: 100;
+    margin-bottom: 3rem;
+  }
   .about--title {
     margin-bottom: 4rem;
-    color: var(--white-color);
   }
 
 
@@ -120,7 +125,7 @@ import P from "../common/P.astro";
 
     i {
       font-style: normal;
-      opacity: 0.7;
+      opacity: 0.9;
       font-size: 20px;
       max-width: 600px;
       margin: 2rem auto 0;
