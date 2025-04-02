@@ -1,165 +1,116 @@
 ---
+import Container from "../common/Container.astro";
 import P from "../common/P.astro";
 ---
 
+<Container as="section" id="about">
+  <div class="about--container">
+    <P class="about--title" fontFamily="pp-mori">About me</P>
+    <P size="display-xxl" class="about--title scroll-reveal"
+      >👋 Hey, I'm Jorge — a developer who cares <i>just as much</i> about smooth
+      animations and crisp layouts as clean, scalable code.</P
+    >
+    <P size="heading-lg" class="about--first--description scroll-reveal"
+      >With 5+ years of experience, I’ve contributed to fast-moving startups and
+      large-scale platforms. My sweet spot is modern frontend development
+      (React, Astro, TypeScript), but I’m just as comfortable in the backend
+      when needed.</P
+    >
+    <P class="about--first--small-description scroll-reveal"
+      >Designers love me because I care about details. PMs trust me because I
+      hit deadlines. Engineers appreciate me because my pull requests don’t
+      break things (<em>well, usually</em>).</P
+    >
+  </div>
+</Container>
+
 <style>
-  :root {
-    --underline-width: 1lh;
-    --underline-block-width: 400vmax;
-    --underline-color: hsl(0 0% 20% / 0.1); /* más suave en claro */
-    --underline-transition: 5s;
-    --finish-fill: var(--black-color); /* texto final: casi negro */
-    --accent: hsla(0, 0%, 0%, 0.3); /* acento: gris oscuro translúcido */
-    --fill: hsl(0, 0%, 30%); /* relleno previo: gris medio */
-  }
-
-  .text-reveals {
-    font-size: 24px;
-    color: var(--color);
-    background-image: linear-gradient(
-        90deg,
-        transparent calc(100% - 8ch),
-        var(--accent) calc(100% - 8ch)
-      ),
-      linear-gradient(90deg, var(--fill), var(--fill)),
-      linear-gradient(90deg, var(--underline-color), var(--underline-color));
-    background-size:
-      var(--underline-block-width) var(--underline-width),
-      var(--underline-block-width) var(--underline-width),
-      100% var(--underline-width);
-    background-repeat: no-repeat;
-    background-position-x: 0;
-    background-position-y: 100%;
-    background-clip: text;
-    color: var(--finish-fill);
-
-    @media (max-width: 420px) {
-      font-size: 20px;
-    }
-  }
-
-  .about {
-    height: 250vh;
-    background-color: var(--white-color);
+  #about {
     color: var(--black-color);
+    background-color: var(--white-color);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 
-    @media (max-width: 420px) {
-      height: fit-content;
-    }
-  }
-
-  section {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    max-width: 1080px;
-    margin: 0 auto;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-    text-align: center;
-
-    @media (max-width: 420px) {
-      padding-top: 5rem;
+    @media (min-width: 1024px) {
+      min-height: 100dvh;
+      padding-top: 7rem;
       padding-bottom: 5rem;
-      height: 80vh;
     }
-  }
 
-  @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .about {
-        view-timeline-name: --section;
-      }
-
-      .text-reveals {
-        background-position-x: calc(var(--underline-block-width) * -1),
-          calc(var(--underline-block-width) * -1), 0;
-        color: transparent;
-        animation-name: fill-up, color-in;
-        animation-fill-mode: both;
-        animation-timing-function: linear;
-        animation-timeline: --section;
-        animation-range:
-          entry 100% cover 50%,
-          cover 50% exit 0%;
-      }
-
-      @keyframes fill-up {
-        to {
-          background-position-x: 0, 0, 0;
-        }
-      }
-
-      @keyframes color-in {
-        to {
-          color: var(--finish-fill);
-        }
-      }
+    .about--container {
+      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto;
     }
-  }
-</style>
 
-<main class="about" id="about">
-  <section>
-    <P class="section--name" fontFamily="pp-mori">About me</P>
-    <P size="display-xxl" class="about--title"
-      >👋 Hey, I'm Jorge — a developer who cares <em>just as much</em> about smooth
-      animations and crisp layouts as clean, scalable code.</P
-    >
-    <span class="text-reveals">
-      With 5+ years of experience, I’ve contributed to fast-moving startups and
-      large-scale platforms. My sweet spot is modern frontend development
-      (React, Astro, TypeScript), but I’m just as comfortable in the backend
-      when needed.
-      <i
-        >Designers love me because I care about details. PMs trust me because I
-        hit deadlines. Engineers appreciate me because my pull requests don’t
-        break things (<em>well, usually</em>).
-      </i>
-    </span>
-  </section>
-</main>
-
-<style>
-  .section--name {
-    font-weight: 100;
-    margin-bottom: 3rem;
-    @media (max-width: 420px) {
-      margin-bottom: 1rem;
-    }
-  }
-  .about--title {
-    margin-bottom: 4rem;
-
-    @media (max-width: 420px) {
+    .about--title {
       margin-bottom: 2rem;
-    }
-  }
 
-  .text-reveals {
-    max-width: 800px;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-
-    @media (max-width: 420px) {
-      margin-bottom: 1rem;
-    }
-
-    i {
-      font-style: normal;
-      opacity: 0.9;
-      font-size: 20px;
-      max-width: 600px;
-      margin: 2rem auto 0;
-      display: block;
-      text-wrap: pretty;
-
-      @media (max-width: 420px) {
-        font-size: 16px;
-        margin: 1rem auto 0;
+      @media (min-width: 1366px) {
+        margin-bottom: 4rem;
       }
+    }
+
+    .about--first--description {
+      max-width: 800px;
+      margin: 0 auto;
+      /* margin-bottom: 2rem; */
+      margin-bottom: 1rem;
+      @media (min-width: 1366px) {
+        margin-bottom: 2rem;
+      }
+    }
+    .about--first--small-description {
+      max-width: 450px;
+      margin: 0 auto;
+      opacity: 0.8;
+      text-wrap: pretty;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition:
+        opacity 0.3s ease-out,
+        transform 0.3s ease-out;
+      will-change: opacity, transform;
     }
   }
 </style>
+
+<script>
+  const revealElements = document.querySelectorAll(".scroll-reveal");
+
+  function handleScrollReveal() {
+    const viewportHeight = window.innerHeight;
+
+    revealElements.forEach((el) => {
+      const element = el as HTMLElement;
+
+      const rect = el.getBoundingClientRect();
+      const offset = rect.top;
+
+      const startRevealAt = viewportHeight * 0.95;
+      const endRevealAt = viewportHeight * 0.85;
+
+      if (offset < startRevealAt && offset > endRevealAt) {
+        const progress =
+          1 - (offset - endRevealAt) / (startRevealAt - endRevealAt);
+        element.style.opacity = progress.toFixed(2);
+        element.style.transform = `translateY(${(1 - progress) * 40}px)`;
+      } else if (offset <= endRevealAt) {
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
+      } else {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(40px)";
+      }
+    });
+  }
+
+  window.addEventListener("scroll", handleScrollReveal);
+  window.addEventListener("load", handleScrollReveal);
+</script>
