@@ -2,19 +2,22 @@
 import ScrollBar from "../common/ScrollDown.astro";
 import Blotter from "../common/Blotter.astro";
 import Link from "../common/Link.astro";
-import Logo from "../common/Logo.astro";
 import Container from "../common/Container.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Container as="section" id="home">
   <header class="hero-header">
-    <div class="left-side">
-      
+    <div class="left-side">      
       <h1 class="heading-style-header">
-        Developer dedicated to pixel-perfect UI & smooth digital experiences.
+        {t('hero.title')}
       </h1>
     </div>
-    <Link href="#contact" class="cta">Lets talk</Link>
+    <Link href="#contact" class="cta">{t('hero.cta')}</Link>
   </header>
   <Blotter />
   <ScrollBar />
