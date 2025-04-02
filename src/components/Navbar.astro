@@ -3,7 +3,7 @@ import Link from "./common/Link.astro";
 import Logo from "./common/Logo.astro";
 ---
 
-<nav id="navbar">
+<nav id="navbar" class="show">
   <Logo mode="dark" class="nav-logo" />
   <Link href="#about" class="nav-link">About</Link>
   <Link href="#works" class="nav-link">Work</Link>
@@ -68,4 +68,22 @@ import Logo from "./common/Logo.astro";
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
+
 </style>
+
+<script>
+  let lastScrollY = window.scrollY;
+  const navbar = document.getElementById("navbar") as HTMLDivElement;
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScrollY && currentScroll > 100) {
+      navbar.classList.remove("show");
+    } else if (currentScroll < lastScrollY) {
+      navbar.classList.add("show");
+    }
+
+    lastScrollY = currentScroll;
+  });
+</script>
