@@ -2,14 +2,18 @@
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
 import GradientText from '../common/GradientText.astro'
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <Container class="catch-me">
   <section class="catch-me__hero">
     <div class="hero-content">
       <P class="catch-me__text" size="display-xxl" as="h2">
-        Frontend, Backend and Everything in Between. Let's <GradientText>create</GradientText> awesome digital products.
+        {t('catch-me.first-description')}&nbsp;<GradientText>{t('catch-me.create')}</GradientText>&nbsp;{t('catch-me.second-description')}
       </P>
-      <a href="mailto:hi@jorshh.com" class="catch-me-btn">ping me a message</a>
+      <a href="mailto:hi@jorshh.com" class="catch-me-btn">{t('catch-me.cta')}</a>
     </div>
   </section>
 </Container>

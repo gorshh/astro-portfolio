@@ -27,7 +27,11 @@ export const ui = {
     'about.first-small-description':`Designers love me because I care about details. PMs trust me because I
       hit deadlines. Engineers appreciate me because my pull requests don’t
       break things`, 
-    'about.first-small-description-thinking':'well, usually'
+    'about.first-small-description-thinking':'well, usually', 
+    'catch-me.first-description':`Frontend, Backend and Everything in Between. Let's`, 
+    'catch-me.second-description':`awesome digital products.`, 
+    'catch-me.create':'create',
+    'catch-me.cta':'ping me a message'
   },
   es: {
     'meta.description':'Desarrollador Full-Stack con más de 5 años de experiencia en React, Next.js, Node.js, AWS, APIs RESTful y arquitectura de software. Experto en pruebas, CI/CD y desarrollo ágil. Explora mi trabajo.',
@@ -41,7 +45,12 @@ export const ui = {
     'about.title': 'Sobre mi',
     'about.first-description': `Con más de 5 años de experiencia, he contribuido en startups de rápido crecimiento y plataformas a gran escala. Mi especialidad es el desarrollo frontend moderno (React, Astro, TypeScript), aunque también me siento cómodo trabajando en el backend cuando es necesario.`,
     'about.first-small-description': 'A los diseñadores les agrada trabajar conmigo porque cuido los detalles. Los PMs confían en mí porque cumplo con los plazos. Los ingenieros me aprecian porque mis pull requests no rompen nada',
-    'about.first-small-description-thinking': 'bueno… casi siempre'
+    'about.first-small-description-thinking': 'bueno… casi siempre',
+    'catch-me.first-description':'Frontend, Backend y todo lo que hay en medio. Vamos a ',
+    'catch-me.create':'crear',
+    'catch-me.second-description':`productos digitales increíbles.`, 
+    'catch-me.cta':'Enviame un mensaje'
+
   },
 } as const;
 
