@@ -1,25 +1,21 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<Container as="section" id="about">
+<Container as="section" id={t('nav.id')}>
   <div class="about--container">
-    <P class="about--title" fontFamily="pp-mori">About me</P>
-    <P size="display-xxl" class="about--title scroll-reveal"
-      >👋 Hey, I'm Jorge — a developer who cares <i>just as much</i> about smooth
-      animations and crisp layouts as clean, scalable code.</P
-    >
-    <P size="heading-lg" class="about--first--description scroll-reveal"
-      >With 5+ years of experience, I’ve contributed to fast-moving startups and
-      large-scale platforms. My sweet spot is modern frontend development
-      (React, Astro, TypeScript), but I’m just as comfortable in the backend
-      when needed.</P
-    >
+    <P class="about--title" fontFamily="pp-mori">{t('about.title')}</P>
+    <P size="display-xxl" class="about--title scroll-reveal">👋 Hey, I'm Jorge — a developer who cares <i>just as much</i> about smooth
+      animations and crisp layouts as clean, scalable code.</P>
+    <P size="heading-lg" class="about--first--description scroll-reveal">{t('about.first-description')}</P>
     <P class="about--first--small-description scroll-reveal"
-      >Designers love me because I care about details. PMs trust me because I
-      hit deadlines. Engineers appreciate me because my pull requests don’t
-      break things (<em>well, usually</em>).</P
+      >{t('about.first-small-description')}&nbsp;(<em>{t('about.first-small-description-thinking')}</em>).</P
     >
   </div>
 </Container>

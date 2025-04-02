@@ -3,18 +3,23 @@ import "minireset.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
+import { getLangFromUrl } from '../i18n/utils'
+import LangPicker from '../components/common/LangPicker.astro'
 import Responsive from '../components/common/Responsive.astro'
+
+
+const lang = getLangFromUrl(Astro.url);
+
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="generator" content={Astro.generator} />
     <title>Jorshh - Web Developer | React, Next.js, Node.js</title>
     <meta
       name="description"
@@ -26,7 +31,7 @@ import Responsive from '../components/common/Responsive.astro'
     />
     <meta name="author" content="Jorshh" />
     <meta name="robots" content="index, follow" />
-
+    <!-- <meta http-equiv="refresh" content="0;url=/en/" /> -->
     <!-- Open Graph for Facebook & LinkedIn -->
     <meta
       property="og:title"
@@ -65,6 +70,7 @@ import Responsive from '../components/common/Responsive.astro'
     <main>
       <slot />
     </main>
+    <LangPicker/>
     <Footer />
   </body>
 </html>
