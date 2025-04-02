@@ -5,119 +5,81 @@ import Container from "./common/Container.astro";
 ---
 
 <footer id="contact">
-  
-  <Container>
-    <div class="contact">
-      <div class="cta-footer-txt">
-        <Link href="#">Lets <span>talk</span></Link>
+  <Container class="lets-talk">
+    <P size="display-xxl">Let’s work together</P>
+    
+    <div style="display: flex; margin-top: 2rem; gap: 1rem;">
+      <button>hi@jorshh.com</button>
+    <button>+527772727734</button></div>  
+  </Container>
+  <Container class="footer">
+    <div class="about">
+      <div class="">
+        <P size="body-sm" class="about--title">Version</P>
+        <P size="body-sm" fontFamily="pp-mori">2025 © Edition</P>
       </div>
-
-      <div class="arrow-footer">
-        <img
-          src="https://cdn.prod.website-files.com/64ff14294b934e94c9572c09/650079f0b3aa0823ed201805_arrow-up-right.svg"
-          loading="lazy"
-          alt="Arrow link, svg, lime"
-          class="arrow-img"
-        />
+      <div class="">
+        <P size="body-sm" class="about--title">Local time</P>
+        <P size="body-sm" fontFamily="pp-mori">10:03 AM GMT+2 </P>
       </div>
     </div>
-
-    <P>Made with love, lazyvim and astro</P>
+    <div class="socials">
+      <P size="body-sm" class="about--title">Socials</P>
+      <div class="">
+        <Link href="/">Awwards</Link>
+        <Link href="/">Instagram</Link>
+        <Link href="/">Twitter</Link>
+        <Link href="/">Linkedin</Link>
+      </div>
+    </div>
   </Container>
 </footer>
 
 <style>
   footer {
-    height: 85vh;
+    height: 100dvh;
     background-color: var(--black-color);
     color: var(--white-color);
     position: sticky;
+    /* border: solid 1px red; */
     bottom: 0;
     z-index: 1;
-    padding-top: 7rem;
   }
-  .contact {
+
+  .footer {
+    position: absolute;
+    bottom: 1rem;
+    /* border: solid 1px yellow; */
     display: flex;
+    
+    justify-content: space-between;
+    width: 100%;
   }
 
-  .cta-footer-txt {
-    letter-spacing: -0.02em;
-    font-size: 15.5em;
 
-    @media (max-width: 1202px) {
-      font-size: 10.5em;
-    }
-
-    @media (max-width: 852px) {
-      font-size: 8.5em;
-    }
-
-    @media (max-width: 712px) {
-      font-size: 6.5em;
-    }
-    @media (max-width: 500px) {
-      font-size: 4.5em;
-    }
-    span {
-      color: #d5ff63;
-    }
-
-    a {
-      color: #e3e3e3;
-      width: 100%;
-      font-family: "PP Mori";
-      &::after {
-        display: none;
-      }
-    }
+  .lets-talk{
+    /* border: solid 1px red; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .about {
+    display: flex;
+    gap: 1rem;
   }
 
-  .arrow-footer {
-    width: 3em;
-    height: 3em;
-    margin-left: 16px;
-    overflow: visible;
+  .about--title {
+    opacity: 0.8;
+  }
+
+  button {
+    padding: 1.5rem 3rem;
+    border-radius: 2rem;
+    border: 1px rgb(83, 83, 83) solid;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--white-color);
   }
 </style>
-<script>
-  const link = document.querySelector(".cta-footer-txt a")! as HTMLLinkElement;
-  const arrow = document.querySelector(".arrow-footer")! as HTMLImageElement;
-
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let scale = 1;
-  let rotation = 0;
-
-  function lerp(start: number, end: number, factor: number) {
-    return start + (end - start) * factor;
-  }
-
-  function animate() {
-    currentX = lerp(currentX, targetX, 0.1);
-    currentY = lerp(currentY, targetY, 0.1);
-    scale = lerp(scale, targetX === 0 && targetY === 0 ? 1 : 1.3, 0.1);
-    // rotation = lerp(rotation, targetX !== 0 ? 15 : 0, 0.1);
-
-    arrow.style.transform = `
-      translate3d(${currentX}em, ${currentY}em, 0px) 
-      scale3d(${scale}, ${scale}, 1) 
-      rotateZ(${rotation}deg)
-    `;
-
-    requestAnimationFrame(animate);
-  }
-
-  link.addEventListener("mouseenter", () => {
-    targetX = 2.5;
-    targetY = -2.5;
-  });
-
-  link.addEventListener("mouseleave", () => {
-    targetX = 0;
-    targetY = 0;
-  });
-
-  animate();
-</script>
