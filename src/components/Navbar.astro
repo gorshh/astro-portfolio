@@ -11,6 +11,7 @@ const t = useTranslations(lang);
   <Link href="#about" class="nav-link">{t('nav.about')}</Link>
   <Link href="#works" class="nav-link">{t('nav.works')}</Link>
   <Link href="#experience" class="nav-link">{t('nav.experience')}</Link>
+  <Link href="#experience" class="nav-link">References</Link>
   <Link href="#contact" class="nav-link">{t('nav.contact')}</Link>
 </nav>
 
@@ -73,20 +74,3 @@ const t = useTranslations(lang);
   }
 
 </style>
-
-<script>
-  let lastScrollY = window.scrollY;
-  const navbar = document.getElementById("navbar") as HTMLDivElement;
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > lastScrollY && currentScroll > 100) {
-      navbar.classList.remove("show");
-    } else if (currentScroll < lastScrollY) {
-      navbar.classList.add("show");
-    }
-
-    lastScrollY = currentScroll;
-  });
-</script>

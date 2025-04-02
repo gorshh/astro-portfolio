@@ -5,65 +5,40 @@ import P from "../common/P.astro";
 
 <Container as="section" id="works" class="works">
   <div class="works--description">
-    <P size="display-xxl" as="h2">Selected Work</P>
-    <P size="heading-lg">I’ve been fortunate to work on projects that have been published and
-      recognized on platforms with global reach.</P
-    >
+    <P size="display-xxl" as="h2">Nice things people said</P>
   </div>
   <div class="work--gallery">
     <article class="work">
-      <img src="/work/games.webp" alt="" loading="lazy"/>
+      
       <div class="work--description">
+        <P size="heading-xl">«Thanks BONO! Clearly, quickly, efficiently. I recommend it! We regularly put together websites and other technical works in html.»
+        </P>
         <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
-        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, architecto quos voluptates facere autem quaerat, dolore debitis incidunt accusamus alias a placeat illo reiciendis perspiciatis dolorum reprehenderit maiores dolores! Quaerat!</P>
       </div>
     </article>
 
     <article class="work">
-      <img src="/work/index.webp" alt="" loading="lazy"/>
       <div class="work--description">
+        <P size="heading-xl">«The Bono team proved to be a reliable partner! Professionalism of their specialists, accuracy of tasks and meeting deadlines have become the hallmarks of their work. The team is able to promptly find solutions for the tasks and meet our requirements.»
+        </P>
         <P fontFamily="pp-mori">Globant</P>
-        <P size="body-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore praesentium aperiam adipisci. Nam nostrum non unde cupiditate maiores iusto deleniti voluptatem, expedita quisquam molestiae sit aspernatur pariatur. Sunt, laborum ducimus.</P>
       </div>
     </article>
     <article class="work">
-      <img src="/work/games.webp" alt="" loading="lazy"/>
       <div class="work--description">
+        <P size="heading-xl">«Working with BONO was really great! Starting with communication with managers and ending with the quality of final materials. You are always in touch, pleasant in communication, active, patient and attentive to our wishes, and approvals, estimates and briefings are all in time and clearly.»
+        </P>
         <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
-        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
       </div>
     </article>
 
     <article class="work">
-      <img src="/work/index.webp" alt="" loading="lazy"/>
       <div class="work--description">
+        <P size="heading-xl"
+          >«BONO do their work efficiently and in time. Sometimes even in the most unrealistic time.»
+          </P
+        >
         <P fontFamily="pp-mori">Globant</P>
-        <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
-        >
-      </div>
-    </article>
-    <article class="work">
-      <img src="/work/games.webp" alt="" loading="lazy"/>
-      <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
-          >Games Studio Landing Page</P
-        >
-        <P size="body-sm"
-          >Created multi-touchpoint gamified loyalty program, as well as
-          improving app navigation and checkout.</P
-        >
-      </div>
-    </article>
-
-    <article class="work">
-      <img src="/work/index.webp" alt="" loading="lazy"/>
-      <div class="work--description">
-        <P fontFamily="pp-mori">Globant</P>
-        <P size="body-sm"
-          >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores natus soluta eius laudantium qui repudiandae blanditiis eaque placeat voluptates laborum, nihil quo itaque asperiores similique iste. Natus sit ut cumque.</P
-        >
       </div>
     </article>
   </div>
@@ -78,6 +53,9 @@ import P from "../common/P.astro";
     padding-bottom: 5rem;
     min-height: 100vh;
     justify-content: space-between;
+    border-bottom-left-radius: 1rem;
+    
+    border-bottom-right-radius:1rem
 
 
     @media (max-width: 420px) {
@@ -93,6 +71,7 @@ import P from "../common/P.astro";
     position: sticky;
     top: 50px;
     height: fit-content;
+    text-wrap: balance;
     
 
 
@@ -104,6 +83,7 @@ import P from "../common/P.astro";
   }
 
   .work--gallery {
+    /* border: solid 1px red; */
     width: 70%;
     min-width: 70%;
     display: grid;
@@ -121,80 +101,30 @@ import P from "../common/P.astro";
     }
 
     article {
-      padding-top: 0.7rem;
-      padding-bottom: 0.7rem;
+      
 
-      img {
-        width: 100%;
-        height: 80vh;
-        object-fit: cover;
-        border-radius: 12px;
-
-        @media (max-width: 1150px) {
-          height: auto;
-    }
-      }
 
       .work--description {
-        max-width: 75ch;
+        /* max-width: 75ch; */
         width: 100%;
         margin-top: 8px;
 
         .body {
           margin: 0;
         }
+
+        .heading-xl {
+          font-weight: 400;
+        }
       }
     }
   }
 
   .work {
-    opacity: 0;
-    transform: translateY(50px);
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
+    max-width: 74ch;
   }
 
   /* When article is visible */
-  .work.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
-  /* Staggered delay for each item */
-  .work:nth-child(1) {
-    transition-delay: 0.2s;
-  }
-  .work:nth-child(2) {
-    transition-delay: 0.4s;
-  }
-  .work:nth-child(3) {
-    transition-delay: 0.6s;
-  }
-  .work:nth-child(4) {
-    transition-delay: 0.8s;
-  }
-  .work:nth-child(5) {
-    transition-delay: 0.1s;
-  }
-  .work:nth-child(6) {
-    transition-delay: 0.12s;
-  }
 </style>
 
-<script>
-  function revealOnScroll() {
-    const works = document.querySelectorAll(".work");
-    const windowHeight = window.innerHeight;
-
-    works.forEach((work) => {
-      const rect = work.getBoundingClientRect();
-      if (rect.top < windowHeight - 100) {
-        work.classList.add("visible");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll); // Run on page load
-</script>
