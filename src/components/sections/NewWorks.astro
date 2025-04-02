@@ -1,5 +1,6 @@
 ---
 import Container from "../common/Container.astro";
+import Link from "../common/Link.astro";
 import P from "../common/P.astro";
 
 ---
@@ -16,16 +17,31 @@ import P from "../common/P.astro";
         <source src="/works/games.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
+      <div class="work--description">
+        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
+        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
+        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
+      </div>
     </div>
     <div class="hola right">
       <video autoplay loop poster="/works/index.webp" muted>
         <source src="/works/index.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
+      <div class="work--description">
+        <P textTransform="uppercase" fontFamily="pp-mori">The Global Website Index</P>
+        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
+        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
+      </div> 
     </div>
 
     <div class="hola">
       <img src="/work/games.webp" alt="">
+      <div class="work--description">
+        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
+        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
+        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
+      </div>
     </div>
     
 
@@ -83,4 +99,24 @@ import P from "../common/P.astro";
     z-index: 1;
     gap: 80dvh;
   }
+
+  .work--description {
+        max-width: 75ch;
+        width: 100%;
+        margin-top: 8px;
+
+        .body {
+          margin: 0;
+        }
+
+        .body-sm {
+          margin: 4px 0;
+        }
+
+        a {
+          
+          margin: 0;
+          font-size: 14px;
+        }
+      }
 </style>
