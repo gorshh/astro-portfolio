@@ -3,12 +3,13 @@ import "minireset.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
-import { getLangFromUrl } from '../i18n/utils'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import LangPicker from '../components/common/LangPicker.astro'
 import Responsive from '../components/common/Responsive.astro'
 
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 ---
 
@@ -23,7 +24,7 @@ const lang = getLangFromUrl(Astro.url);
     <title>Jorshh - Web Developer | React, Next.js, Node.js</title>
     <meta
       name="description"
-      content="Full-Stack Developer with 5+ years of experience in React, Next.js, Node.js, AWS, RESTful APIs, and software architecture. Expert in testing, CI/CD, and agile development. Explore my work."
+      content={t('meta.description')}
     />
     <meta
       name="keywords"

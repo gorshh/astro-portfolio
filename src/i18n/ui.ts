@@ -10,6 +10,7 @@ export const defaultLang = 'en';
 
 export const ui = {
   en: {
+      'meta.description':`Full-Stack Developer with 5+ years of experience in React, Next.js, Node.js, AWS, RESTful APIs, and software architecture. Expert in testing, CI/CD, and agile development. Explore my work.`,
     'nav.id':'about',
     'nav.home': 'Home',
     'nav.about': 'About',
@@ -29,6 +30,7 @@ export const ui = {
     'about.first-small-description-thinking':'well, usually'
   },
   es: {
+    'meta.description':'Desarrollador Full-Stack con más de 5 años de experiencia en React, Next.js, Node.js, AWS, APIs RESTful y arquitectura de software. Experto en pruebas, CI/CD y desarrollo ágil. Explora mi trabajo.',
     'nav.home': 'Inicio',
     'nav.about': 'Sobre Mi',
     'nav.works': 'Trabajos',
