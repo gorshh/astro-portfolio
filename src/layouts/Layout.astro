@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
-import LangPicker from '../components/common/LangPicker.astro'
 import Responsive from '../components/common/Responsive.astro'
 
 
@@ -65,6 +64,7 @@ const t = useTranslations(lang);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <!--  -->
     <!-- <Responsive/> -->
     <ScrollBar />
     <Navbar />

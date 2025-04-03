@@ -10,7 +10,11 @@ import P from "../common/P.astro";
   <div class="testimonial--gallery">
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl">Jorge is a skilled frontend dev with React, TypeScript, and UX/UI expertise. He also led backend tasks, CI/CD, and Docker deployments. Great mentor and team lead, always collaborative and reliable — a strong asset to any team.</P
+        <P size="heading-xl"
+          >Jorge is a skilled frontend dev with React, TypeScript, and UX/UI
+          expertise. He also led backend tasks, CI/CD, and Docker deployments.
+          Great mentor and team lead, always collaborative and reliable — a
+          strong asset to any team.</P
         >
         <img
           src="https://media.licdn.com/dms/image/v2/C4E03AQHARQV5p8gxcQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1629283731490?e=1749081600&v=beta&t=5hPHJ8l5T_rSY2hjp7g21bt8zKXNDOfcFwbqFyngkoY"
@@ -29,7 +33,9 @@ import P from "../common/P.astro";
     <article class="testimonial">
       <div class="testimonial--description">
         <P size="heading-xl"
-          >With full-stack experience and great people skills, Jorge contributed to dev and ops, guided teammates, and led with calm and clarity. Great communicator and valuable team asset.
+          >With full-stack experience and great people skills, Jorge contributed
+          to dev and ops, guided teammates, and led with calm and clarity. Great
+          communicator and valuable team asset.
         </P>
         <img
           src="https://media.licdn.com/dms/image/v2/D4D03AQErMqlnvguyxA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719264346082?e=1749081600&v=beta&t=5SlIEgOn8jQYtmiGCyvFydF_jQsZdf0qHbI_N0A5waM"
@@ -38,14 +44,19 @@ import P from "../common/P.astro";
         />
         <div class="">
           <P size="body-sm" class="testimonial--name">Luisny Ugarte</P>
-          <P size="body-sm" class="testimonial--position">Frontend Developer, Software Designer - Globant</P>
+          <P size="body-sm" class="testimonial--position"
+            >Frontend Developer, Software Designer - Globant</P
+          >
         </div>
       </div>
     </article>
 
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl">Jorge stood out not just for his React and Node.js skills, but also for mentoring new devs, leading meetings, and collaborating across teams. A reliable, talented teammate with strong communication.
+        <P size="heading-xl"
+          >Jorge stood out not just for his React and Node.js skills, but also
+          for mentoring new devs, leading meetings, and collaborating across
+          teams. A reliable, talented teammate with strong communication.
         </P>
         <img
           src="https://media.licdn.com/dms/image/v2/C4E03AQFRKLObgphfMw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1541614070580?e=1749081600&v=beta&t=w-cfubfVGktRwqSH1tADoIfND9t7zFteWSaDnlWMoDM"
@@ -54,7 +65,9 @@ import P from "../common/P.astro";
         />
         <div class="">
           <P size="body-sm" class="testimonial--name">Julián Morán</P>
-          <P size="body-sm" class="testimonial--position">Frontend Developer Jr - Globant</P>
+          <P size="body-sm" class="testimonial--position"
+            >Frontend Developer Jr - Globant</P
+          >
         </div>
       </div>
     </article>
@@ -115,12 +128,12 @@ import P from "../common/P.astro";
 
         .testimonial--name {
           margin: 0;
-          font-weight: 500;
+          font-weight: 400;
         }
 
         .testimonial--position {
           margin: 0;
-          font-weight: 200;
+          font-weight: 300;
           opacity: 0.7;
           font-size: 12px;
         }
@@ -130,7 +143,7 @@ import P from "../common/P.astro";
           margin-bottom: 1rem;
 
           &::before {
-            content: "«"; 
+            content: "«";
           }
           &::after {
             content: "»";
@@ -152,5 +165,10 @@ import P from "../common/P.astro";
     max-width: 74ch;
     margin-top: 2rem;
     border-top: 1px #ddd solid;
+  }
+
+  .testimonial:nth-of-type(1) {
+    margin-top: 0px;
+    border: none;
   }
 </style>
