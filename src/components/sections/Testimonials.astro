@@ -1,0 +1,140 @@
+---
+import Container from "../common/Container.astro";
+import P from "../common/P.astro";
+---
+
+<Container as="section" id="testimonials" class="testimonials">
+  <div class="testimonials--description">
+    <P size="display-xxl" as="h2">Nice things people said</P>
+  </div>
+  <div class="testimonial--gallery">
+    <article class="testimonial">
+      <div class="testimonial--description">
+        <P size="heading-xl"
+          >Jorge stood out not just for his React and Node.js skills, but also for mentoring new devs, leading meetings, and collaborating across teams. A reliable, talented teammate with strong communication.</P
+        >
+        <img
+          src="https://media.licdn.com/dms/image/v2/C4E03AQHARQV5p8gxcQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1629283731490?e=1749081600&v=beta&t=5hPHJ8l5T_rSY2hjp7g21bt8zKXNDOfcFwbqFyngkoY"
+          alt=""
+          class="testimonial--img"
+        />
+        <div class="">
+          <P size="body-sm" class="testimonial--name">Andrés Martinez</P>
+          <P size="body-sm" class="testimonial--position"
+            >NodeJs Backend Developer - Globant</P
+          >
+        </div>
+      </div>
+    </article>
+
+    <article class="testimonial">
+      <div class="testimonial--description">
+        <P size="heading-xl"
+          >Jorge stood out not just for his React and Node.js skills, but also for mentoring new devs, leading meetings, and collaborating across teams. A reliable, talented teammate with strong communication.
+        </P>
+        <img
+          src="https://media.licdn.com/dms/image/v2/D4D03AQErMqlnvguyxA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719264346082?e=1749081600&v=beta&t=5SlIEgOn8jQYtmiGCyvFydF_jQsZdf0qHbI_N0A5waM"
+          alt=""
+          class="testimonial--img"
+        />
+        <div class="">
+          <P size="body-sm" class="testimonial--name">Luisny Ugarte</P>
+          <P size="body-sm" class="testimonial--position">Frontend Developer, Software Designer - Globant</P>
+        </div>
+      </div>
+    </article>
+  </div>
+</Container>
+
+<style>
+  .testimonials {
+    background-color: var(--white-color);
+    color: var(--black-color);
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    justify-content: space-between;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    @media (max-width: 420px) {
+      padding-top: 0rem;
+    }
+
+    @media (max-width: 1150px) {
+      flex-direction: column;
+    }
+  }
+
+  .testimonials--description {
+    position: sticky;
+    top: 50px;
+    height: fit-content;
+    text-wrap: balance;
+
+    @media (max-width: 1150px) {
+      margin-bottom: 2rem;
+      position: static;
+      text-wrap: auto;
+    }
+  }
+
+  .testimonial--gallery {
+    width: 70%;
+    min-width: 70%;
+
+    @media (max-width: 1150px) {
+      width: 100%;
+      min-width: 100%;
+    }
+
+    article {
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+
+      .testimonial--description {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 8px;
+
+        .testimonial--name {
+          margin: 0;
+          font-weight: 500;
+        }
+
+        .testimonial--position {
+          margin: 0;
+          font-weight: 200;
+          opacity: 0.7;
+          font-size: 12px;
+        }
+
+        .heading-xl {
+          font-weight: 200;
+
+          &::before {
+            content: "«"; 
+          }
+          &::after {
+            content: "»";
+          }
+        }
+      }
+
+      .testimonial--img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        border-radius: 50%;
+        filter: grayscale(100%);
+      }
+    }
+  }
+
+  .testimonial {
+    max-width: 74ch;
+    border-top: 1px #ddd solid;
+  }
+</style>
