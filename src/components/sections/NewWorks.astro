@@ -2,121 +2,151 @@
 import Container from "../common/Container.astro";
 import Link from "../common/Link.astro";
 import P from "../common/P.astro";
-
 ---
 
 <Container id="works" class="projects">
   <div class="projects--title">
-    <P size="display-xxl">Selected <br>Work</P>
-    <P>I’ve been fortunate to work on projects that have been published and
-      recognized on platforms with global reach. <br>Take a look...</P>
+    <P size="display-xxl">Selected Work</P>
+    <P
+      >I’ve been fortunate to work on projects that have been published and
+      recognized on platforms with global reach.</P
+    >
   </div>
   <div class="x">
     <div class="hola">
       <video autoplay loop poster="/works/games.webp" muted>
-        <source src="/works/games.webm" type="video/webm">
+        <source src="/works/games.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
-        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
+        <P textTransform="uppercase" fontFamily="pp-mori"
+          >Games Studio Landing Page</P
+        >
+        <P size="body-sm"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
+          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
+        >
         <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
     </div>
     <div class="hola right">
       <video autoplay loop poster="/works/index.webp" muted>
-        <source src="/works/index.webm" type="video/webm">
+        <source src="/works/index.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori">The Global Website Index</P>
-        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
-        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
-      </div> 
-    </div>
-
-    <div class="hola">
-      <img src="/work/games.webp" alt="">
-      <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
-        <P size="body-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P>
+        <P textTransform="uppercase" fontFamily="pp-mori"
+          >The Global Website Index</P
+        >
+        <P size="body-sm"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
+          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
+        >
         <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
     </div>
-    
 
+    <div class="hola">
+      <img src="/work/games.webp" alt="" />
+      <div class="work--description">
+        <P textTransform="uppercase" fontFamily="pp-mori"
+          >Games Studio Landing Page</P
+        >
+        <P size="body-sm"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
+          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
+        >
+        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
+      </div>
+    </div>
 
-    
     <div class="hola" style="opacity: 0;"></div>
   </div>
 </Container>
 <style>
   .projects {
-    /* height: 100vh; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* text-align: center; */
     background-color: var(--white-color);
     position: relative;
-    /* padding-bottom: 50dvh; */
-    /* border: 1px red solid; */
+    padding-top: 4rem;
+
+    @media (min-width: 1024px) {
+      padding-top: 0rem;
+    }
   }
 
   .projects--title {
-    position: sticky;
-    top: 40vh;
-    text-align: center;
     height: fit-content;
-    width: min-content;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
     /* border: solid 1px red; */
+
+    @media (min-width: 1024px) {
+      text-align: center;
+      width: min-content;
+      position: sticky;
+      top: 40vh;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .hola {
-    width: 43%;
+    width: 100%;
 
     img {
       width: 100%;
       object-fit: cover;
     }
+
+
+    @media (min-width: 1024px) {
+      width: 43%;
+    }
     /* border: solid 1px green; */
   }
 
   .right {
-    align-self: flex-end;
+    align-self: flex-start;
+
+    @media (min-width: 1024px) {
+      align-self: flex-end;
+    }
   }
 
   .x {
-    margin-top: 100vh;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 1;
-    gap: 80dvh;
+    gap: 1rem;
+
+    @media (min-width: 1024px) {
+      margin-top: 100vh;
+      gap: 80dvh;
+    }
   }
 
   .work--description {
-        max-width: 75ch;
-        width: 100%;
-        margin-top: 8px;
+    max-width: 75ch;
+    width: 100%;
+    margin-top: 0.5rem;
 
-        .body {
-          margin: 0;
-        }
+    .body {
+      margin: 0;
+    }
 
-        .body-sm {
-          margin: 4px 0;
-        }
+    .body-sm {
+      margin: 4px 0;
+    }
 
-        a {
-          
-          margin: 0;
-          font-size: 14px;
-        }
-      }
+    a {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
 </style>

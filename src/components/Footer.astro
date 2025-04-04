@@ -21,7 +21,29 @@ import Container from "./common/Container.astro";
       </div>
       <div>
         <P size="body-sm" class="about--title">Local time</P>
-        <P size="body-sm" fontFamily="pp-mori">10:03 AM GMT+2 </P>
+        <P size="body-sm" fontFamily="pp-mori" id="local-time" />
+      </div>
+      <div>
+        <P size="body-sm" class="about--title">Language</P>
+        <div class="language">
+          <P
+            size="body-sm"
+            fontFamily="pp-mori"
+            as="a"
+            class="lang"
+            href="/"
+            data-lang="en">English</P
+          >
+          <P size="body-sm" fontFamily="pp-mori">/</P>
+          <P
+            size="body-sm"
+            fontFamily="pp-mori"
+            as="a"
+            class="lang"
+            href="/es"
+            data-lang="es">Spanish</P
+          >
+        </div>
       </div>
     </div>
     <div class="socials">
@@ -68,16 +90,48 @@ import Container from "./common/Container.astro";
   }
   .about {
     display: flex;
+    flex-wrap: wrap; /* permite que los hijos se vayan a otra línea */
     gap: 1rem;
     border-bottom: 1px rgb(66, 66, 66) solid;
-padding-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+
     @media (min-width: 768px) {
+      flex-wrap: nowrap;
       border-bottom: none;
+    }
+  }
+
+  .about > div {
+    flex: 1 1 auto;
+  }
+
+  .about > div:last-child {
+    flex-basis: 100%; 
+    margin-top: 0.5rem;
+
+    @media (min-width: 768px) {
+      flex-basis: auto;
+      margin-top: 0;
     }
   }
 
   .about--title {
     opacity: 0.8;
+  }
+
+  .language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    a {
+      text-decoration: none;
+    }
+
+    a.active {
+      opacity: 0.7;
+      pointer-events: none;
+    }
   }
 
   button {
@@ -89,3 +143,53 @@ padding-bottom: 0.5rem;
     color: var(--white-color);
   }
 </style>
+
+<script>
+  const langs = document.querySelectorAll(".lang");
+  langs.forEach((lang) => {
+    const l = lang as HTMLButtonElement;
+    const documentLang = document.documentElement.lang;
+    if (documentLang === l.dataset.lang) {
+      lang.classList.add("active");
+    } else {
+      lang.classList.remove("active");
+    }
+  });
+</script>
+
+<script>
+  function updateCDMXTime() {
+    const now = new Date();
+
+    const cdmxTime = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "America/Mexico_City",
+    });
+
+    document.getElementById("local-time")!.textContent = cdmxTime;
+  }
+
+  updateCDMXTime();
+  setInterval(updateCDMXTime, 60000);
+</script>
+
+
+<script>
+  const contactSection = document.getElementById("contact")!;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!(entry.isIntersecting && entry.intersectionRatio === 1)) {
+        const navbar = document.getElementById("navbar") as HTMLDivElement;
+        navbar.classList.remove("show");
+      }
+    },
+    {
+      threshold: 1.0,
+    }
+  );
+
+  observer.observe(contactSection);
+</script>
