@@ -1,74 +1,110 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Container as="section" id="testimonials" class="testimonials">
   <div class="testimonials--description">
-    <P size="display-xxl" as="h2">Nice things people said</P>
+    <P size="display-xxl" as="h2">{t("testimonials.title")}</P>
   </div>
   <div class="testimonial--gallery">
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl"
-          >Jorge is a skilled frontend dev with React, TypeScript, and UX/UI
-          expertise. He also led backend tasks, CI/CD, and Docker deployments.
-          Great mentor and team lead, always collaborative and reliable — a
-          strong asset to any team.</P
-        >
+        <P size="heading-xl">{t("testimonials.first.description")}</P>
         <img
-          src="https://media.licdn.com/dms/image/v2/C4E03AQHARQV5p8gxcQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1629283731490?e=1749081600&v=beta&t=5hPHJ8l5T_rSY2hjp7g21bt8zKXNDOfcFwbqFyngkoY"
-          alt=""
+          src={t("testimonials.first.image")}
+          alt={t("testimonials.first.name")}
           class="testimonial--img"
         />
-        <div class="">
-          <P size="body-sm" class="testimonial--name">Andrés Martinez</P>
-          <P size="body-sm" class="testimonial--position"
-            >NodeJs Backend Developer - Globant</P
+        <footer>
+          <P
+            size="body-sm"
+            class="testimonial--name"
+            as="a"
+            href="https://www.linkedin.com/in/andr%C3%A9s-martinez-971ba3125/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Andrés Martinez's LinkedIn profile (opens in new tab)"
+            >{t("testimonials.first.name")}</P
           >
-        </div>
+          <P size="body-sm" class="testimonial--position"
+            >{t("testimonials.first.role")}</P
+          >
+        </footer>
       </div>
     </article>
 
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl"
-          >With full-stack experience and great people skills, Jorge contributed
-          to dev and ops, guided teammates, and led with calm and clarity. Great
-          communicator and valuable team asset.
-        </P>
+        <P size="heading-xl">{t("testimonials.second.description")}</P>
         <img
-          src="https://media.licdn.com/dms/image/v2/D4D03AQErMqlnvguyxA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719264346082?e=1749081600&v=beta&t=5SlIEgOn8jQYtmiGCyvFydF_jQsZdf0qHbI_N0A5waM"
-          alt=""
+          src={t("testimonials.second.image")}
+          alt={t("testimonials.second.name")}
           class="testimonial--img"
         />
-        <div class="">
-          <P size="body-sm" class="testimonial--name">Luisny Ugarte</P>
-          <P size="body-sm" class="testimonial--position"
-            >Frontend Developer, Software Designer - Globant</P
+        <footer>
+          <P
+            size="body-sm"
+            class="testimonial--name"
+            as="a"
+            href={t("testimonials.second.linkedin")}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Luisny Ugarte's LinkedIn profile (opens in new tab)"
           >
-        </div>
+            {t("testimonials.second.name")}</P
+          >
+          <P size="body-sm" class="testimonial--position"
+            >{t("testimonials.second.role")}</P
+          >
+        </footer>
       </div>
     </article>
 
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl"
-          >Jorge stood out not just for his React and Node.js skills, but also
-          for mentoring new devs, leading meetings, and collaborating across
-          teams. A reliable, talented teammate with strong communication.
-        </P>
+        <P size="heading-xl">{t('testimonials.third.description')}</P>
         <img
-          src="https://media.licdn.com/dms/image/v2/C4E03AQFRKLObgphfMw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1541614070580?e=1749081600&v=beta&t=w-cfubfVGktRwqSH1tADoIfND9t7zFteWSaDnlWMoDM"
-          alt=""
+          src={t('testimonials.third.image')}
+          alt={t('testimonials.third.name')}
           class="testimonial--img"
         />
-        <div class="">
-          <P size="body-sm" class="testimonial--name">Julián Morán</P>
+        <footer>
+          <P size="body-sm" class="testimonial--name">{t('testimonials.third.name')}</P>
           <P size="body-sm" class="testimonial--position"
-            >Frontend Developer Jr - Globant</P
+            >{t('testimonials.third.role')}</P
           >
-        </div>
+        </footer>
+      </div>
+    </article>
+
+    <article class="testimonial">
+      <div class="testimonial--description">
+        <P size="heading-xl">{t('testimonials.fourth.description')}</P>
+        <img
+          src={t('testimonials.fourth.image')}
+          alt={t('testimonials.fourth.name')}
+          class="testimonial--img"
+        />
+        <footer>
+          <P
+            size="body-sm"
+            class="testimonial--name"
+            as="a"
+            href={t('testimonials.fourth.linkedin')}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Julián Morán's LinkedIn profile (opens in new tab)"
+            >{t('testimonials.fourth.name')}</P
+          >
+          <P size="body-sm" class="testimonial--position"
+            >{t('testimonials.fourth.role')}</P
+          >
+        </footer>
       </div>
     </article>
   </div>
@@ -129,6 +165,7 @@ import P from "../common/P.astro";
         .testimonial--name {
           margin: 0;
           font-weight: 400;
+          text-decoration: none;
         }
 
         .testimonial--position {
