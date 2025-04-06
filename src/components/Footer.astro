@@ -48,10 +48,16 @@ import Container from "./common/Container.astro";
     </div>
     <div class="socials">
       <P size="body-sm" class="about--title">Socials</P>
-      <div>
-        <Link href="https://www.linkedin.com/in/jorshh/">Linkedin</Link>
-        <Link href="https://www.instagram.com/jorshh.me/">Instagram</Link>
-        <Link href="https://github.com/gorshh/">Github</Link>
+      <div class="socials--links">
+        <P size="body-sm">
+          <Link href="https://www.linkedin.com/in/jorshh/">Linkedin</Link>
+        </P>
+        <P size="body-sm">
+          <Link href="https://www.instagram.com/jorshh.me/">Instagram</Link>
+        </P>
+        <P class="body-sm">
+          <Link href="https://github.com/gorshh/">Github</Link>
+        </P>
       </div>
     </div>
   </Container>
@@ -131,6 +137,14 @@ import Container from "./common/Container.astro";
     a.active {
       opacity: 0.7;
       pointer-events: none;
+    }
+  }
+
+  .socials--links{
+    display: flex;
+    gap: 0.5rem;
+    a {
+      font-family: "PP Mori";
     }
   }
 

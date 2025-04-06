@@ -1,4 +1,10 @@
-<div id="canvas" class="content__text">
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<div id="canvas" class="content__text" data-greeting={t('hero.greeting')}>
   <span class="content__text-inner"></span>
 </div>
 
@@ -16,16 +22,14 @@
       filter: invert(100%);
     }
 
-
-    .b-canvas.hide{
+    .b-canvas.hide {
       display: none;
     }
   }
-
-
 </style>
 
 <script>
+
   type n = number;
 
   document.fonts.ready.then(() => {
@@ -69,8 +73,8 @@
     const elem = document.querySelector(".content__text")!;
     const textEl = elem.querySelector("span.content__text-inner")!;
 
-    const createBlotterText = () => {
-      const text = new Blotter.Text("JORSHH", {
+    const createBlotterText = (textParam: string) => {
+      const text = new Blotter.Text(textParam, {
         family: "'WienModern'",
         weight: 800,
         size: 120,
@@ -118,6 +122,8 @@
       render();
     };
 
-    createBlotterText();
+    const canvas = document.querySelector("#canvas")! as HTMLElement;
+    const greeting = canvas.dataset.greeting;    
+    createBlotterText(greeting!);
   });
 </script>

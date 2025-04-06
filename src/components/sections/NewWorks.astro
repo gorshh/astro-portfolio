@@ -6,22 +6,16 @@ import P from "../common/P.astro";
 
 <Container id="works" class="projects">
   <div class="projects--title">
-    <P size="display-xxl">Selected Work</P>
-    <P
-      >I’ve been fortunate to work on projects that have been published and
-      recognized on platforms with global reach.</P
-    >
+    <P size="display-xxl">The Cool <br> Stuff</P>
   </div>
   <div class="x">
-    <div class="hola">
+    <article class="hola">
       <video autoplay loop poster="/works/games.webp" muted>
         <source src="/works/games.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
-          >Games Studio Landing Page</P
-        >
+        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio</P>
         <P size="body-sm"
           >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
           ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
@@ -29,8 +23,8 @@ import P from "../common/P.astro";
         >
         <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </div>
-    <div class="hola right">
+    </article>
+    <article class="hola right">
       <video autoplay loop poster="/works/index.webp" muted>
         <source src="/works/index.webm" type="video/webm" />
         Your browser does not support the video tag.
@@ -46,9 +40,9 @@ import P from "../common/P.astro";
         >
         <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </div>
+    </article>
 
-    <div class="hola">
+    <article class="hola">
       <img src="/work/games.webp" alt="" />
       <div class="work--description">
         <P textTransform="uppercase" fontFamily="pp-mori"
@@ -61,9 +55,9 @@ import P from "../common/P.astro";
         >
         <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </div>
+    </article>
 
-    <div class="hola" style="opacity: 0;"></div>
+    <article class="hola" style="opacity: 0;"></article>
   </div>
 </Container>
 <style>
@@ -86,7 +80,7 @@ import P from "../common/P.astro";
 
     @media (min-width: 1024px) {
       text-align: center;
-      width: min-content;
+      width: max-content;
       position: sticky;
       top: 40vh;
       left: 50%;
@@ -97,7 +91,7 @@ import P from "../common/P.astro";
   .hola {
     width: 100%;
 
-    img {
+    img, video {
       width: 100%;
       object-fit: cover;
     }
@@ -106,7 +100,6 @@ import P from "../common/P.astro";
     @media (min-width: 1024px) {
       width: 43%;
     }
-    /* border: solid 1px green; */
   }
 
   .right {
@@ -132,16 +125,16 @@ import P from "../common/P.astro";
   }
 
   .work--description {
-    max-width: 75ch;
+    max-width: 60ch;
     width: 100%;
-    margin-top: 0.5rem;
+    padding-top: 0.5rem;
 
     .body {
       margin: 0;
     }
 
     .body-sm {
-      margin: 4px 0;
+      padding: 4px 0;
     }
 
     a {
