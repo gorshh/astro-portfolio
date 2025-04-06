@@ -19,7 +19,10 @@ export const ui = {
     'nav.contact': 'Contact',
     'hero.title': 'Developer dedicated to pixel-perfect UI & smooth digital experiences.',
     'hero.cta': `Let's talk`,
-    'about.title': 'About me',
+    'about.section-name': 'About me',
+    'about.title-first-part': `👋 Hey, I'm Jorge — a developer who cares`,
+    'about.title-emphasis': 'just as much',
+    'about.title-second-part': ` about smooth animations and crisp layouts as clean, scalable code.`,
     'about.first-description': `With 5+ years of experience, I’ve contributed to fast-moving startups and
       large-scale platforms. My sweet spot is modern frontend development
       (React, Astro, TypeScript), but I’m just as comfortable in the backend
@@ -67,7 +70,10 @@ export const ui = {
     'nav.contact': 'Contacto',
     'hero.title': 'Desarrollador enfocado en interfaces pixel-perfect y experiencias digitales fluidas.',
     'hero.cta': `Hablemos`,
-    'about.title': 'Sobre mi',
+    'about.section-name': 'Sobre mí',
+    'about.title-first-part': `👋 Hola, soy Jorge — un desarrollador que se preocupa`,
+    'about.title-emphasis': 'tanto',
+    'about.title-second-part': ` por las animaciones fluidas y los diseños pulidos como por escribir código limpio y escalable.`,
     'about.first-description': `Con más de 5 años de experiencia, he contribuido en startups de rápido crecimiento y plataformas a gran escala. Mi especialidad es el desarrollo frontend moderno (React, Astro, TypeScript), aunque también me siento cómodo trabajando en el backend cuando es necesario.`,
     'about.first-small-description': 'A los diseñadores les agrada trabajar conmigo porque cuido los detalles. Los PMs confían en mí porque cumplo con los plazos. Los ingenieros me aprecian porque mis pull requests no rompen nada',
     'about.first-small-description-thinking': 'bueno… casi siempre',

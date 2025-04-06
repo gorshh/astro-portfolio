@@ -10,9 +10,8 @@ const t = useTranslations(lang);
 
 <Container as="section" id={t('nav.id')}>
   <div class="about--container">
-    <P class="about--title" fontFamily="pp-mori">{t('about.title')}</P>
-    <P size="display-xxl" class="about--title scroll-reveal">👋 Hey, I'm Jorge — a developer who cares <i>just as much</i> about smooth
-      animations and crisp layouts as clean, scalable code.</P>
+    <P class="about--title" fontFamily="pp-mori">{t('about.section-name')}</P>
+    <P size="display-xxl" class="about--title scroll-reveal">{t('about.title-first-part')}&nbsp;<i>{t('about.title-emphasis')}</i>{t('about.title-second-part')}</P>
     <P size="heading-lg" class="about--first--description scroll-reveal">{t('about.first-description')}</P>
     <P class="about--first--small-description scroll-reveal"
       >{t('about.first-small-description')}&nbsp;(<em>{t('about.first-small-description-thinking')}</em>).</P
