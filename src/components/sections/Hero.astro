@@ -1,5 +1,5 @@
 ---
-import ScrollBar from "../common/ScrollDown.astro";
+import ScrollDown from "../common/ScrollDown.astro";
 import Blotter from "../common/Blotter.astro";
 import Link from "../common/Link.astro";
 import Container from "../common/Container.astro";
@@ -20,7 +20,7 @@ const t = useTranslations(lang);
     <Link href="#contact" class="cta">{t('hero.cta')}</Link>
   </header>
   <Blotter />
-  <ScrollBar />
+  <ScrollDown />
 </Container>
 
 <style>

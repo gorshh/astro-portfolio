@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Container from "../common/Container.astro";
 import Link from "../common/Link.astro";
 import P from "../common/P.astro";
+import gamesImage from '../../../public/work/games.webp'; // Image is 1600x900
 ---
 
 <Container id="works" class="projects">
@@ -43,7 +45,8 @@ import P from "../common/P.astro";
     </article>
 
     <article class="hola">
-      <img src="/work/games.webp" alt="" />
+      <Image src={gamesImage} alt="Landing page of Globant Games studio" />
+      <!-- <img src="/work/games.webp" alt="" /> -->
       <div class="work--description">
         <P textTransform="uppercase" fontFamily="pp-mori"
           >Games Studio Landing Page</P
@@ -68,6 +71,7 @@ import P from "../common/P.astro";
 
     @media (min-width: 1024px) {
       padding-top: 0rem;
+      padding-bottom: 4rem;
     }
   }
 
@@ -94,11 +98,12 @@ import P from "../common/P.astro";
     img, video {
       width: 100%;
       object-fit: cover;
+      border-radius: 0.5rem;
     }
 
 
     @media (min-width: 1024px) {
-      width: 43%;
+      width: 60%;
     }
   }
 
@@ -125,6 +130,7 @@ import P from "../common/P.astro";
   }
 
   .work--description {
+    display: none;
     max-width: 60ch;
     width: 100%;
     padding-top: 0.5rem;

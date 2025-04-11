@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
@@ -15,17 +16,26 @@ const t = useTranslations(lang);
     <article class="testimonial">
       <div class="testimonial--description">
         <P size="heading-xl">{t("testimonials.first.description")}</P>
-        <img
-          src={t("testimonials.first.image")}
-          alt={t("testimonials.first.name")}
-          class="testimonial--img"
-        />
+        <a
+          href={t("testimonials.first.linkedin")}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Andrés Martinez's LinkedIn profile (opens in new tab)"
+        >
+          <Image
+            src={t("testimonials.first.image")}
+            alt={t("testimonials.first.name")}
+            width="48"
+            height="48"
+            class="testimonial--img"
+          />
+        </a>
         <footer>
           <P
             size="body-sm"
             class="testimonial--name"
             as="a"
-            href="https://www.linkedin.com/in/andr%C3%A9s-martinez-971ba3125/"
+            href={t("testimonials.first.linkedin")}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Andrés Martinez's LinkedIn profile (opens in new tab)"
@@ -41,11 +51,21 @@ const t = useTranslations(lang);
     <article class="testimonial">
       <div class="testimonial--description">
         <P size="heading-xl">{t("testimonials.second.description")}</P>
-        <img
-          src={t("testimonials.second.image")}
-          alt={t("testimonials.second.name")}
-          class="testimonial--img"
-        />
+        <a
+          href={t("testimonials.second.linkedin")}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Luisny Ugarte's LinkedIn profile (opens in new tab)"
+        >
+          <Image
+            src={t("testimonials.second.image")}
+            alt={t("testimonials.second.name")}
+            width="48"
+            height="48"
+            class="testimonial--img"
+          />
+        </a>
+
         <footer>
           <P
             size="body-sm"
@@ -67,16 +87,20 @@ const t = useTranslations(lang);
 
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl">{t('testimonials.third.description')}</P>
-        <img
-          src={t('testimonials.third.image')}
-          alt={t('testimonials.third.name')}
+        <P size="heading-xl">{t("testimonials.third.description")}</P>
+        <Image
+          src={t("testimonials.third.image")}
+          alt={t("testimonials.third.name")}
+          width="48"
+          height="48"
           class="testimonial--img"
         />
         <footer>
-          <P size="body-sm" class="testimonial--name">{t('testimonials.third.name')}</P>
+          <P size="body-sm" class="testimonial--name"
+            >{t("testimonials.third.name")}</P
+          >
           <P size="body-sm" class="testimonial--position"
-            >{t('testimonials.third.role')}</P
+            >{t("testimonials.third.role")}</P
           >
         </footer>
       </div>
@@ -84,10 +108,12 @@ const t = useTranslations(lang);
 
     <article class="testimonial">
       <div class="testimonial--description">
-        <P size="heading-xl">{t('testimonials.fourth.description')}</P>
-        <img
-          src={t('testimonials.fourth.image')}
-          alt={t('testimonials.fourth.name')}
+        <P size="heading-xl">{t("testimonials.fourth.description")}</P>
+        <Image
+          src={t("testimonials.fourth.image")}
+          alt={t("testimonials.fourth.name")}
+          width="48"
+          height="48"
           class="testimonial--img"
         />
         <footer>
@@ -95,14 +121,14 @@ const t = useTranslations(lang);
             size="body-sm"
             class="testimonial--name"
             as="a"
-            href={t('testimonials.fourth.linkedin')}
+            href={t("testimonials.fourth.linkedin")}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Julián Morán's LinkedIn profile (opens in new tab)"
-            >{t('testimonials.fourth.name')}</P
+            >{t("testimonials.fourth.name")}</P
           >
           <P size="body-sm" class="testimonial--position"
-            >{t('testimonials.fourth.role')}</P
+            >{t("testimonials.fourth.role")}</P
           >
         </footer>
       </div>
@@ -161,6 +187,9 @@ const t = useTranslations(lang);
         width: 100%;
         margin-top: 8px;
 
+        a {
+          width: fit-content;
+        }
         .testimonial--name {
           margin: 0;
           font-weight: 400;
