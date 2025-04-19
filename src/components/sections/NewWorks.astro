@@ -16,9 +16,8 @@ import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
-          >Globant Games Studio</P
-        >
+        <P textTransform="uppercase" fontFamily="pp-mori">Globant Games Studio</P>
+        <P textTransform="uppercase" fontFamily="pp-mori">↗</P>
       </div>
     </a>
 
@@ -28,18 +27,16 @@ import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
-          >The Global Website Index</P
-        >
+        <P textTransform="uppercase" fontFamily="pp-mori">The Global Website Index</P>
+        <P textTransform="uppercase" fontFamily="pp-mori">↗</P>
       </div>
     </a>
 
     <a class="hola" href="/works/games">
       <Image src={gamesImage} alt="Landing page of Globant Games studio" />
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
-          >Games Studio Landing Page</P
-        >
+        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio Landing Page</P>
+        <P textTransform="uppercase" fontFamily="pp-mori">↗</P>
       </div>
     </a>
 
@@ -78,6 +75,7 @@ import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
   .hola {
     width: 100%;
     position: relative;
+    transition: all 0.3s ease-in-out;
 
     img,
     video {
@@ -88,6 +86,13 @@ import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
 
     @media (min-width: 1024px) {
       width: 60%;
+    }
+
+    &:hover {
+      scale: 1.02;
+      .work--description {
+        color: white;
+      }
     }
   }
 
@@ -118,6 +123,10 @@ import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
     width: 100%;
     bottom: 0;
     color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease-in-out;
 
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
