@@ -1,64 +1,47 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import Container from "../common/Container.astro";
-import Link from "../common/Link.astro";
 import P from "../common/P.astro";
-import gamesImage from '../../../public/work/games.webp'; // Image is 1600x900
+import gamesImage from "../../../public/work/games.webp"; // Image is 1600x900
 ---
 
 <Container id="works" class="projects">
   <div class="projects--title">
-    <P size="display-xxl">The Cool <br> Stuff</P>
+    <P size="display-xxl">The Cool <br /> Stuff</P>
   </div>
   <div class="x">
-    <article class="hola">
+    <a class="hola" href="/works/games-studio">
       <video autoplay loop poster="/works/games.webp" muted>
         <source src="/works/games.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori">Games Studio</P>
-        <P size="body-sm"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
-          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
+        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
+          >Globant Games Studio</P
         >
-        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </article>
-    <article class="hola right">
+    </a>
+
+    <a class="hola right" href="/works/the-global-website-index">
       <video autoplay loop poster="/works/index.webp" muted>
         <source src="/works/index.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
+        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
           >The Global Website Index</P
         >
-        <P size="body-sm"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
-          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
-        >
-        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </article>
+    </a>
 
-    <article class="hola">
+    <a class="hola" href="/works/games">
       <Image src={gamesImage} alt="Landing page of Globant Games studio" />
-      <!-- <img src="/work/games.webp" alt="" /> -->
       <div class="work--description">
-        <P textTransform="uppercase" fontFamily="pp-mori"
+        <P textTransform="uppercase" fontFamily="pp-mori" as="h5"
           >Games Studio Landing Page</P
         >
-        <P size="body-sm"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          ipsam nulla velit, culpa voluptates corrupti assumenda ex cumque esse
-          rerum a expedita neque suscipit dolore tenetur at iusto eligendi odit.</P
-        >
-        <Link href="mailto:hi@jorshh.com">Ask for details</Link>
       </div>
-    </article>
+    </a>
 
     <article class="hola" style="opacity: 0;"></article>
   </div>
@@ -94,13 +77,14 @@ import gamesImage from '../../../public/work/games.webp'; // Image is 1600x900
 
   .hola {
     width: 100%;
+    position: relative;
 
-    img, video {
+    img,
+    video {
       width: 100%;
       object-fit: cover;
       border-radius: 0.5rem;
     }
-
 
     @media (min-width: 1024px) {
       width: 60%;
@@ -130,10 +114,20 @@ import gamesImage from '../../../public/work/games.webp'; // Image is 1600x900
   }
 
   .work--description {
-    display: none;
-    max-width: 60ch;
+    position: absolute;
     width: 100%;
-    padding-top: 0.5rem;
+    bottom: 0;
+    color: var(--white-color);
+
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    padding: 10rem 1rem 0.5rem;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
 
     .body {
       margin: 0;
