@@ -110,18 +110,20 @@ const t = useTranslations(lang);
   const frames = [];
 
   const loadFrames = async () => {
-    const pad = (num: number, size: number) => String(num).padStart(size, "0");
+  const pad = (num:number, size:number) => String(num).padStart(size, "0");
 
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      try {
-        const response = await fetch(`${FRAME_PATH}${pad(i, 4)}.txt`);
-        const text = await response.text();
-        frames.push(text);
-      } catch (e) {
-        console.error(`Error loading frame ${i}:`, e);
-      }
-    }
-  };
+  const framePromises = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
+    const frameNum = pad(i + 1, 4);
+    return fetch(`${FRAME_PATH}${frameNum}.txt`)
+      .then(res => res.text())
+      .catch(e => {
+        console.error(`Error loading frame ${frameNum}:`, e);
+        return ""; // evita que Promise.all truene
+      });
+  });
+
+  frames.push(...(await Promise.all(framePromises)));
+};
 
   const playAnimation = () => {
     // container.innerHTML = frames[0];
