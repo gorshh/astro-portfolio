@@ -1,10 +1,8 @@
 ---
-import ScrollDown from "../common/ScrollDown.astro";
-import Blotter from "../common/Blotter.astro";
+// import ScrollDown from "../common/ScrollDown.astro";
 import Link from "../common/Link.astro";
 import Container from "../common/Container.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,15 +10,18 @@ const t = useTranslations(lang);
 
 <Container as="section" id="home">
   <header class="hero-header">
-    <div class="left-side">      
+
+    <div class="left-side">
       <h1 class="heading-style-header">
-        {t('hero.title')}
+        {t("hero.title")}
       </h1>
     </div>
-    <Link href="#contact" class="cta">{t('hero.cta')}</Link>
+    <Link href="#contact" class="cta">{t("hero.cta")}</Link>
   </header>
-  <Blotter />
-  <ScrollDown />
+  
+  <div id="ascii-container" style="white-space: pre; font-family: monospace; line-height: 1;"></div>
+
+  <!-- <ScrollDown /> -->
 </Container>
 
 <style>
@@ -32,7 +33,6 @@ const t = useTranslations(lang);
     font-family: "PP Mori";
     background-color: var(--black-color);
     color: rgba(var(--white-rgb), 0.8);
-
   }
   .hero-header {
     border-radius: 0.6rem;
@@ -65,4 +65,78 @@ const t = useTranslations(lang);
     }
   }
 
+  
+  #ascii-container {
+    white-space: pre;
+    line-height: 1;
+    font-size: 12px;
+    
+    width: fit-content;
+    margin: 0 auto;
+    overflow: hidden; /* Evita el desbordamiento */
+    .yellow {
+      color: #D6DA00;
+      display: inline-block;
+    }
+
+    .light {
+      color: #F5FA8A;
+      display: inline-block;
+    }
+    
+    .background {
+      display: inline-block;
+      opacity: 0;
+    }
+
+    .shadow {
+      color: #ffde26;
+      display: inline-block;
+    }
+  }
+
+  /*  */
+
 </style>
+
+<script>
+  const container = document.getElementById("ascii-container")!;
+  const TOTAL_FRAMES = 174; // cambia este número al total de tus frames
+  const FRAME_PATH = "/frames/frame_";
+  const FRAME_DELAY = 1000 / 30; // 24fps
+  
+
+
+  let currentFrame = 1;
+  const frames = [];
+
+  const loadFrames = async () => {
+    const pad = (num: number, size: number) => String(num).padStart(size, "0");
+
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      try {
+        const response = await fetch(`${FRAME_PATH}${pad(i, 4)}.txt`);
+        const text = await response.text();
+        frames.push(text);
+      } catch (e) {
+        console.error(`Error loading frame ${i}:`, e);
+      }
+    }
+  };
+
+  const playAnimation = () => {
+    // container.innerHTML = frames[0];
+      // currentFrame = (currentFrame + 1) % frames.length;
+    setInterval(() => {
+      container.innerHTML = frames[currentFrame];
+      currentFrame = (currentFrame + 1) % frames.length;
+    }, FRAME_DELAY);
+  };
+
+  const start = async () => {
+    await loadFrames();
+    playAnimation();
+  };
+
+  start();
+</script>
