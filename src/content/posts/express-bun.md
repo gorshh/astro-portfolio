@@ -1,10 +1,9 @@
 ---
-title: "Express + Bun + TypeScript + express-validator"
+title: "Construyendo una API con Express + Bun + TypeScript + express-validator"
 description: "Reflexiones sobre desarrollo web moderno"
 pubDate: "2025-04-21"
 heroImage: "https://codigoencasa.com/content/images/size/w2000/2022/07/Expressjs--1-.JPG"
 author: "jorge"
-url: "mi-primer-blog-post"
 date: 2024-01-01
 tags:
 - astro
@@ -12,259 +11,261 @@ tags:
 - static site generator
 - web development
 - tutorial
+topic: Backend
 ---
 
 
-Este proyecto es una plantilla base para crear una aplicación web backend utilizando:
+¿Estás buscando una forma **ultrarrápida y moderna** de construir APIs con Express? En este post vamos a crear una base sólida de backend utilizando:
 
-- [Bun](https://bun.sh/) - un runtime ultrarrápido para JavaScript y TypeScript.
-- [Express](https://expressjs.com/) - framework web para Node.js (compatible con Bun).
-- [TypeScript](https://www.typescriptlang.org/) - tipado estático para JavaScript.
-- [express-validator](https://express-validator.github.io/docs/) - validación de entradas HTTP.
+- 🐰 **[Bun](https://bun.sh/)**: un runtime de JavaScript y TypeScript extremadamente rápido.
+- ⚙️ **Express**: el framework web clásico de Node, ahora corriendo sobre Bun.
+- 🧠 **TypeScript**: para desarrollo tipado y seguro.
+- ✅ **express-validator**: para validar entradas de forma sencilla y declarativa.
 
----
-
-## Requisitos
-
-Antes de comenzar, asegúrate de tener instalado:
-
-- [Bun](https://bun.sh/) – puedes instalarlo con:
-  ```bash
-  curl -fsSL https://bun.sh/install | bash
-  ```
-- Git (opcional pero recomendado)
+Vamos a crear una pequeña API REST con validación, escrita en TypeScript y ejecutada con Bun.
 
 ---
 
-## Instalación del Proyecto
+## 🚀 ¿Por qué usar Bun?
 
-1. **Clona el repositorio (o crea uno nuevo)**
-   ```bash
-   git clone https://github.com/tu-usuario/express-bun-ts-validator.git
-   cd express-bun-ts-validator
-   ```
+Bun es un runtime moderno (como Node.js o Deno), pero enfocado en el rendimiento:
 
-2. **Inicializa el proyecto con Bun**
-   ```bash
-   bun init
-   ```
-
-3. **Instala las dependencias**
-   ```bash
-   bun add express express-validator
-   bun add -d typescript @types/node @types/express
-   ```
-
-4. **Configura TypeScript**
-   Crea un archivo `tsconfig.json`:
-   ```json
-   {
-     "compilerOptions": {
-       "target": "es2020",
-       "module": "esnext",
-       "moduleResolution": "node",
-       "strict": true,
-       "esModuleInterop": true,
-       "forceConsistentCasingInFileNames": true,
-       "skipLibCheck": true,
-       "outDir": "dist"
-     },
-     "include": ["src"]
-   }
-   ```
+- 🔥 Compila TypeScript y transpila ES6+ sin configuración.
+- ⚡ ¡Hasta 20 veces más rápido en benchmarks que Node en ciertas tareas!
+- 🧩 Incluye gestor de paquetes (`bun install`) y bundler.
 
 ---
 
-## Estructura de Archivos
+## 📦 Requisitos
+
+- [Instala Bun](https://bun.sh/docs/installation)
 
 ```bash
-📦express-bun-ts-validator
- ┣ 📂src
- ┃ ┣ 📂routes
- ┃ ┃ ┗ 📜user.routes.ts
- ┃ ┣ 📂controllers
- ┃ ┃ ┗ 📜user.controller.ts
- ┃ ┣ 📂middlewares
- ┃ ┃ ┗ 📜validate.ts
- ┃ ┣ 📜app.ts
- ┃ ┗ 📜index.ts
- ┣ 📜tsconfig.json
- ┣ 📜.gitignore
- ┣ 📜README.md
+curl -fsSL https://bun.sh/install | bash
+```
+
+> Asegúrate de reiniciar la terminal tras instalarlo, o añade Bun al PATH manualmente.
+
+---
+
+## 🛠️ Inicializando el proyecto
+
+```bash
+bun init express-api
+cd express-api
+```
+
+Selecciona la plantilla `typescript`, o edítalo después.
+
+### Instalar dependencias
+
+```bash
+bun add express express-validator
+bun add -d @types/express @types/express-validator
 ```
 
 ---
 
-## Estructura del Código
+## 📁 Estructura del proyecto
 
-### `src/index.ts` - Punto de entrada
+```plaintext
+express-api/
+├── src/
+│   ├── index.ts
+│   ├── routes/
+│   │   └── users.ts
+│   └── validators/
+│       └── userValidator.ts
+├── tsconfig.json
+├── bunfig.toml
+└── package.json (opcional)
+```
+
+---
+
+## ⚙️ Configuración de TypeScript (`tsconfig.json`)
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}
+```
+
+---
+
+## 📄 src/index.ts
 
 ```ts
-import app from './app';
+import express from 'express';
+import { json } from 'body-parser';
+import userRoutes from './routes/users';
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(json());
+app.use('/api/users', userRoutes);
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Servidor escuchando en http://localhost:${PORT}`);
 });
 ```
 
 ---
 
-### `src/app.ts` - Configuración de la app
-
-```ts
-import express from 'express';
-import userRoutes from './routes/user.routes';
-
-const app = express();
-
-app.use(express.json());
-app.use('/api/users', userRoutes);
-
-export default app;
-```
-
----
-
-### `src/routes/user.routes.ts`
+## 📄 src/routes/users.ts
 
 ```ts
 import { Router } from 'express';
-import { createUser } from '../controllers/user.controller';
-import { validateUser } from '../middlewares/validate';
+import { body, validationResult } from 'express-validator';
+import { createUserValidator } from '../validators/userValidator';
 
 const router = Router();
 
-router.post('/', validateUser, createUser);
+router.post(
+  '/',
+  createUserValidator,
+  (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, email } = req.body;
+
+    return res.status(201).json({
+      message: 'Usuario creado correctamente',
+      user: { name, email }
+    });
+  }
+);
 
 export default router;
 ```
 
 ---
 
-### `src/controllers/user.controller.ts`
+## 📄 src/validators/userValidator.ts
 
 ```ts
-import { Request, Response } from 'express';
+import { body } from 'express-validator';
 
-export const createUser = (req: Request, res: Response) => {
-  const { name, email } = req.body;
-  res.status(201).json({
-    message: 'Usuario creado exitosamente',
-    data: { name, email }
-  });
-};
-```
-
----
-
-### `src/middlewares/validate.ts`
-
-```ts
-import { body, validationResult } from 'express-validator';
-import { Request, Response, NextFunction } from 'express';
-
-export const validateUser = [
+export const createUserValidator = [
   body('name')
-    .notEmpty()
-    .withMessage('El nombre es obligatorio'),
-  body('email')
-    .isEmail()
-    .withMessage('El correo debe ser válido'),
+    .notEmpty().withMessage('El nombre es obligatorio')
+    .isLength({ min: 2 }).withMessage('El nombre debe tener al menos 2 caracteres'),
 
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  }
+  body('email')
+    .isEmail().withMessage('Debe ser un email válido'),
 ];
 ```
 
 ---
 
-## Scripts de Desarrollo
+## 🚀 Ejecutar el servidor
 
-Agrega este script a tu `package.json` (Bun usa `"scripts"` como npm):
+Bun detecta automáticamente TypeScript. Ejecuta:
+
+```bash
+bun src/index.ts
+```
+
+Verás en consola:
+
+```bash
+🚀 Servidor escuchando en http://localhost:3000
+```
+
+---
+
+## 📬 Probar la API
+
+### POST `/api/users`
+
+#### ✅ Cuerpo válido:
 
 ```json
 {
-  "scripts": {
-    "dev": "bun run tsx src/index.ts",
-    "build": "tsc",
-    "start": "bun run dist/index.js"
+  "name": "Ada Lovelace",
+  "email": "ada@lovelace.dev"
+}
+```
+
+**Respuesta:**
+
+```json
+{
+  "message": "Usuario creado correctamente",
+  "user": {
+    "name": "Ada Lovelace",
+    "email": "ada@lovelace.dev"
   }
 }
 ```
 
-Para desarrollo:
-```bash
-bun run dev
-```
+#### ❌ Cuerpo inválido:
 
-Para compilar:
-```bash
-bun run build
-```
-
-Para correr compilado:
-```bash
-bun run start
-```
-
----
-
-## Prueba la API
-
-Puedes usar herramientas como [Postman](https://www.postman.com/) o `curl`:
-
-```bash
-curl -X POST http://localhost:3000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Juan", "email": "juan@example.com"}'
-```
-
-Respuesta esperada:
 ```json
 {
-  "message": "Usuario creado exitosamente",
-  "data": {
-    "name": "Juan",
-    "email": "juan@example.com"
-  }
+  "name": "",
+  "email": "noesunemail"
 }
 ```
 
-Si omites algún campo o el email es inválido, obtendrás un error 400 con detalles.
+**Respuesta:**
+
+```json
+{
+  "errors": [
+    {
+      "msg": "El nombre es obligatorio",
+      "param": "name",
+      "location": "body"
+    },
+    {
+      "msg": "Debe ser un email válido",
+      "param": "email",
+      "location": "body"
+    }
+  ]
+}
+```
 
 ---
 
-## Extras Opcionales
+## 💡 Ventajas de esta stack
 
-- 🔍 Añadir CORS:
-  ```bash
-  bun add cors
-  ```
-  ```ts
-  import cors from 'cors';
-  app.use(cors());
-  ```
-
-- 📁 Soporte para `.env`:
-  ```bash
-  bun add dotenv
-  ```
-  ```ts
-  import dotenv from 'dotenv';
-  dotenv.config();
-  ```
+- ⚡ **Velocidad**: Bun compila y ejecuta TypeScript directamente.
+- ✅ **Validación robusta**: express-validator permite definir reglas claras y centralizadas.
+- 🧼 **Código limpio**: separando rutas, validaciones y lógica.
+- 🚀 **Listo para producción**: puedes extender con bases de datos, auth, middlewares, etc.
 
 ---
 
-## Recursos
+## 📚 Recursos útiles
 
 - [Documentación oficial de Bun](https://bun.sh/docs)
-- [Guía de Express con TypeScript](https://expressjs.com/en/advanced/best-practice-performance.html)
-- [Validaciones con express-validator](https://express-validator.github.io/docs/)
+- [Express](https://expressjs.com/)
+- [express-validator](https://express-validator.github.io/docs/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+---
+
+## 🧠 Conclusión
+
+Usar **Express con Bun y TypeScript** es una excelente forma de construir APIs rápidas, escalables y modernas. Puedes mantener la simplicidad de Express mientras te beneficias de la velocidad de Bun y la seguridad de TypeScript.
+
+---
+
+¿Te gustaría que hagamos una versión con base de datos (SQLite o PostgreSQL), autenticación o Docker? ¡Déjame un comentario y lo armamos juntos!

@@ -9,6 +9,7 @@ tags:
 - static site generator
 - web development
 - tutorial
+topic: Frontend
 ---
 
 Astro is a modern static site generator that makes building fast and optimized websites easy. In this guide, we'll walk through the steps to create a blog using Astro.

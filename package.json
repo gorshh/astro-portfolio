@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.4",
     "astro": "^5.1.0",
     "minireset.css": "0.0.7"
   }
