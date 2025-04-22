@@ -1,0 +1,59 @@
+---
+interface Props {
+  topic: string;
+  title: string;
+}
+
+const { topic, title } = Astro.props;
+
+const segments = topic.split("/");
+const paths = segments.map(
+  (_, i) =>
+    "/" +
+    segments
+      .slice(0, i + 1)
+      .join("/")
+      .toLowerCase()
+);
+---
+
+<nav aria-label="breadcrumb" class="breadcrumb">
+  <ul>
+    {
+      segments.map((seg, i) => (
+        <span>
+          <a href={paths[i]}>{seg}</a>
+          {i < segments.length && <span>/</span>}
+        </span>
+      ))
+    }
+    <span>{title}</span>
+  </ul>
+</nav>
+
+<style>
+  .breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 14px;
+    color: #cfcfd3;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .breadcrumb li a {
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .breadcrumb li span {
+    color: rgb(143, 143, 153);
+  }
+</style>
