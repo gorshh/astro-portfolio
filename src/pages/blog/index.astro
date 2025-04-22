@@ -1,203 +1,59 @@
 ---
 import { getCollection } from "astro:content";
-import Link from "../../components/common/Link.astro";
 import P from "../../components/common/P.astro";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { groupPostsByTopic } from "../../utils/groupPostsByTopic";
-import {topicIcons} from '../../utils/topicIcons'
-
+import { topicIcons } from "../../utils/topicIcons";
+import { Image } from "astro:assets";
 
 
 const posts = await getCollection("posts");
-console.log(posts);
-const renderingData = posts.map((x) => ({
-  title: x.data.title,
-  tags: x.data.tags,
-  urlPath: `/blog/${x.slug}`,
-}));
-
-
-// const posts = await getCollection('blog');
 const grouped = groupPostsByTopic(posts);
 ---
 
 <BlogLayout>
-  
   <div class="blog">
     <h1>Posts</h1>
-    {Object.entries(grouped).map(([topic, data]) => (
-      <section>
-        <h2>{topicIcons[topic] ?? ''} {topic}</h2>
-        {Object.entries(data.subtopics).map(([sub, posts]) => (
-          <div style="margin-left: 16px;">
-            <h3 style="color: white;">{topicIcons[sub.toLowerCase().replace(" ","")] ?? ''} {sub}</h3>
-            <ul>
-              {posts.map(post => (
-                <li style="margin-left: 16px;"><a href={`/blog/${post.slug}/`} style="color: rgb(207, 207, 207);">{post.data.title}</a></li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
-    ))}
+    {
+      Object.entries(grouped).map(([topic, data]) => (
+        <section>
+          <h2>
+            {topicIcons[topic] ?? ""} {topic}
+          </h2>
+          {Object.entries(data.subtopics).map(([sub, posts]) => (
+            <div style="margin-left: 16px; margin-bottom: 1rem;">
+              <h3 style="color: white; margin-bottom: 1rem;">
+                {topicIcons[sub.toLowerCase().replace(" ", "")] ?? ""} {sub}
+              </h3>
+              <ul>
+                {posts.map((post) => {
+                  return (
+                    <a class="hola" href={`/blog/${post.slug}/`}>
+                      <Image
+                        src={post.data.heroImage}
+                        alt={post.data.title}
+                        width={200}
+                        height={200}
+                      />
+                      <div class="work--description">
+                        <P textTransform="uppercase" fontFamily="pp-mori">
+                          {post.data.title}
+                        </P>
+                        <P textTransform="uppercase" fontFamily="pp-mori">
+                          ↗
+                        </P>
+                      </div>
+                    </a>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ))
+    }
   </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-  <div class="blog">
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-    <P
-      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
-      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
-      voluptate error.</P
-    >
-  </div>
-
+  
 </BlogLayout>
 
 <style>
@@ -207,7 +63,7 @@ const grouped = groupPostsByTopic(posts);
     padding: 2rem;
     font-size: 1.5rem;
     line-height: 1.6;
-    color: aliceblue;
+    color: white;
   }
 
   .blog h1 {
@@ -215,7 +71,63 @@ const grouped = groupPostsByTopic(posts);
     margin-bottom: 1rem;
   }
 
-  .blog p {
-    margin-bottom: 1rem;
+
+  .hola {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    margin: 2rem 0;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      width: 60%;
+    }
+
+    &:hover {
+      scale: 1.02;
+      .work--description {
+        color: white;
+      }
+    }
+  }
+
+
+  .work--description {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease-in-out;
+
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    padding: 4rem 1rem 0.5rem;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+
+    .body {
+      margin: 0;
+    }
+
+    .body-sm {
+      padding: 4px 0;
+    }
+
+    a {
+      margin: 0;
+      font-size: 14px;
+    }
   }
 </style>
