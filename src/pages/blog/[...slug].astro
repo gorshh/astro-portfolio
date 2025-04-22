@@ -1,0 +1,115 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  // very important how you name object here (eg. entry), so you can destruct it below
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<"posts">;
+};
+
+const { entry } = Astro.props;
+const author = await getEntry("authors", "jorge")!;
+const { Content } = await entry.render();
+---
+
+<BlogLayout title={entry.data.title}>
+  <article class="article">
+    <header>
+      <h1>{entry.data.title}</h1>
+    </header>
+
+    <div>
+      <Content />
+    </div>
+
+    <footer class="article-footer">
+      <dl>
+        <div>
+          <dt>Author</dt>
+          <dd>{author.data.name}</dd>
+          <dd>{author.data.bio}</dd>
+        </div>
+        <div>
+          <!-- <dt>Posted on</dt> -->
+          <dd>
+            <!-- <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleString()}</time> -->
+          </dd>
+        </div>
+      </dl>
+    </footer>
+  </article>
+</BlogLayout>
+
+<style>
+  .article {
+    /* max-width: 74ch; */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    /* font-size: 1.2rem; */
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: white;
+
+    h1 {
+      font-size: 48px;
+      color: white;
+      font-family: "PP Mori";
+    }
+
+    h2 {
+      font-size: 36px;
+      color: white;
+      font-family: "PP Mori";
+    }
+    h3 {
+      font-size: 24px;
+      color: white;
+      font-family: "PP Mori";
+    }
+    h4 {
+      font-size: 18px;
+      color: white;
+    }
+
+    p {
+      color: rgb(231, 231, 231);
+    }
+
+    .github-dark {
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+    }
+
+    code {
+      background-color: rgb(31, 32, 35);
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+    }
+
+    hr {
+      border: 1px solid rgb(31, 32, 35);
+      margin: 1rem 0;
+    }
+
+    a {
+      color: white;
+    }
+
+    li {
+      list-style: square;
+    }
+  }
+</style>

@@ -4,15 +4,30 @@ import Link from "./Link.astro";
 interface Props {
   mode?: "light" | "dark";
   class?: string;
+  href?: string;
 }
 
-const { mode = "light", class: className, ...rest } = Astro.props as Props;
+const {
+  mode = "light",
+  class: className,
+  href,
+  ...rest
+} = Astro.props as Props;
 
 const finalClasses = ["logo", mode, className];
-// ADD scroll to top
 ---
 
-<span class:list={finalClasses} {...rest}>J</span>
+{
+  href ? (
+    <a href={href} class:list={finalClasses} {...rest}>
+      J
+    </a>
+  ) : (
+    <span class:list={finalClasses} {...rest}>
+      J
+    </span>
+  )
+}
 
 <style>
   .logo {
@@ -29,8 +44,9 @@ const finalClasses = ["logo", mode, className];
     font-size: 20px;
     line-height: 0;
     user-select: none;
-    transition: background-color ease 0.2s, color ease 0.3s;
-
+    transition:
+      background-color ease 0.2s,
+      color ease 0.3s;
 
     &::after {
       display: none;
@@ -38,13 +54,9 @@ const finalClasses = ["logo", mode, className];
   }
 
   .light {
-    background-color: var(--white-color);
-    color: var(--black-color);
-
-    &:hover {
-      color: rgba(var(--white-rgb), 0.8);
-      background-color: var(--black-color);
-    }
+    background-color: white;
+    color: black !important;
+    
   }
 
   .dark {
@@ -59,12 +71,12 @@ const finalClasses = ["logo", mode, className];
 </style>
 
 <script>
-  const button = document.querySelector('.logo') as HTMLButtonElement
+  const button = document.querySelector("span.logo") as HTMLButtonElement;
 
-
-  button.addEventListener("click", (e) => {
-    e.preventDefault()
-    window.scrollTo({top:0})
-  })
-
+  if (button) {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0 });
+    });
+  }
 </script>

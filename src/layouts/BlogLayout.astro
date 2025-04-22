@@ -1,0 +1,118 @@
+---
+import "minireset.css";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Responsive from "../components/common/Responsive.astro";
+import NavbarBlog from "../components/NavbarBlog.astro";
+import FooterBlog from "../components/FooterBlog.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>
+      Jorshh Blog – {title ? title : "Insights sobre Desarrollo Web"}
+    </title>
+    <meta
+      name="description"
+      content="Descubre ideas, consejos y experiencias sobre desarrollo web moderno. Desde React y Next.js hasta buenas prácticas y herramientas útiles."
+    />
+
+    <!-- Open Graph (para compartir en redes) -->
+    <meta
+      property="og:title"
+      content="Jorshh Blog – Insights sobre Desarrollo Web"
+    />
+    <meta
+      property="og:description"
+      content="Descubre ideas, consejos y experiencias sobre desarrollo web moderno."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jorshh.dev/blog" />
+    <!-- ajusta según tu dominio -->
+    <meta property="og:image" content="https://jorshh.dev/og-image-blog.png" />
+    <!-- reemplaza por tu imagen -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Jorshh Blog – Insights sobre Desarrollo Web"
+    />
+    <meta
+      name="twitter:description"
+      content="Explora artículos sobre React, Next.js y el mundo del desarrollo web."
+    />
+    <meta name="twitter:image" content="https://jorshh.dev/og-image-blog.png" />
+    <!-- misma imagen o personalizada -->
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://jorshh.dev/blog" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <NavbarBlog />
+    <main>
+      <slot />
+    </main>
+    <FooterBlog />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --black-rgb: 10, 10, 10;
+    --white-rgb: 250, 250, 250;
+
+    --black-color: rgb(var(--black-rgb));
+    --white-color: rgb(var(--white-rgb));
+
+    --bg-color: rgb(var(--white-rgb));
+
+    --tw-gradient-to: #000;
+    --tw-gradient-from: #111113;
+
+    --tw-gradient-stops: var(--tw-gradient-from), #000, var(--tw-gradient-to);
+  }
+
+  @font-face {
+    font-family: "PP Mori";
+    src: url("/fonts/PPMori-SemiBold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "WienModern";
+    src: url("/fonts/WienModern-Regular.otf");
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  body {
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      cOxygen,
+      sans-serif;
+    background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  }
+</style>

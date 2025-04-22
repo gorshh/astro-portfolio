@@ -1,0 +1,16 @@
+name: "Jorge Calderon"
+bio: "Software developer with a passion for creating innovative solutions."
+avatar: "/images/jorge.jpg"
+social:
+  twitter: "https://twitter.com/jorgecalderon"
+  github: "https://github.com/jorgecalderon"
+  linkedin: "https://linkedin.com/in/jorgecalderon"
+fields:
+  - name: "Location"
+    value: "San Francisco, CA"
+  - name: "Experience"
+    value: "5 years in software development"
+  - name: "Skills"
+    value: "JavaScript, Python, React, Node.js"
+  - name: "Interests"
+    value: "Open source, AI, Web development"

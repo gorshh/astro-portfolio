@@ -1,0 +1,210 @@
+---
+import { getCollection } from "astro:content";
+import Link from "../../components/common/Link.astro";
+import P from "../../components/common/P.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+
+
+const posts = await getCollection("posts");
+console.log(posts);
+const renderingData = posts.map((x) => ({
+  title: x.data.title,
+  tags: x.data.tags,
+  urlPath: `/blog/${x.slug}`,
+}));
+---
+
+<BlogLayout>
+  
+
+  <div class="blog">
+    <h2>Posts</h2>
+    <ul>
+      {
+        renderingData.map((x) => (
+          <li>
+            <a href={x.urlPath}>{x.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+  <div class="blog">
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+    <P
+      >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
+      reiciendis accusamus aliquam debitis quos at atque quia commodi, saepe
+      officia? Vero soluta aperiam neque ipsum, voluptatibus ducimus maiores
+      voluptate error.</P
+    >
+  </div>
+
+</BlogLayout>
+
+<style>
+  .blog {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: aliceblue;
+  }
+
+  .blog h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .blog p {
+    margin-bottom: 1rem;
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import Logo from "./common/Logo.astro";
+
+const links = [
+  { href: "/blog/posts", label: "Posts" },
+  { href: "/blog/categories", label: "Categories" },
+  { href: "/blog/tags", label: "Tags" },
+  { href: "/blog/archives", label: "Archives" },
+  { href: "/blog/blog", label: "Blog" },
+  { href: "/blog/about", label: "About" },
+  { href: "/blog/contact", label: "Contact" },
+];
+---
+
+<nav class="navbar">
+  <div class="container">
+    <Logo mode="light" class="nav-logo" href="/blog"/>
+    <ul class="nav-links">
+      {links.map(link => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    width: 100%;
+
+    border-radius: .75rem;
+    max-width: 72rem;
+    top: .5rem;
+    z-index: 1;
+    margin: 0 auto;
+    /* border-color: red; */
+    border: 1px solid rgba(31, 32, 35, .5);
+    color: #fff;
+    /* padding: 1rem; */
+    --tw-backdrop-blur: blur(12px);
+    backdrop-filter: var(--tw-backdrop-blur);
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    /* border: solid 1px red; */
+
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgb(143 , 143, 153);
+    transition: color 0.3s;
+    font-size: 14px;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+</style>
