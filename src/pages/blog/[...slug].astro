@@ -164,9 +164,32 @@ const { Content } = await entry.render();
       border-radius: 0.25rem;
     }
 
-
     .astro-code code {
       background-color: transparent;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #2d2d30;
+      color: #f4f4f5;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .copy-button:hover {
+      opacity: 1;
+    }
+
+    pre {
+      position: relative;
+      padding-top: 2.5rem; /* para no tapar el botón */
     }
 
     hr {
@@ -268,3 +291,28 @@ const { Content } = await entry.render();
     }
   }
 </style>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("pre > code").forEach((codeBlock) => {
+      const button = document.createElement("button");
+      button.innerText = "📋 Copy";
+      button.className = "copy-button";
+
+      const pre = codeBlock.parentElement;
+      pre.style.position = "relative";
+      pre.appendChild(button);
+
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(codeBlock.innerText);
+          button.innerText = "✅ Copied";
+          setTimeout(() => (button.innerText = "📋 Copy"), 2000);
+        } catch (err) {
+          console.error("Error:", err);
+          button.innerText = "⚠️ Error";
+        }
+      });
+    });
+  });
+</script>

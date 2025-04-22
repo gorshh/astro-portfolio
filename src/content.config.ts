@@ -1,8 +1,4 @@
-import { defineConfig } from 'astro/config';
 import { z, defineCollection, reference } from 'astro:content';
-import rehypePrism from 'rehype-prism-plus';
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
-
 
 
 export const collections = {
@@ -29,8 +25,3 @@ export const collections = {
   })
 }
 
-export default defineConfig({
-  markdown: {
-    rehypePlugins: [rehypePrism],
-  },
-});

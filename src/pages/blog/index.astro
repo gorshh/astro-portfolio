@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Link from "../../components/common/Link.astro";
 import P from "../../components/common/P.astro";
 import BlogLayout from "../../layouts/BlogLayout.astro";
+import { groupPostsByTopic } from "../../utils/groupPostsByTopic";
+import {topicIcons} from '../../utils/topicIcons'
 
 
 
@@ -13,22 +15,31 @@ const renderingData = posts.map((x) => ({
   tags: x.data.tags,
   urlPath: `/blog/${x.slug}`,
 }));
+
+
+// const posts = await getCollection('blog');
+const grouped = groupPostsByTopic(posts);
 ---
 
 <BlogLayout>
   
-
   <div class="blog">
-    <h2>Posts</h2>
-    <ul>
-      {
-        renderingData.map((x) => (
-          <li>
-            <a href={x.urlPath}>{x.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+    <h1>Posts</h1>
+    {Object.entries(grouped).map(([topic, data]) => (
+      <section>
+        <h2>{topicIcons[topic] ?? ''} {topic}</h2>
+        {Object.entries(data.subtopics).map(([sub, posts]) => (
+          <div style="margin-left: 16px;">
+            <h3 style="color: white;">{topicIcons[sub.toLowerCase().replace(" ","")] ?? ''} {sub}</h3>
+            <ul>
+              {posts.map(post => (
+                <li style="margin-left: 16px;"><a href={`/blog/${post.slug}/`} style="color: rgb(207, 207, 207);">{post.data.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+    ))}
   </div>
   <div class="blog">
     <P
@@ -192,7 +203,7 @@ const renderingData = posts.map((x) => ({
 <style>
   .blog {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 900px;
     padding: 2rem;
     font-size: 1.5rem;
     line-height: 1.6;

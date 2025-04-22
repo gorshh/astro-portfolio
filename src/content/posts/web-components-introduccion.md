@@ -8,7 +8,7 @@ tags:
 - static site generator
 - web development
 - tutorial
-topic: Frontend
+topic: Frontend/Web Components
 date: 2025-04-23
 ---
 
