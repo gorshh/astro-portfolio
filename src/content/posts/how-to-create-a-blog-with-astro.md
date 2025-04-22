@@ -1,6 +1,7 @@
 ---
 title: "How to Create a Blog with Astro"
 author: jorge
+heroImage: "https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F4f3c8986d48b47d6845bebfc8d0c0610"
 date: 2024-01-01
 tags:
 - astro

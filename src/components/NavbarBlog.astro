@@ -27,18 +27,19 @@ const links = [
   .navbar {
     position: sticky;
     width: 100%;
-
     border-radius: .75rem;
-    max-width: 72rem;
+    max-width: 1280px;
     top: .5rem;
     z-index: 1;
     margin: 0 auto;
-    /* border-color: red; */
-    border: 1px solid rgba(31, 32, 35, .5);
+    /* border: 1px solid rgba(31, 32, 35, .5); */
     color: #fff;
-    /* padding: 1rem; */
-    --tw-backdrop-blur: blur(12px);
-    backdrop-filter: var(--tw-backdrop-blur);
+    
+    /* backdrop-filter: var(--tw-backdrop-blur); */
+    /* background-color: #111113; */
+    background-color: #00000080;
+    /* backdrop-filter: blur(18.75rem); */
+    backdrop-filter: blur(40px);
   }
 
   .container {
@@ -46,16 +47,8 @@ const links = [
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    /* border: solid 1px red; */
-
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: .75rem;    
   }
-
-  
-
   .nav-links {
     list-style: none;
     display: flex;

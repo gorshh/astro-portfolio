@@ -24,59 +24,113 @@ const { Content } = await entry.render();
 ---
 
 <BlogLayout title={entry.data.title}>
-  <article class="article">
-    <header>
-      <h1>{entry.data.title}</h1>
-    </header>
+  <section class="post">
+    <article class="article">
+      <header>
+        <a href="/blog" class="go-back">‹ Back to blog</a>
+        <h1>{entry.data.title}</h1>
+        <img src={entry.data.heroImage} class="hero-image" />
+      </header>
 
-    <div>
-      <Content />
+      <div>
+        <Content />
+      </div>
+      <article class="tags">
+        {
+          entry.data.tags.map((tag) => (
+            <a href={`/blog/tags/${tag}`} class="tag">
+              #{tag}
+            </a>
+          ))
+        }
+      </article>
+
+      <footer class="article-footer">
+        <dl>
+          <div>
+            <dt>Author</dt>
+            <dd>{author.data.name}</dd>
+            <dd>{author.data.bio}</dd>
+          </div>
+          <div>
+            <dt>Posted on</dt>
+            <dd>
+              <time datetime={entry.data.date.toISOString()}
+                >{entry.data.date.toLocaleString()}</time
+              >
+            </dd>
+          </div>
+        </dl>
+      </footer>
+    </article>
+    <div class="on-this-page">
+      <p>On this page</p>
+      <ul>
+        <li><a href="">Express + Bun + TypeScript + express-validator</a></li>
+        <li><a href="">Requisitos</a></li>
+        <li><a href="">Instalación del Proyecto</a></li>
+        <li><a href="">Estructura de Archivos</a></li>
+      </ul>
     </div>
-
-    <footer class="article-footer">
-      <dl>
-        <div>
-          <dt>Author</dt>
-          <dd>{author.data.name}</dd>
-          <dd>{author.data.bio}</dd>
-        </div>
-        <div>
-          <!-- <dt>Posted on</dt> -->
-          <dd>
-            <!-- <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleString()}</time> -->
-          </dd>
-        </div>
-      </dl>
-    </footer>
-  </article>
+  </section>
 </BlogLayout>
 
 <style>
+  .post {
+    max-width: 1280px;
+    margin: 0 auto;
+    /* border: solid 1px red; */
+    margin-top: 4rem;
+    display: flex;
+  }
+
   .article {
     /* max-width: 74ch; */
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-    /* font-size: 1.2rem; */
+    /* line-height: 1.4rem; */
+    /* padding: 1rem; */
     line-height: 1.6;
-    text-wrap: pretty;
+
+    border-right: 1px #1f2023 solid;
+    padding-right: 10rem;
+    /* font-size: 1.1rem; */
     color: white;
 
+    header {
+      .go-back {
+        color: rgb(143, 143, 153);
+        text-decoration: none;
+        margin-bottom: 1rem;
+        display: block;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .hero-image {
+      border-radius: 0.5rem;
+      aspect-ratio: 16/9;
+      margin: 2rem 0;
+    }
     h1 {
       font-size: 48px;
       color: white;
       font-family: "PP Mori";
+      line-height: normal;
     }
 
     h2 {
       font-size: 36px;
       color: white;
       font-family: "PP Mori";
+      line-height: normal;
     }
     h3 {
       font-size: 24px;
       color: white;
       font-family: "PP Mori";
+      line-height: normal;
     }
     h4 {
       font-size: 18px;
@@ -101,15 +155,97 @@ const { Content } = await entry.render();
 
     hr {
       border: 1px solid rgb(31, 32, 35);
-      margin: 1rem 0;
+      /* border: 1px solid red; */
+      margin: 2rem 0;
     }
 
     a {
       color: white;
     }
 
+    ul,ol {
+      list-style: none;
+      padding-left: 0rem;
+      margin: 0rem;
+    }
+
     li {
-      list-style: square;
+      margin: 0;
+      padding: 0;
+
+      &::before {
+        content: "•";
+        margin-right: 0.4rem;
+        display: inline;
+      }
+
+      p {
+        display: contents;
+      }
+    }
+
+    .tags {
+      margin-top: 2rem;
+
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+    }
+    .tag {
+      background-color: rgb(31, 32, 35);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+      color: white;
+    }
+
+    .article-footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgb(31, 32, 35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      dl {
+        display: flex;
+        gap: 2rem;
+
+        dt {
+          font-weight: bold;
+          color: white;
+        }
+        dd {
+          color: rgb(231, 231, 231);
+        }
+      }
+    }
+  }
+
+  .on-this-page {
+    margin: 0 auto;
+    /* outline: 1px red solid; */
+    /* max-width: 800px; */
+    height: fit-content;
+    /* width: 20px; */
+    position: sticky;
+    top: 90px;
+    margin-left: 1rem;
+    /* padding: 2rem; */
+    /* font-size: 1.5rem; */
+    line-height: 1.6;
+    color: rgb(143, 143, 153);
+
+    ul {
+      list-style: none;
+      /* padding-left: 2rem; */
+      color: #cfcfd3;
+
+      li {
+        a {
+          color: #cfcfd3;
+        }
+      }
     }
   }
 </style>

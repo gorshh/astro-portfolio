@@ -1,8 +1,8 @@
 ---
-title: "🚀 Express + Bun + TypeScript + express-validator"
+title: "Express + Bun + TypeScript + express-validator"
 description: "Reflexiones sobre desarrollo web moderno"
 pubDate: "2025-04-21"
-heroImage: "/assets/blog-cover.jpg"
+heroImage: "https://codigoencasa.com/content/images/size/w2000/2022/07/Expressjs--1-.JPG"
 author: "jorge"
 url: "mi-primer-blog-post"
 date: 2024-01-01
@@ -24,7 +24,7 @@ Este proyecto es una plantilla base para crear una aplicación web backend utili
 
 ---
 
-## 📦 Requisitos
+## Requisitos
 
 Antes de comenzar, asegúrate de tener instalado:
 
@@ -36,7 +36,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🛠️ Instalación del Proyecto
+## Instalación del Proyecto
 
 1. **Clona el repositorio (o crea uno nuevo)**
    ```bash
@@ -75,7 +75,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 📁 Estructura de Archivos
+## Estructura de Archivos
 
 ```bash
 📦express-bun-ts-validator
@@ -95,7 +95,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🧱 Estructura del Código
+## Estructura del Código
 
 ### `src/index.ts` - Punto de entrada
 
@@ -185,7 +185,7 @@ export const validateUser = [
 
 ---
 
-## 🧪 Scripts de Desarrollo
+## Scripts de Desarrollo
 
 Agrega este script a tu `package.json` (Bun usa `"scripts"` como npm):
 
@@ -216,7 +216,7 @@ bun run start
 
 ---
 
-## ✅ Prueba la API
+## Prueba la API
 
 Puedes usar herramientas como [Postman](https://www.postman.com/) o `curl`:
 
@@ -241,7 +241,7 @@ Si omites algún campo o el email es inválido, obtendrás un error 400 con deta
 
 ---
 
-## 🧼 Extras Opcionales
+## Extras Opcionales
 
 - 🔍 Añadir CORS:
   ```bash
@@ -263,20 +263,8 @@ Si omites algún campo o el email es inválido, obtendrás un error 400 con deta
 
 ---
 
-## 📚 Recursos
+## Recursos
 
 - [Documentación oficial de Bun](https://bun.sh/docs)
 - [Guía de Express con TypeScript](https://expressjs.com/en/advanced/best-practice-performance.html)
 - [Validaciones con express-validator](https://express-validator.github.io/docs/)
-
----
-
-## ✨ Contribuir
-
-¡Las contribuciones son bienvenidas! Puedes hacer un fork, abrir issues o pull requests.
-
----
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la MIT License.
