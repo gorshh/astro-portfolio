@@ -1,6 +1,7 @@
 ---
 import { formatDate } from "../../utils/formatDate";
 import { topicIcons } from "../../utils/topicIcons";
+import P from "../common/P.astro";
 
 interface Properties {
   posts: {
@@ -10,8 +11,8 @@ interface Properties {
     title: string;
     topic: string;
     date: Date;
-    description:string;
-    estimatedMinutes: number
+    description: string;
+    estimatedMinutes: number;
   }[];
 }
 
@@ -28,10 +29,19 @@ const { posts } = Astro.props as Properties;
           <img src={p.heroImage} alt={p.title} title={p.title} loading="lazy" />
           <div class="post-info">
             <span class="post-category">
-              {topicIcons[p.topic.toLowerCase().replace(" ", "")] ?? ""}{" "}
+              {topicIcons[p.topic.toLowerCase().replace(" ", "")] && (
+                <img
+                  src={topicIcons[p.topic.toLowerCase().replace(" ", "")]}
+                  alt={p.title}
+                  width="14"
+                  height="14"
+                  class="post-category-logo"
+                />
+              )}
               {p.topic}
+              <span class="post-time">{p.estimatedMinutes}min</span>
             </span>
-            <span class="post-time">{p.estimatedMinutes}min</span>
+
             <h3 class="post-title">{p.title}</h3>
             <p class="post-date">{formatDate(p.date)}</p>
           </div>
@@ -79,35 +89,43 @@ const { posts } = Astro.props as Properties;
   }
 
   .post-info {
-    padding: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .post-category {
     text-transform: uppercase;
     font-size: 14px;
-    /* color: #3b82f6; */
     letter-spacing: 0.05em;
     font-weight: 600;
     color: #cfcfd3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img.post-category-logo {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .post-time {
     font-size: 14px;
     margin-left: 0.5rem;
-    /* display: flex; */
-    /* gap: 0.5rem; */
+    text-transform: none;
+    font-weight: 400;
     color: #cfcfd3;
   }
 
   .post-title {
     font-size: 1.1rem;
-    margin: 0.5rem 0 0.25rem;
     font-weight: 500;
-    /* color: #cfcfd3; */
   }
 
   .post-date {
     font-size: 13px;
-  color: #cfcfd3;
+    color: #cfcfd3;
   }
 </style>

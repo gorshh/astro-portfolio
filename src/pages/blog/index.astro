@@ -10,20 +10,21 @@ import P from "../../components/common/P.astro";
 
 const highlightPostId = "how-to-create-a-blog-with-astro.md";
 
-
 const posts = (await getCollection("posts")).map((p) => ({
   id: p.id,
-slug: p.slug,
+  slug: p.slug,
   heroImage: p.data.heroImage,
   title: p.data.title,
   topic: p.data.topic,
   date: p.data.date,
   description: p.data.description,
-  estimatedMinutes: getReadingTime(p.body)
+  estimatedMinutes: getReadingTime(p.body),
 }));
 
 const sortedPosts = posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
+
+const topic = highlightPost.topic.toLowerCase().replace(" ", "");
 ---
 
 <BlogLayout>
@@ -31,10 +32,16 @@ const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
     <a class="highlight-post" href={`/blog/${highlightPost.slug}/`}>
       <article class="highlight-post__header">
         <div class="highlight-post__details">
-          <span class="highlight-post__topic"
-            >{
-              topicIcons[highlightPost.topic.toLowerCase().replace(" ", "")] ??
-                ""
+          <span class="highlight-post__topic">
+            {
+              topicIcons[topic] && (
+                <img
+                  src={topicIcons[topic]}
+                  alt={topic}
+                  width="14"
+                  height="14"
+                />
+              )
             }
             {highlightPost.topic}</span
           >
@@ -101,6 +108,9 @@ const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .highlight-post__image {
