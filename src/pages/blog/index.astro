@@ -1,18 +1,24 @@
 ---
 import { getCollection } from "astro:content";
-import P from "../../components/common/P.astro";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { topicIcons } from "../../utils/topicIcons";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
+import LatestArticles from "../../components/sections/LatestArticles.astro";
 
 const highlightPostId = "how-to-create-a-blog-with-astro.md";
 
-const posts = await getCollection("posts");
+const posts = (await getCollection("posts")).map((p) => ({
+  id: p.id,
+  slug: p.slug,
+  heroImage: p.data.heroImage,
+  title: p.data.title,
+  topic: p.data.topic,
+  date: p.data.date,
+  description: p.data.description,
+}));
 
-const sorteredPosts = posts.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const sortedPosts = posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
 ---
 
@@ -21,62 +27,34 @@ const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
     <a class="highlight-post" href={`/blog/${highlightPost.slug}/`}>
       <article class="highlight-post__header">
         <div class="highlight-post__details">
-          <span class="highlight-post__topic">{
-              topicIcons[
-                highlightPost.data.topic.toLowerCase().replace(" ", "")
-              ] ?? ""
+          <span class="highlight-post__topic"
+            >{
+              topicIcons[highlightPost.topic.toLowerCase().replace(" ", "")] ??
+                ""
             }
-            {highlightPost.data.topic}</span
+            {highlightPost.topic}</span
           >
           <span>10min</span>
         </div>
-        <h1 class="highlight-post__title">{highlightPost.data.title}</h1>
+        <h1 class="highlight-post__title">{highlightPost.title}</h1>
         <p class="highlight-post__description">
-          {highlightPost.data.description}
+          {highlightPost.description}
         </p>
         <p class="highlight-post__date">
-          {formatDate(highlightPost.data.date)}
+          {formatDate(highlightPost.date)}
         </p>
       </article>
       <Image
         class="highlight-post__image"
-        src={highlightPost.data.heroImage}
-        alt={highlightPost.data.title}
+        src={highlightPost.heroImage}
+        alt={highlightPost.title}
         width={800}
         height={450}
       />
     </a>
-    <section class="blog-container">
-      <h2 class="blog-title">Latest Articles</h2>
-      <div class="blog-grid">
-        <!-- Card de post -->
-        {
-          posts.map(
-            (p) =>
-              p.id !== highlightPostId && (
-                <a class="post-card" href={`/blog/${p.slug}`}>
-                  <img
-                    src={p.data.heroImage}
-                    alt={p.data.title}
-                    title={p.data.title}
-                    loading="lazy"
-                  />
-                  <div class="post-info">
-                    <span class="post-category">{
-              topicIcons[
-                p.data.topic.toLowerCase().replace(" ", "")
-              ] ?? ""
-            } {p.data.topic}</span>
-                    <span class="post-time">8 min</span>
-                    <h3 class="post-title">{p.data.title}</h3>
-                    <p class="post-date">{formatDate(p.data.date)}</p>
-                  </div>
-                </a>
-              )
-          )
-        }
-      </div>
-    </section>
+    <LatestArticles
+      posts={sortedPosts.filter(({ id }) => id !== highlightPostId)}
+    />
   </div>
 </BlogLayout>
 
@@ -117,6 +95,8 @@ const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
 
   .highlight-post__topic {
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
   }
 
   .highlight-post__image {
@@ -135,80 +115,5 @@ const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
   .highlight-post__description {
     /* line-height: normal; */
     font-size: 20px;
-  }
-
-  .lastes-articles {
-    h2 {
-      font-family: "PP Mori";
-    }
-  }
-
-  .blog-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    /* color: #f4f4f5; */
-  }
-
-  .blog-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
-  }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .post-card {
-    background-color: #161616;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    /* text-transform: none; */
-    color: white;
-    text-decoration: none;
-  }
-
-  .post-card:hover {
-    transform: scale(1.015);
-  }
-
-  .post-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
-
-  .post-info {
-    padding: 1rem;
-  }
-
-  .post-category {
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #3b82f6;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
-
-  .post-time {
-    font-size: 12px;
-    color: #a1a1aa;
-    margin-left: 0.5rem;
-  }
-
-  .post-title {
-    font-size: 1.1rem;
-    margin: 0.5rem 0 0.25rem;
-    font-weight: 500;
-  }
-
-  .post-date {
-    font-size: 13px;
-    color: #a1a1aa;
   }
 </style>

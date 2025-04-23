@@ -1,0 +1,111 @@
+---
+import { formatDate } from "../../utils/formatDate";
+import { topicIcons } from "../../utils/topicIcons";
+
+interface Properties {
+  posts: {
+    id: number;
+    slug: string;
+    heroImage: string;
+    title: string;
+    topic: string;
+    date: Date;
+    description:string;
+  }[];
+}
+
+const { posts } = Astro.props as Properties;
+---
+
+<section class="blog-container">
+  <h2 class="blog-title">Latest Articles</h2>
+  <div class="blog-grid">
+    <!-- Card de post -->
+    {
+      posts.map((p) => (
+        <a class="post-card" href={`/blog/${p.slug}`}>
+          <img src={p.heroImage} alt={p.title} title={p.title} loading="lazy" />
+          <div class="post-info">
+            <span class="post-category">
+              {topicIcons[p.topic.toLowerCase().replace(" ", "")] ?? ""}{" "}
+              {p.topic}
+            </span>
+            <span class="post-time">8min</span>
+            <h3 class="post-title">{p.title}</h3>
+            <p class="post-date">{formatDate(p.date)}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+<style>
+  .blog-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    /* color: #f4f4f5; */
+  }
+
+  .blog-title {
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-family: "PP Mori";
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .post-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+
+  .post-card:hover {
+    transform: scale(1.015);
+  }
+
+  .post-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .post-info {
+    padding: 1rem;
+  }
+
+  .post-category {
+    text-transform: uppercase;
+    font-size: 14px;
+    /* color: #3b82f6; */
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .post-time {
+    font-size: 14px;
+    margin-left: 0.5rem;
+    /* display: flex; */
+    /* gap: 0.5rem; */
+    color: #cfcfd3;
+  }
+
+  .post-title {
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: 500;
+  }
+
+  .post-date {
+    font-size: 13px;
+    color: #a1a1aa;
+  }
+</style>
