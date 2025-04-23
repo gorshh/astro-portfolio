@@ -34,7 +34,9 @@ const { title } = Astro.props as Props;
     <!-- Open Graph (para compartir en redes) -->
     <meta
       property="og:title"
-      content="Jorshh Blog – Insights sobre Desarrollo Web"
+      content={"Jorshh Blog – " + title
+        ? title
+        : "Insights sobre Desarrollo Web"}
     />
     <meta
       property="og:description"
@@ -50,7 +52,9 @@ const { title } = Astro.props as Props;
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Jorshh Blog – Insights sobre Desarrollo Web"
+      content={"Jorshh Blog – " + title
+        ? title
+        : "Insights sobre Desarrollo Web"}
     />
     <meta
       name="twitter:description"
@@ -114,5 +118,6 @@ const { title } = Astro.props as Props;
       cOxygen,
       sans-serif;
     background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+    min-height: 100dvh;
   }
 </style>

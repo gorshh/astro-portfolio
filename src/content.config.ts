@@ -10,7 +10,8 @@ export const collections = {
       date: z.date(),
       tags: z.array(z.string()),
       heroImage: z.string(),
-      topic: z.string()
+      topic: z.string(), 
+      description: z.string(),
       // sources: z.array(z.object({name: z.string(), value: z.string()})), // array of objects
     })
   }),

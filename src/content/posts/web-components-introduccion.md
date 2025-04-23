@@ -2,13 +2,14 @@
 title: "Web Components: Construyendo Interfaces Reutilizables como un Pro"
 author: jorge
 heroImage: "https://www.dannymoerkerke.com/src/img/blog/480/everything-you-always-wanted-to-know-about-web-components-but-were-afraid-to-ask.jpg"
+description: "Aprende a crear interfaces reutilizables con Web Components nativos. HTML, CSS y JS sin frameworks. ¡Construye como un pro!"
 tags:
 - astro
 - blog
 - static site generator
 - web development
 - tutorial
-topic: Frontend/Web Components
+topic: Web Components
 date: 2025-04-23
 ---
 

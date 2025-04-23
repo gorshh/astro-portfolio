@@ -11,7 +11,7 @@ tags:
 - static site generator
 - web development
 - tutorial
-topic: "Backend/ExpressJs"
+topic: "ExpressJs"
 ---
 
 
@@ -266,6 +266,5 @@ Verás en consola:
 
 Usar **Express con Bun y TypeScript** es una excelente forma de construir APIs rápidas, escalables y modernas. Puedes mantener la simplicidad de Express mientras te beneficias de la velocidad de Bun y la seguridad de TypeScript.
 
----
 
 ¿Te gustaría que hagamos una versión con base de datos (SQLite o PostgreSQL), autenticación o Docker? ¡Déjame un comentario y lo armamos juntos!

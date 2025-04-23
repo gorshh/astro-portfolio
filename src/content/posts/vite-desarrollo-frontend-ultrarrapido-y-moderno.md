@@ -3,12 +3,12 @@ title: "Vite: Desarrollo Frontend Ultrarrápido y Moderno"
 description: "Reflexiones sobre desarrollo web moderno"
 heroImage: "https://ionic.io/blog/wp-content/uploads/2024/04/vite-feature-image-2048x1024.png"
 author: "jorge"
-date: 2024-01-01
+date: 2025-04-17
 tags:
 - Vite
 - Webpack
 - Bundle
-topic: Frontend/Vite
+topic: Vite
 ---
 
 En los últimos años, herramientas como Webpack o Parcel han sido fundamentales para el desarrollo moderno de aplicaciones web. Sin embargo, a medida que los proyectos crecen, también lo hacen los tiempos de compilación, recarga y configuración. Es aquí donde entra **Vite**, una herramienta de bundling desarrollada por Evan You (el creador de Vue.js) que está ganando rápidamente popularidad por su **velocidad**, **simplicidad** y **flexibilidad**.

@@ -2,132 +2,213 @@
 import { getCollection } from "astro:content";
 import P from "../../components/common/P.astro";
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { groupPostsByTopic } from "../../utils/groupPostsByTopic";
 import { topicIcons } from "../../utils/topicIcons";
+import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
 
+const highlightPostId = "how-to-create-a-blog-with-astro.md";
 
 const posts = await getCollection("posts");
-const grouped = groupPostsByTopic(posts);
+
+const sorteredPosts = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
 ---
 
 <BlogLayout>
   <div class="blog">
-    <h1>Posts</h1>
-    {
-      Object.entries(grouped).map(([topic, data]) => (
-        <section>
-          <h2>
-            {topicIcons[topic] ?? ""} {topic}
-          </h2>
-          {Object.entries(data.subtopics).map(([sub, posts]) => (
-            <div style="margin-left: 16px; margin-bottom: 1rem;">
-              <h3 style="color: white; margin-bottom: 1rem;">
-                {topicIcons[sub.toLowerCase().replace(" ", "")] ?? ""} {sub}
-              </h3>
-              <ul>
-                {posts.map((post) => {
-                  return (
-                    <a class="hola" href={`/blog/${post.slug}/`}>
-                      <Image
-                        src={post.data.heroImage}
-                        alt={post.data.title}
-                        width={200}
-                        height={200}
-                      />
-                      <div class="work--description">
-                        <P textTransform="uppercase" fontFamily="pp-mori">
-                          {post.data.title}
-                        </P>
-                        <P textTransform="uppercase" fontFamily="pp-mori">
-                          ↗
-                        </P>
-                      </div>
-                    </a>
-                  );
-                })}
-              </ul>
-            </div>
-          ))}
-        </section>
-      ))
-    }
+    <a class="highlight-post" href={`/blog/${highlightPost.slug}/`}>
+      <article class="highlight-post__header">
+        <div class="highlight-post__details">
+          <span class="highlight-post__topic">{
+              topicIcons[
+                highlightPost.data.topic.toLowerCase().replace(" ", "")
+              ] ?? ""
+            }
+            {highlightPost.data.topic}</span
+          >
+          <span>10min</span>
+        </div>
+        <h1 class="highlight-post__title">{highlightPost.data.title}</h1>
+        <p class="highlight-post__description">
+          {highlightPost.data.description}
+        </p>
+        <p class="highlight-post__date">
+          {formatDate(highlightPost.data.date)}
+        </p>
+      </article>
+      <Image
+        class="highlight-post__image"
+        src={highlightPost.data.heroImage}
+        alt={highlightPost.data.title}
+        width={800}
+        height={450}
+      />
+    </a>
+    <section class="blog-container">
+      <h2 class="blog-title">Latest Articles</h2>
+      <div class="blog-grid">
+        <!-- Card de post -->
+        {
+          posts.map(
+            (p) =>
+              p.id !== highlightPostId && (
+                <a class="post-card" href={`/blog/${p.slug}`}>
+                  <img
+                    src={p.data.heroImage}
+                    alt={p.data.title}
+                    title={p.data.title}
+                    loading="lazy"
+                  />
+                  <div class="post-info">
+                    <span class="post-category">{
+              topicIcons[
+                p.data.topic.toLowerCase().replace(" ", "")
+              ] ?? ""
+            } {p.data.topic}</span>
+                    <span class="post-time">8 min</span>
+                    <h3 class="post-title">{p.data.title}</h3>
+                    <p class="post-date">{formatDate(p.data.date)}</p>
+                  </div>
+                </a>
+              )
+          )
+        }
+      </div>
+    </section>
   </div>
-  
 </BlogLayout>
 
 <style>
   .blog {
     margin: 0 auto;
-    max-width: 900px;
-    padding: 2rem;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0.75rem;
     font-size: 1.5rem;
     line-height: 1.6;
     color: white;
   }
-
-  .blog h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-
-  .hola {
-    width: 100%;
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    margin: 2rem 0;
-
-    img {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 0.5rem;
-    }
-
-    @media (min-width: 1024px) {
-      width: 60%;
-    }
-
-    &:hover {
-      scale: 1.02;
-      .work--description {
-        color: white;
-      }
-    }
-  }
-
-
-  .work--description {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    color: var(--white-color);
+  .highlight-post {
     display: flex;
-    align-items: center;
+    text-decoration: none;
+    color: white;
+    /* border: solid 1px red; */
     justify-content: space-between;
-    transition: all 0.2s ease-in-out;
+    align-items: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .highlight-post__header {
+    width: 30%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .highlight-post__date,
+  .highlight-post__details {
+    font-size: 14px;
+    display: flex;
+    gap: 0.5rem;
+    color: #cfcfd3;
+  }
 
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+  .highlight-post__topic {
+    text-transform: uppercase;
+  }
 
-    padding: 4rem 1rem 0.5rem;
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
-    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.856) 0%, rgba(0, 0, 0, 0.377) 60%, transparent 100%);
+  .highlight-post__image {
+    height: 450px;
+    border-radius: 0.5rem;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    width: 800px;
+  }
 
-    .body {
-      margin: 0;
+  .highlight-post__title {
+    font-size: 48px;
+    line-height: normal;
+    font-family: "PP Mori";
+  }
+  .highlight-post__description {
+    /* line-height: normal; */
+    font-size: 20px;
+  }
+
+  .lastes-articles {
+    h2 {
+      font-family: "PP Mori";
     }
+  }
 
-    .body-sm {
-      padding: 4px 0;
-    }
+  .blog-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    /* color: #f4f4f5; */
+  }
 
-    a {
-      margin: 0;
-      font-size: 14px;
-    }
+  .blog-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .post-card {
+    background-color: #161616;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    /* text-transform: none; */
+    color: white;
+    text-decoration: none;
+  }
+
+  .post-card:hover {
+    transform: scale(1.015);
+  }
+
+  .post-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .post-info {
+    padding: 1rem;
+  }
+
+  .post-category {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #3b82f6;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .post-time {
+    font-size: 12px;
+    color: #a1a1aa;
+    margin-left: 0.5rem;
+  }
+
+  .post-title {
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: 500;
+  }
+
+  .post-date {
+    font-size: 13px;
+    color: #a1a1aa;
   }
 </style>

@@ -1,7 +1,7 @@
 ---
 title: "Cómo usar Hooks en React"
-description: "Guía práctica para usar hooks de forma efectiva."
-topic: "Frontend/React"
+description: "Aprende a usar Hooks en React de forma efectiva. Domina useState, useEffect, useContext y más para escribir código limpio y reutilizable."
+topic: "React"
 tags: ["react", "hooks", "estado"]
 heroImage: "https://miro.medium.com/v2/resize:fit:1400/1*-Ijet6kVJqGgul6adezDLQ.png"
 author: "jorge"
