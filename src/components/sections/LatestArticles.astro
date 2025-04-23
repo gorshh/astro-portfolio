@@ -11,6 +11,7 @@ interface Properties {
     topic: string;
     date: Date;
     description:string;
+    estimatedMinutes: number
   }[];
 }
 
@@ -30,7 +31,7 @@ const { posts } = Astro.props as Properties;
               {topicIcons[p.topic.toLowerCase().replace(" ", "")] ?? ""}{" "}
               {p.topic}
             </span>
-            <span class="post-time">8min</span>
+            <span class="post-time">{p.estimatedMinutes}min</span>
             <h3 class="post-title">{p.title}</h3>
             <p class="post-date">{formatDate(p.date)}</p>
           </div>
@@ -44,7 +45,6 @@ const { posts } = Astro.props as Properties;
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    /* color: #f4f4f5; */
   }
 
   .blog-title {
@@ -88,6 +88,7 @@ const { posts } = Astro.props as Properties;
     /* color: #3b82f6; */
     letter-spacing: 0.05em;
     font-weight: 600;
+    color: #cfcfd3;
   }
 
   .post-time {
@@ -102,10 +103,11 @@ const { posts } = Astro.props as Properties;
     font-size: 1.1rem;
     margin: 0.5rem 0 0.25rem;
     font-weight: 500;
+    /* color: #cfcfd3; */
   }
 
   .post-date {
     font-size: 13px;
-    color: #a1a1aa;
+  color: #cfcfd3;
   }
 </style>
