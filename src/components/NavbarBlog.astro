@@ -2,16 +2,16 @@
 import Logo from "./common/Logo.astro";
 
 const links = [
-  { href: "/blog", label: "Blog" },
-  { href: "/blog/categories", label: "Categories" },
-  { href: "/blog/about", label: "About" },
-  { href: "/blog/contact", label: "Contact" },
+  { href: "/b", label: "Blog" },
+  { href: "/b/categories", label: "Categories" },
+  { href: "/b/about", label: "About" },
+  { href: "/b/contact", label: "Contact" },
 ];
 ---
 
 <nav class="navbar">
   <div class="container">
-    <Logo mode="light" class="nav-logo" href="/blog" />
+    <Logo mode="light" class="nav-logo" href="/b" />
     <ul class="nav-links">
       {
         links.map((link) => (

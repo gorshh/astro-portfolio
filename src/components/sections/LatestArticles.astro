@@ -25,7 +25,7 @@ const { posts } = Astro.props as Properties;
     <!-- Card de post -->
     {
       posts.map((p) => (
-        <a class="post-card" href={`/blog/${p.slug}`}>
+        <a class="post-card" href={`/b/${p.slug}`}>
           <img src={p.heroImage} alt={p.title} title={p.title} loading="lazy" />
           <div class="post-info">
             <span class="post-category">
@@ -122,6 +122,7 @@ const { posts } = Astro.props as Properties;
   .post-title {
     font-size: 1.1rem;
     font-weight: 500;
+    font-family: "PP Mori";
   }
 
   .post-date {

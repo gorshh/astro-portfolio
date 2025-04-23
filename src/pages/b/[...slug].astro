@@ -8,8 +8,6 @@ import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-
-  // very important how you name object here (eg. entry), so you can destruct it below
   return posts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -40,7 +38,7 @@ const { Content } = await entry.render();
       <article class="tags">
         {
           entry.data.tags.map((tag) => (
-            <a href={`/blog/tags/${tag}`} class="tag">
+            <a href={`/b/tags/${tag}`} class="tag">
               #{tag}
             </a>
           ))
