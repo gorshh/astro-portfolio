@@ -2,11 +2,8 @@
 import Logo from "./common/Logo.astro";
 
 const links = [
-  { href: "/blog/posts", label: "Posts" },
+  { href: "/blog", label: "Blog" },
   { href: "/blog/categories", label: "Categories" },
-  { href: "/blog/tags", label: "Tags" },
-  { href: "/blog/archives", label: "Archives" },
-  { href: "/blog/blog", label: "Blog" },
   { href: "/blog/about", label: "About" },
   { href: "/blog/contact", label: "Contact" },
 ];
@@ -14,11 +11,15 @@ const links = [
 
 <nav class="navbar">
   <div class="container">
-    <Logo mode="light" class="nav-logo" href="/blog"/>
+    <Logo mode="light" class="nav-logo" href="/blog" />
     <ul class="nav-links">
-      {links.map(link => (
-        <li><a href={link.href}>{link.label}</a></li>
-      ))}
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </nav>
@@ -27,14 +28,14 @@ const links = [
   .navbar {
     position: sticky;
     width: 100%;
-    border-radius: .75rem;
+    border-radius: 0.75rem;
     max-width: 1280px;
-    top: .5rem;
+    top: 0.5rem;
     z-index: 1;
     margin: 0 auto;
     /* border: 1px solid rgba(31, 32, 35, .5); */
     color: #fff;
-    
+
     backdrop-filter: blur(20px);
     /* background-color: #111113; */
     /* background-color: #00000080; */
@@ -47,7 +48,7 @@ const links = [
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: .75rem;    
+    padding: 0.75rem;
   }
   .nav-links {
     list-style: none;
@@ -59,7 +60,7 @@ const links = [
 
   .nav-links a {
     text-decoration: none;
-    color: rgb(143 , 143, 153);
+    color: rgb(143, 143, 153);
     transition: color 0.3s;
     font-size: 14px;
   }
