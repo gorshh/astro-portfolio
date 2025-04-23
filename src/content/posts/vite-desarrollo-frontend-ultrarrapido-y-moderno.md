@@ -204,6 +204,5 @@ Vite representa una nueva generación de herramientas de desarrollo que aprovech
 
 Si estás empezando un nuevo proyecto, o si estás cansado de esperar a que Webpack compile, **Vite podría ser la herramienta que estabas esperando**.
 
----
 
 ¿Ya usaste Vite en un proyecto? ¿Qué tal tu experiencia?

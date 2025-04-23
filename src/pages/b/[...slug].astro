@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../../components/common/Breadcrumb.astro";
 import { Image } from "astro:assets";
+import { formatDate } from "../../utils/formatDate";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -25,11 +26,22 @@ const { Content } = await entry.render();
 
 <BlogLayout title={entry.data.title}>
   <section class="post">
-    <article class="article">
+    <article class="article" id="blog-content">
       <header>
-        <Breadcrumb topic={'Blog/'+entry.data.topic} title={entry.data.title} />
+        <Breadcrumb
+          topic={"Blog/" + entry.data.topic}
+          title={entry.data.title}
+        />
         <h1>{entry.data.title}</h1>
-        <Image src={entry.data.heroImage} class="hero-image" alt={entry.data.title} inferSize/>
+        <time class="posted-date" datetime={entry.data.date.toISOString()}
+          >{formatDate(entry.data.date)}</time
+        >
+        <Image
+          src={entry.data.heroImage}
+          class="hero-image"
+          alt={entry.data.title}
+          inferSize
+        />
       </header>
 
       <div>
@@ -56,22 +68,28 @@ const { Content } = await entry.render();
             <dt>Posted on</dt>
             <dd>
               <time datetime={entry.data.date.toISOString()}
-                >{entry.data.date.toLocaleString()}</time
+                >{formatDate(entry.data.date)}</time
               >
             </dd>
           </div>
         </dl>
       </footer>
     </article>
-    <div class="on-this-page">
-      <p>On this page</p>
-      <ul>
-        <li><a href="">Express + Bun + TypeScript + express-validator</a></li>
-        <li><a href="">Requisitos</a></li>
-        <li><a href="">Instalación del Proyecto</a></li>
-        <li><a href="">Estructura de Archivos</a></li>
-      </ul>
-    </div>
+    <aside class="on-this-page" id="toc">
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+          class="on-this-page-icon"
+          ><path
+            d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
+          ></path></svg
+        >On this page
+      </p>
+      <slot />
+    </aside>
   </section>
 </BlogLayout>
 
@@ -86,28 +104,16 @@ const { Content } = await entry.render();
   }
 
   .article {
-    /* max-width: 74ch; */
-    /* line-height: 1.4rem; */
-    /* padding: 1rem; */
     line-height: 1.6;
 
     border-right: 1px #1f2023 solid;
     padding-right: 10rem;
-    /* font-size: 1.1rem; */
     color: white;
     max-width: 960px;
 
-    header {
-      .go-back {
-        color: rgb(143, 143, 153);
-        text-decoration: none;
-        margin-bottom: 1rem;
-        display: block;
-
-        &:hover {
-          color: white;
-        }
-      }
+    .posted-date {
+      color: rgb(143, 143, 153);
+      font-size: 14px;
     }
 
     .hero-image {
@@ -131,6 +137,32 @@ const { Content } = await entry.render();
       font-family: "PP Mori";
       line-height: 1.3;
       margin-bottom: 0.5rem;
+    }
+
+    h1,
+    h2 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      /* cursor: pointer; */
+      button {
+        background-color: transparent;
+        border: none;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-bottom: 0.2rem;
+        color: rgb(143, 143, 153);
+      }
+    }
+
+    .copy-link-button {
+      visibility: hidden;
+    }
+
+    h1:hover .copy-link-button,
+    h2:hover .copy-link-button {
+      visibility: visible;
     }
 
     h3 {
@@ -279,17 +311,37 @@ const { Content } = await entry.render();
     line-height: 1.6;
     color: rgb(143, 143, 153);
 
+    p {
+      /* color:red; */
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1.12rem;
+    }
+
     ul {
       list-style: none;
       /* padding-left: 2rem; */
-      color: #cfcfd3;
+      color: rgb(143, 143, 153);
 
       li {
         a {
-          color: #cfcfd3;
+          color: rgb(143, 143, 153);
+          transition: color 0.2s ease;
+          text-decoration: none;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+          &:hover {
+            color: white;
+          }
         }
       }
     }
+  }
+
+  .on-this-page-icon {
+    width: 1rem;
+    height: 1rem;
   }
 </style>
 
@@ -317,3 +369,59 @@ const { Content } = await entry.render();
     });
   });
 </script>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const content = document.querySelector("#blog-content");
+    const toc = document.querySelector("#toc");
+    const headings = content.querySelectorAll("h1, h2");
+
+    const ul = document.createElement("ul");
+    ul.classList.add("toc-list");
+
+    headings.forEach((heading) => {
+      // Generar ID si no existe
+      let text = heading.innerText;
+      const id = text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]/g, "");
+
+      heading.id = id;
+
+      // 📌 TOC
+      const li = document.createElement("li");
+      li.className = heading.tagName.toLowerCase() === "h3" ? "subheading" : "";
+
+      const a = document.createElement("a");
+      a.href = `#${id}`;
+      a.innerText = text;
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      // 🔗 Botón de copiar enlace
+      const button = document.createElement("button");
+      button.className = "copy-link-button";
+      button.innerText = "🔗 Copiar enlace";
+
+      button.addEventListener("click", async () => {
+        const url = `${window.location.origin}${window.location.pathname}#${id}`;
+        try {
+          await navigator.clipboard.writeText(url);
+          button.innerText = "✅ Copiado";
+          setTimeout(() => {
+            button.innerText = "🔗 Copiar enlace";
+          }, 2000);
+        } catch (err) {
+          console.error("Error al copiar:", err);
+          button.innerText = "⚠️ Error";
+        }
+      });
+
+      heading.appendChild(button);
+    });
+
+    if (toc) toc.appendChild(ul);
+  });
+</script>
+
