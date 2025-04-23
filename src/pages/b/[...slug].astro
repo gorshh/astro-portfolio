@@ -24,7 +24,7 @@ const author = await getEntry("authors", "jorge")!;
 const { Content } = await entry.render();
 ---
 
-<BlogLayout title={entry.data.title}>
+<BlogLayout title={entry.data.title} description={entry.data.description}>
   <section class="post">
     <article class="article" id="blog-content">
       <header>

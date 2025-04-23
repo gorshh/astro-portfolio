@@ -9,10 +9,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 interface Props {
   title?: string;
-  description?: string;
+  description: string;
 }
 
-const { title } = Astro.props as Props;
+const { title, description } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -28,7 +28,7 @@ const { title } = Astro.props as Props;
     </title>
     <meta
       name="description"
-      content="Descubre ideas, consejos y experiencias sobre desarrollo web moderno. Desde React y Next.js hasta buenas prácticas y herramientas útiles."
+      content={description}
     />
 
     <!-- Open Graph (para compartir en redes) -->
@@ -40,7 +40,7 @@ const { title } = Astro.props as Props;
     />
     <meta
       property="og:description"
-      content="Descubre ideas, consejos y experiencias sobre desarrollo web moderno."
+      content={description}
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jorshh.dev/blog" />
@@ -58,7 +58,7 @@ const { title } = Astro.props as Props;
     />
     <meta
       name="twitter:description"
-      content="Explora artículos sobre React, Next.js y el mundo del desarrollo web."
+      content={description}
     />
     <meta name="twitter:image" content="https://jorshh.dev/og-image-blog.png" />
     <!-- misma imagen o personalizada -->
