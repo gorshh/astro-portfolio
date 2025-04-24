@@ -12,6 +12,15 @@ tags:
 - web development
 - tutorial
 topic: "ExpressJs"
+sources:
+  - title: "Documentación oficial de Bun"
+    href: "https://bun.sh/docs"
+  - title: "Express"
+    href: "https://expressjs.com/"
+  - title: "express-validator"
+    href: "https://express-validator.github.io/docs/"
+  - title: "TypeScript"
+    href: "https://www.typescriptlang.org/"
 ---
 
 
@@ -250,15 +259,6 @@ Verás en consola:
 - ✅ **Validación robusta**: express-validator permite definir reglas claras y centralizadas.
 - 🧼 **Código limpio**: separando rutas, validaciones y lógica.
 - 🚀 **Listo para producción**: puedes extender con bases de datos, auth, middlewares, etc.
-
----
-
-## 📚 Recursos útiles
-
-- [Documentación oficial de Bun](https://bun.sh/docs)
-- [Express](https://expressjs.com/)
-- [express-validator](https://express-validator.github.io/docs/)
-- [TypeScript](https://www.typescriptlang.org/)
 
 ---
 

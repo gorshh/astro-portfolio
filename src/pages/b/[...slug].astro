@@ -47,6 +47,8 @@ type Props = {
 
 const { entry } = Astro.props;
 
+console.log(entry)
+
 const isPost = typeof entry === "object" && "render" in entry;
 const isTopic =
   typeof entry === "string" ||
@@ -68,6 +70,7 @@ if (isTopic) {
       date: p.data.date,
       description: p.data.description,
       estimatedMinutes: getReadingTime(p.body),
+      sources: p.data.sources || []
     })).sort((a, b) => b.date.getTime() - a.date.getTime());
 
   // console.log(topicPosts)

@@ -11,6 +11,13 @@ tags:
 - tutorial
 topic: Web Components
 date: 2025-04-23
+sources:
+  - title: "MDN: Web Components"
+    href: "https://developer.mozilla.org/es/docs/Web/Web_Components"
+  - title: "WebComponents.org"
+    href: "https://www.webcomponents.org/"
+  - title: "Custom Elements Everywhere"
+    href: "https://custom-elements-everywhere.com/"
 ---
 
 
@@ -177,14 +184,5 @@ Los Web Components son una tecnología poderosa y nativa que te permite construi
 
 Si bien frameworks como React siguen siendo muy populares, Web Components están ganando terreno, especialmente en entornos empresariales o cuando se necesita interoperabilidad entre proyectos.
 
----
 
-## Recursos adicionales
-
-- [MDN: Web Components](https://developer.mozilla.org/es/docs/Web/Web_Components)
-- [WebComponents.org](https://www.webcomponents.org/)
-- [Custom Elements Everywhere](https://custom-elements-everywhere.com/)
-
----
-
-¿Te animas a construir tu propio set de Web Components? ¡Cuéntame en los comentarios qué idea tienes en mente!
+¿Te animas a construir tu propio set de Web Components?

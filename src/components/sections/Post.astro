@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../common/Breadcrumb.astro";
+import PostSources from '../common/PostSources.astro'
 import ArticlesList from "../../components/sections/ArticlesList.astro";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const { entry } = Astro.props;
+
 
 const { Content } = await entry.render();
 
@@ -62,15 +64,9 @@ const author = await getEntry("authors", "jorge")!;
       <div>
         <Content />
       </div>
-      <article class="tags">
-        {
-          entry.data.tags.map((tag) => (
-            <a href={`/b/tags/${tag}`} class="tag">
-              #{tag}
-            </a>
-          ))
-        }
-      </article>
+      {
+        entry.data?.sources && (<PostSources sources={entry.data.sources}/>)
+      }
 
       <footer class="article-footer">
         <dl>
@@ -92,13 +88,13 @@ const author = await getEntry("authors", "jorge")!;
       <ArticlesList posts={posts} title={`Continue reading`} />
     </article>
     <aside class="on-this-page" id="toc">
-      <p>
+      <p class="text-with-icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true"
-          class="on-this-page-icon"
+          class="icon"
           ><path
             d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
           ></path></svg
@@ -276,20 +272,6 @@ const author = await getEntry("authors", "jorge")!;
       }
     }
 
-    .tags {
-      margin-top: 2rem;
-
-      h3 {
-        margin-bottom: 0.5rem;
-      }
-    }
-    .tag {
-      background-color: rgb(31, 32, 35);
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      margin-right: 1rem;
-      color: white;
-    }
 
     .article-footer {
       margin-top: 2rem;
@@ -334,14 +316,6 @@ const author = await getEntry("authors", "jorge")!;
     line-height: 1.6;
     color: rgb(143, 143, 153);
 
-    p {
-      /* color:red; */
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 1.12rem;
-    }
-
     ul {
       list-style: none;
       /* padding-left: 2rem; */
@@ -354,7 +328,7 @@ const author = await getEntry("authors", "jorge")!;
           text-decoration: none;
           font-size: 1rem;
           margin-bottom: 0.5rem;
-          
+
           &:hover {
             color: white;
           }
@@ -363,7 +337,15 @@ const author = await getEntry("authors", "jorge")!;
     }
   }
 
-  .on-this-page-icon {
+  .text-with-icon {
+    /* color:red; */
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.12rem;
+  }
+
+  .icon {
     width: 1rem;
     height: 1rem;
   }
@@ -450,4 +432,3 @@ const author = await getEntry("authors", "jorge")!;
     if (toc) toc.appendChild(ul);
   });
 </script>
-

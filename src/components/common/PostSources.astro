@@ -1,0 +1,86 @@
+---
+interface Props {
+  sources: { title: string; href: string }[];
+}
+
+const { sources } = Astro.props;
+---
+
+<section>
+  <p class="text-with-icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      class="icon"
+      ><path
+        fill-rule="evenodd"
+        d="M11.622 1.602a.75.75 0 01.756 0l2.25 1.313a.75.75 0 01-.756 1.295L12 3.118 10.128 4.21a.75.75 0 11-.756-1.295l2.25-1.313zM5.898 5.81a.75.75 0 01-.27 1.025l-1.14.665 1.14.665a.75.75 0 11-.756 1.295L3.75 8.806v.944a.75.75 0 01-1.5 0V7.5a.75.75 0 01.372-.648l2.25-1.312a.75.75 0 011.026.27zm12.204 0a.75.75 0 011.026-.27l2.25 1.312a.75.75 0 01.372.648v2.25a.75.75 0 01-1.5 0v-.944l-1.122.654a.75.75 0 11-.756-1.295l1.14-.665-1.14-.665a.75.75 0 01-.27-1.025zm-9 5.25a.75.75 0 011.026-.27L12 11.882l1.872-1.092a.75.75 0 11.756 1.295l-1.878 1.096V15a.75.75 0 01-1.5 0v-1.82l-1.878-1.095a.75.75 0 01-.27-1.025zM3 13.5a.75.75 0 01.75.75v1.82l1.878 1.095a.75.75 0 11-.756 1.295l-2.25-1.312a.75.75 0 01-.372-.648v-2.25A.75.75 0 013 13.5zm18 0a.75.75 0 01.75.75v2.25a.75.75 0 01-.372.648l-2.25 1.312a.75.75 0 11-.756-1.295l1.878-1.096V14.25a.75.75 0 01.75-.75zm-9 5.25a.75.75 0 01.75.75v.944l1.122-.654a.75.75 0 11.756 1.295l-2.25 1.313a.75.75 0 01-.756 0l-2.25-1.313a.75.75 0 11.756-1.295l1.122.654V19.5a.75.75 0 01.75-.75z"
+        clip-rule="evenodd"></path></svg
+    >
+    Sources
+  </p>
+  <div class="source__list">
+    {
+      sources.map((s) => (
+        <a
+          href={s.href}
+          class="source__item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div style="display: flex;gap:0.4rem;align-items: center;">
+            <span style="width: 0.9rem; height: 0.9rem; background-color: #fff; display: block;border-radius: 99px; opacity: 0.8;" />
+            <p style="margin-bottom: 0;">{new URL(s.href).host}</p>
+          </div>
+          <p style="margin-bottom: 0;">{s.title}</p>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .text-with-icon {
+    /* color:red; */
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    line-height: normal;
+    font-size: 22px;
+    font-family: "PP Mori";
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .source__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    display: grid;
+
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+  .source__item {
+    display: block;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: #1f2023;
+    font-size: 0.8rem;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    transition: 0.2ms ease background-color;
+
+    &:hover {
+      background-color: #303236;
+    }
+  }
+</style>

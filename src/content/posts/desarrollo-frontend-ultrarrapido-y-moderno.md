@@ -9,6 +9,13 @@ tags:
 - Webpack
 - Bundle
 topic: Vite
+sources:
+  - title: "Documentación oficial de Vite"
+    href: "https://vitejs.dev/"
+  - title: "Awesome Vite (repositorio de recursos)"
+    href: "https://github.com/vitejs/awesome-vite"
+  - title: "Comparación: Vite vs Webpack"
+    href: "https://vitejs.dev/guide/comparisons.html#webpack"
 ---
 
 En los últimos años, herramientas como Webpack o Parcel han sido fundamentales para el desarrollo moderno de aplicaciones web. Sin embargo, a medida que los proyectos crecen, también lo hacen los tiempos de compilación, recarga y configuración. Es aquí donde entra **Vite**, una herramienta de bundling desarrollada por Evan You (el creador de Vue.js) que está ganando rápidamente popularidad por su **velocidad**, **simplicidad** y **flexibilidad**.
@@ -187,14 +194,6 @@ npm run build
 ```
 
 Esto generará una carpeta `dist/` con los archivos optimizados, minificados y listos para desplegar.
-
----
-
-## Recursos adicionales
-
-- [Documentación oficial de Vite](https://vitejs.dev/)
-- [Awesome Vite (repositorio de recursos)](https://github.com/vitejs/awesome-vite)
-- [Comparación: Vite vs Webpack](https://vitejs.dev/guide/comparisons.html#webpack)
 
 ---
 

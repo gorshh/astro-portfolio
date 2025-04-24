@@ -6,6 +6,13 @@ tags: ["react", "hooks", "estado"]
 heroImage: "https://miro.medium.com/v2/resize:fit:1400/1*-Ijet6kVJqGgul6adezDLQ.png"
 author: "jorge"
 date: 2024-01-01
+sources:
+  - title: "Documentación oficial de Hooks"
+    href: "https://reactjs.org/docs/hooks-intro.html"
+  - title: "React Patterns"
+    href: "https://reactpatterns.com/"
+  - title: "useHooks.com"
+    href: "https://usehooks.com"
 ---
 
 Desde la llegada de los **Hooks** en React 16.8, manejar el estado y los ciclos de vida en componentes funcionales nunca fue tan simple. Pero con gran poder viene gran responsabilidad 😄. En esta guía vamos a repasar los hooks más importantes y cómo usarlos correctamente para construir componentes más limpios, reutilizables y fáciles de mantener.
@@ -165,9 +172,3 @@ Los hooks son una de las herramientas más poderosas en React. Te permiten escri
 > _"Piensa en hooks como piezas de LEGO: simples por separado, pero juntos puedes construir cosas increíbles."_ 🧱
 
 ---
-
-## Recursos adicionales
-
-- [Documentación oficial de Hooks](https://reactjs.org/docs/hooks-intro.html)
-- [React Patterns](https://reactpatterns.com/)
-- [useHooks.com](https://usehooks.com)

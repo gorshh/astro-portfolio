@@ -12,7 +12,7 @@ export const collections = {
       heroImage: z.string(),
       topic: z.string(), 
       description: z.string(),
-      // sources: z.array(z.object({name: z.string(), value: z.string()})), // array of objects
+      sources: z.array(z.object({title: z.string(), href: z.string()})).optional(),
     })
   }),
   
@@ -20,7 +20,7 @@ export const collections = {
     type: 'data',
     schema: z.object({
       name: z.string(),
-      fields: z.array(z.object({ name: z.string(), value: z.string() })), // array of objects
+      fields: z.array(z.object({ name: z.string(), value: z.string() })),
       bio: z.string(),
     })
   })

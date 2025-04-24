@@ -11,7 +11,9 @@ tags:
 - web development
 - tutorial
 topic: "Astro"
-
+sources:
+  - title: "Astro documentation"
+    href: "https://docs.astro.build"
 ---
 
 Astro is a modern static site generator that makes building fast and optimized websites easy. In this guide, we'll walk through the steps to create a blog using Astro.
@@ -97,5 +99,3 @@ Then follow the deployment instructions for your chosen platform.
 
 ## Conclusion
 You've successfully created a blog using Astro! Customize it further by adding styles, components, and features to make it your own.
-
-For more details, visit the [Astro documentation](https://docs.astro.build).
