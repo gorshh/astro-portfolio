@@ -1,8 +1,8 @@
 ---
 title: "How to Create a Blog with Astro"
 author: jorge
-heroImage: "https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F4f3c8986d48b47d6845bebfc8d0c0610"
-description: "Crea un blog rápido y moderno con Astro. Guía paso a paso para desarrolladores: contenido, diseño, despliegue y más."
+heroImage: "https://imagedelivery.net/XvnvFwe_1cJ9WYiCgLLxVw/b17c8b6d-d2a2-4db4-e89d-16bea77b2500/public"
+description: "Create a fast and modern blog with Astro. Step-by-step guide for developers: content, design, deployment, and more."
 date: 2025-04-23
 tags:
 - astro
