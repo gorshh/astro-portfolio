@@ -6,6 +6,7 @@ import { formatDate } from "../../utils/formatDate";
 import { getReadingTime } from "../../utils/readingTime";
 import { Image } from "astro:assets";
 import LatestArticles from "../../components/sections/LatestArticles.astro";
+import { topicToUrl } from "../../utils/topicToUrl";
 
 const highlightPostId = "how-to-create-a-blog-with-astro.md";
 
@@ -28,7 +29,7 @@ const topic = highlightPost.topic.toLowerCase().replace(" ", "");
 
 <BlogLayout description={highlightPost.description}>
   <div class="blog">
-    <a class="highlight-post" href={`/b/${highlightPost.slug}/`}>
+    <a class="highlight-post" href={`/b/${topicToUrl(highlightPost.topic)}/${highlightPost.slug}/`}>
       <article class="highlight-post__header">
         <div class="highlight-post__details">
           <span class="highlight-post__topic">

@@ -6,13 +6,19 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../../components/common/Breadcrumb.astro";
 import { Image } from "astro:assets";
 import { formatDate } from "../../utils/formatDate";
+import {topicToUrl} from '../../utils/topicToUrl'
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+
+  return posts.map((entry) => {
+    return {
+      params: {
+        slug: `/${topicToUrl(entry.data.topic)}/${entry.slug}`,
+      },
+      props: { entry },
+    };
+  });
 }
 
 type Props = {
@@ -170,13 +176,13 @@ const { Content } = await entry.render();
       color: white;
       font-family: "PP Mori";
       line-height: 1.35;
-      margin-bottom: 0rem;
+      margin: 0.5rem 0;
     }
 
     h4 {
       font-size: 16px; /* 1rem */
       color: white;
-      margin-bottom: 0rem;
+      margin: 0.5rem 0;
       line-height: 1.4;
     }
 
@@ -226,7 +232,7 @@ const { Content } = await entry.render();
     }
 
     hr {
-      border: 1px solid rgb(27, 27, 27);
+      border: 1px solid transparent;
       /* border: 1px solid red; */
       margin: 2rem 0;
     }
@@ -424,4 +430,3 @@ const { Content } = await entry.render();
     if (toc) toc.appendChild(ul);
   });
 </script>
-

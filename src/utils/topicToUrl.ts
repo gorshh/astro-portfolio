@@ -1,0 +1,1 @@
+export const topicToUrl = (topic:string) => topic.replace(" ","-").toLowerCase()

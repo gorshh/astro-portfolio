@@ -1,7 +1,7 @@
 ---
 import { formatDate } from "../../utils/formatDate";
 import { topicIcons } from "../../utils/topicIcons";
-import P from "../common/P.astro";
+import { topicToUrl } from "../../utils/topicToUrl";
 
 interface Properties {
   posts: {
@@ -25,7 +25,7 @@ const { posts } = Astro.props as Properties;
     <!-- Card de post -->
     {
       posts.map((p) => (
-        <a class="post-card" href={`/b/${p.slug}`}>
+        <a class="post-card" href={`/b/${topicToUrl(p.topic)}/${p.slug}/`}>
           <img src={p.heroImage} alt={p.title} title={p.title} loading="lazy" />
           <div class="post-info">
             <span class="post-category">
