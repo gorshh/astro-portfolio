@@ -75,14 +75,6 @@ const author = await getEntry("authors", "jorge")!;
             <dd>{author.data.name}</dd>
             <dd>{author.data.bio}</dd>
           </div>
-          <div>
-            <dt>Posted on</dt>
-            <dd>
-              <time datetime={entry.data.date.toISOString()}
-                >{formatDate(entry.data.date)}</time
-              >
-            </dd>
-          </div>
         </dl>
       </footer>
       <ArticlesList posts={posts} title={`Continue reading`} />
@@ -280,13 +272,14 @@ const author = await getEntry("authors", "jorge")!;
       padding: 1rem 0;
       border-top: 1px solid rgb(31, 32, 35);
       border-bottom: 1px solid rgb(31, 32, 35);
-      /* border: solid 1px red; */
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       dl {
         display: flex;
+        justify-content: space-between;
+        width: 100%;
         gap: 2rem;
 
         dt {
