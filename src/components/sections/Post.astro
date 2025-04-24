@@ -2,18 +2,39 @@
 import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../common/Breadcrumb.astro";
+import ArticlesList from "../../components/sections/ArticlesList.astro";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { getReadingTime } from "../../utils/readingTime";
 
 type Props = {
   entry: CollectionEntry<"posts">;
-
 };
 
 const { entry } = Astro.props;
 
 const { Content } = await entry.render();
+
+function shuffle<T>(array: T[]): T[] {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+const posts = shuffle(
+  (await getCollection("posts"))
+    .filter((p) => p.id !== entry.id)
+    .map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      heroImage: p.data.heroImage,
+      title: p.data.title,
+      topic: p.data.topic,
+      date: p.data.date,
+      description: p.data.description,
+      estimatedMinutes: getReadingTime(p.body),
+    }))
+).slice(3);
 
 const author = await getEntry("authors", "jorge")!;
 ---
@@ -68,6 +89,7 @@ const author = await getEntry("authors", "jorge")!;
           </div>
         </dl>
       </footer>
+      <ArticlesList posts={posts} title={`Continue reading`} />
     </article>
     <aside class="on-this-page" id="toc">
       <p>
@@ -85,7 +107,7 @@ const author = await getEntry("authors", "jorge")!;
       <slot />
     </aside>
   </section>
-</BlogLayout> 
+</BlogLayout>
 
 <style>
   .post {
@@ -268,8 +290,12 @@ const author = await getEntry("authors", "jorge")!;
 
     .article-footer {
       margin-top: 2rem;
+      margin-bottom: 2rem;
+      
       padding: 1rem 0;
       border-top: 1px solid rgb(31, 32, 35);
+      border-bottom: 1px solid rgb(31, 32, 35);
+      /* border: solid 1px red; */
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -374,7 +400,9 @@ const author = await getEntry("authors", "jorge")!;
     ul.classList.add("toc-list");
 
     headings.forEach((heading) => {
-      // Generar ID si no existe
+      if (heading.hasAttribute("data-no-copy")) {
+        return;
+      }
       let text = heading.innerText;
       const id = text
         .toLowerCase()

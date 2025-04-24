@@ -13,7 +13,7 @@ const { posts, title } = Astro.props as Properties;
 ---
 
 <section class="blog-container">
-  <h2 class="blog-title">{title}</h2>
+  <h2 class="blog-title" data-no-copy="true">{title}</h2>
   <div class="blog-grid">
     <!-- Card de post -->
     {
