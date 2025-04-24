@@ -1,0 +1,420 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import Breadcrumb from "../common/Breadcrumb.astro";
+import { formatDate } from "../../utils/formatDate";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+
+type Props = {
+  entry: CollectionEntry<"posts">;
+
+};
+
+const { entry } = Astro.props;
+
+const { Content } = await entry.render();
+
+const author = await getEntry("authors", "jorge")!;
+---
+
+<BlogLayout title={entry.data.title} description={entry.data.description}>
+  <section class="post">
+    <article class="article" id="blog-content">
+      <header>
+        <Breadcrumb
+          topic={"Blog/" + entry.data.topic}
+          title={entry.data.title}
+        />
+        <h1>{entry.data.title}</h1>
+        <time class="posted-date" datetime={entry.data.date.toISOString()}
+          >{formatDate(entry.data.date)}</time
+        >
+        <Image
+          src={entry.data.heroImage}
+          class="hero-image"
+          alt={entry.data.title}
+          inferSize
+        />
+      </header>
+
+      <div>
+        <Content />
+      </div>
+      <article class="tags">
+        {
+          entry.data.tags.map((tag) => (
+            <a href={`/b/tags/${tag}`} class="tag">
+              #{tag}
+            </a>
+          ))
+        }
+      </article>
+
+      <footer class="article-footer">
+        <dl>
+          <div>
+            <dt>Author</dt>
+            <dd>{author.data.name}</dd>
+            <dd>{author.data.bio}</dd>
+          </div>
+          <div>
+            <dt>Posted on</dt>
+            <dd>
+              <time datetime={entry.data.date.toISOString()}
+                >{formatDate(entry.data.date)}</time
+              >
+            </dd>
+          </div>
+        </dl>
+      </footer>
+    </article>
+    <aside class="on-this-page" id="toc">
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+          class="on-this-page-icon"
+          ><path
+            d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
+          ></path></svg
+        >On this page
+      </p>
+      <slot />
+    </aside>
+  </section>
+</BlogLayout> 
+
+<style>
+  .post {
+    max-width: 1280px;
+    margin: 0 auto;
+    /* border: solid 1px red; */
+    margin-top: 4rem;
+    padding: 0.75rem;
+    display: flex;
+  }
+
+  .article {
+    line-height: 1.6;
+
+    border-right: 1px #1f2023 solid;
+    padding-right: 10rem;
+    color: white;
+    max-width: 960px;
+
+    .posted-date {
+      color: rgb(143, 143, 153);
+      font-size: 14px;
+    }
+
+    .hero-image {
+      border-radius: 0.5rem;
+      aspect-ratio: 16/9;
+      margin: 1rem 0 2rem;
+      width: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 32px;
+      color: white;
+      font-family: "PP Mori";
+      line-height: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 22px; /* 1.375rem */
+      color: white;
+      font-family: "PP Mori";
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    h1,
+    h2 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      /* cursor: pointer; */
+      button {
+        background-color: transparent;
+        border: none;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-bottom: 0.2rem;
+        color: rgb(143, 143, 153);
+      }
+    }
+
+    .copy-link-button {
+      visibility: hidden;
+    }
+
+    h1:hover .copy-link-button,
+    h2:hover .copy-link-button {
+      visibility: visible;
+    }
+
+    h3 {
+      font-size: 18px; /* 1.125rem */
+      color: white;
+      font-family: "PP Mori";
+      line-height: 1.35;
+      margin: 0.5rem 0;
+    }
+
+    h4 {
+      font-size: 16px; /* 1rem */
+      color: white;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: rgb(231, 231, 231);
+    }
+
+    .github-dark {
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+    }
+
+    code {
+      background-color: rgb(31, 32, 35);
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+    }
+
+    .astro-code code {
+      background-color: transparent;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #2d2d30;
+      color: #f4f4f5;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .copy-button:hover {
+      opacity: 1;
+    }
+
+    pre {
+      position: relative;
+      padding-top: 2.5rem; /* para no tapar el botón */
+    }
+
+    hr {
+      border: 1px solid transparent;
+      /* border: 1px solid red; */
+      margin: 2rem 0;
+    }
+
+    a {
+      color: white;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+      padding-left: 0rem;
+      margin: 0rem 0rem 1rem;
+    }
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &::before {
+        content: "•";
+        margin-right: 0.4rem;
+        display: inline;
+      }
+
+      p {
+        display: contents;
+      }
+    }
+
+    .tags {
+      margin-top: 2rem;
+
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+    }
+    .tag {
+      background-color: rgb(31, 32, 35);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+      color: white;
+    }
+
+    .article-footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgb(31, 32, 35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      dl {
+        display: flex;
+        gap: 2rem;
+
+        dt {
+          font-weight: bold;
+          color: white;
+        }
+        dd {
+          color: rgb(231, 231, 231);
+        }
+      }
+    }
+  }
+
+  .on-this-page {
+    margin: 0 auto;
+    /* outline: 1px red solid; */
+    /* max-width: 800px; */
+    height: fit-content;
+    /* width: 20px; */
+    position: sticky;
+    top: 90px;
+    margin-left: 1rem;
+    font-size: 14px;
+
+    /* padding: 2rem; */
+    /* font-size: 1.5rem; */
+    line-height: 1.6;
+    color: rgb(143, 143, 153);
+
+    p {
+      /* color:red; */
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1.12rem;
+    }
+
+    ul {
+      list-style: none;
+      /* padding-left: 2rem; */
+      color: rgb(143, 143, 153);
+
+      li {
+        a {
+          color: rgb(143, 143, 153);
+          transition: color 0.2s ease;
+          text-decoration: none;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .on-this-page-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+</style>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("pre > code").forEach((codeBlock) => {
+      const button = document.createElement("button");
+      button.innerText = "📋 Copy";
+      button.className = "copy-button";
+
+      const pre = codeBlock.parentElement;
+      pre.style.position = "relative";
+      pre.appendChild(button);
+
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(codeBlock.innerText);
+          button.innerText = "✅ Copied";
+          setTimeout(() => (button.innerText = "📋 Copy"), 2000);
+        } catch (err) {
+          console.error("Error:", err);
+          button.innerText = "⚠️ Error";
+        }
+      });
+    });
+  });
+</script>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const content = document.querySelector("#blog-content");
+    const toc = document.querySelector("#toc");
+    const headings = content.querySelectorAll("h1, h2");
+
+    const ul = document.createElement("ul");
+    ul.classList.add("toc-list");
+
+    headings.forEach((heading) => {
+      // Generar ID si no existe
+      let text = heading.innerText;
+      const id = text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]/g, "");
+
+      heading.id = id;
+
+      // 📌 TOC
+      const li = document.createElement("li");
+      li.className = heading.tagName.toLowerCase() === "h3" ? "subheading" : "";
+
+      const a = document.createElement("a");
+      a.href = `#${id}`;
+      a.innerText = text;
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      // 🔗 Botón de copiar enlace
+      const button = document.createElement("button");
+      button.className = "copy-link-button";
+      button.innerText = "🔗 Copy";
+
+      button.addEventListener("click", async () => {
+        const url = `${window.location.origin}${window.location.pathname}#${id}`;
+        try {
+          await navigator.clipboard.writeText(url);
+          button.innerText = "✅ Copied";
+          setTimeout(() => {
+            button.innerText = "🔗 Copy";
+          }, 2000);
+        } catch (err) {
+          console.error("Error al copiar:", err);
+          button.innerText = "⚠️ Error";
+        }
+      });
+
+      heading.appendChild(button);
+    });
+
+    if (toc) toc.appendChild(ul);
+  });
+</script>

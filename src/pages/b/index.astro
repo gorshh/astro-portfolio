@@ -64,6 +64,7 @@ const topic = highlightPost.topic.toLowerCase().replace(" ", "");
       />
     </a>
     <LatestArticles
+      title="Latest Articles"
       posts={sortedPosts.filter(({ id }) => id !== highlightPostId)}
     />
   </div>

@@ -1,26 +1,19 @@
 ---
+import type { Post } from "../../types/post";
 import { formatDate } from "../../utils/formatDate";
 import { topicIcons } from "../../utils/topicIcons";
 import { topicToUrl } from "../../utils/topicToUrl";
 
-interface Properties {
-  posts: {
-    id: number;
-    slug: string;
-    heroImage: string;
-    title: string;
-    topic: string;
-    date: Date;
-    description: string;
-    estimatedMinutes: number;
-  }[];
+export interface Properties {
+  posts: Post[];
+  title:string;
 }
 
-const { posts } = Astro.props as Properties;
+const { posts, title } = Astro.props as Properties;
 ---
 
 <section class="blog-container">
-  <h2 class="blog-title">Latest Articles</h2>
+  <h2 class="blog-title">{title}</h2>
   <div class="blog-grid">
     <!-- Card de post -->
     {
@@ -54,13 +47,14 @@ const { posts } = Astro.props as Properties;
   .blog-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem 1rem;
   }
 
   .blog-title {
     margin-bottom: 2rem;
     font-weight: 600;
     font-family: "PP Mori";
+    color: white;
+    font-size: 2rem;
   }
 
   .blog-grid {
@@ -124,6 +118,7 @@ const { posts } = Astro.props as Properties;
     font-size: 1.1rem;
     font-weight: 500;
     font-family: "PP Mori";
+    line-height: 1.3;
   }
 
   .post-date {

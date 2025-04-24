@@ -22,7 +22,7 @@ const paths = segments.map(
     {
       segments.map((seg, i) => (
         <span>
-          <a href={paths[i].replace("blog","b").replace(" ","-")}>{seg}</a>
+          <a class="breadcrumb--link" href={paths[i].replace("blog","b").replace(" ","-")}>{seg}</a>
           {i < segments.length && <span>/</span>}
         </span>
       ))
@@ -47,13 +47,14 @@ const paths = segments.map(
     }
   }
 
-  .breadcrumb li a {
-    color: var(--color-link);
-    text-decoration: none;
-    font-weight: 500;
-  }
 
   .breadcrumb li span {
     color: rgb(143, 143, 153);
+  }
+
+  .breadcrumb--link {
+    color: white ;
+    text-decoration: none;
+    font-weight: 500;
   }
 </style>
