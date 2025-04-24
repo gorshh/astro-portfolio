@@ -130,7 +130,7 @@ h1 {
 
 ---
 
-## Configuración mínima (`vite.config.js`)
+## Configuración mínima
 
 El archivo `vite.config.js` se ve así por defecto:
 

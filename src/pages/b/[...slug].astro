@@ -79,14 +79,14 @@ if (isTopic) {
 {
   isTopic && (
     <BlogLayout
-      title={`Posts in ${entry}`}
+      title={`Posts about ${entry}`}
       description={`Posts under the ${entry} topic`}
     ><section class="posts-container">
       <Breadcrumb
           topic={"Blog"}
           title={entry}
         />
-      <LatestArticles posts={topicPosts} title={`Posts in ${entry}`}/>
+      <LatestArticles posts={topicPosts} title={`Posts about ${entry}`}/>
     </section>
     </BlogLayout>
 

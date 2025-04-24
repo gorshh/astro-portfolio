@@ -54,14 +54,13 @@ Welcome to my blog! This is my first post using Astro.
 In the `src/layouts` directory, create a layout file for your blog posts, e.g., `BlogLayout.astro`:
 ```astro
 ---
-export const Layout = ({ children, frontmatter }) => (
-  <article>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.date}</p>
-    <div>{children}</div>
-  </article>
-);
+const { children, frontmatter } = Astro.props
 ---
+<article>
+  <h1>{frontmatter.title}</h1>
+  <p>{frontmatter.date}</p>
+  <div>{children}</div>
+</article>
 ```
 
 ## Step 5: Display Blog Posts
