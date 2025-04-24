@@ -7,19 +7,19 @@ heroImage: "https://miro.medium.com/v2/resize:fit:1400/1*-Ijet6kVJqGgul6adezDLQ.
 author: "jorge"
 date: 2024-01-01
 ---
-# 🧠 Cómo usar Hooks en React  
+# Cómo usar Hooks en React  
 
 Desde la llegada de los **Hooks** en React 16.8, manejar el estado y los ciclos de vida en componentes funcionales nunca fue tan simple. Pero con gran poder viene gran responsabilidad 😄. En esta guía vamos a repasar los hooks más importantes y cómo usarlos correctamente para construir componentes más limpios, reutilizables y fáciles de mantener.
 
 ---
 
-## 🔧 ¿Qué son los Hooks?
+## ¿Qué son los Hooks?
 
 Los Hooks son funciones que te permiten **"engancharte"** al estado y al ciclo de vida de React desde componentes funcionales. Antes necesitábamos clases para esto, pero con Hooks, podemos hacer lo mismo (y más) usando solo funciones.
 
 ---
 
-## 📦 Hooks más comunes
+## Hooks más comunes
 
 ### 1. `useState`
 Para manejar **estado local** en un componente.
@@ -127,7 +127,7 @@ const funcionMemorizada = useCallback(() => {
 
 ---
 
-## ⚠️ Buenas prácticas
+## Buenas prácticas
 
 - ❌ No uses hooks dentro de condicionales o bucles.
 - ✅ Siempre colócalos al **nivel superior** del componente.
@@ -136,7 +136,7 @@ const funcionMemorizada = useCallback(() => {
 
 ---
 
-## 🧪 Custom Hooks: nivel PRO
+## Custom Hooks: nivel PRO
 
 Puedes crear tus propios hooks para reutilizar lógica compleja.
 
@@ -159,7 +159,7 @@ function Componente() {
 
 ---
 
-## 🎯 Conclusión
+## Conclusión
 
 Los hooks son una de las herramientas más poderosas en React. Te permiten escribir componentes **más concisos y expresivos**. Dominar los hooks es clave para desarrollar apps modernas con React.
 
@@ -167,7 +167,7 @@ Los hooks son una de las herramientas más poderosas en React. Te permiten escri
 
 ---
 
-## 📚 Recursos adicionales
+## Recursos adicionales
 
 - [Documentación oficial de Hooks](https://reactjs.org/docs/hooks-intro.html)
 - [React Patterns](https://reactpatterns.com/)
