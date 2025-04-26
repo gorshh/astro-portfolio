@@ -65,27 +65,7 @@ const author = await getEntry("authors", "jorge")!;
         <Content />
       </div>
       {entry.data?.sources && <PostSources sources={entry.data.sources} />}
-
       <ArticleFooter/>
-      <!-- <footer class="article-footer">
-        <dl>
-          <div>
-            <dt>Author</dt>
-            <a href="https://jorshh.com" target="_blank" rel="noopener noreferrer" class="footer-author-name">
-              {author.data.name}
-            </a>
-            <dd>{author.data.bio}</dd>
-            {
-              author.data.fields.map((f) => (
-                <>
-                  <dt>{f.name}</dt>
-                  <dd>{f.value}</dd>
-                </>
-              ))
-            }
-          </div>
-        </dl>
-      </footer> -->
       <ArticlesList posts={posts} title={`Continue reading`} />
     </article>
     <aside class="on-this-page" id="toc">
@@ -274,34 +254,6 @@ const author = await getEntry("authors", "jorge")!;
 
       p {
         display: contents;
-      }
-    }
-
-    .article-footer {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-
-      padding: 1rem 0;
-      border-top: 1px solid rgb(31, 32, 35);
-      border-bottom: 1px solid rgb(31, 32, 35);
-      /* display: flex; */
-      /* justify-content: space-between; */
-      align-items: center;
-      border: solid 1px red !important;
-
-      dl {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        gap: 2rem;
-
-        dt {
-          font-weight: bold;
-          color: white;
-        }
-        dd {
-          color: rgb(231, 231, 231);
-        }
       }
     }
   }
