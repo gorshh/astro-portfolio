@@ -4,13 +4,11 @@ import "minireset.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
-import { getLangFromUrl, useTranslations } from '../i18n/utils'
-import Responsive from '../components/common/Responsive.astro'
-
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Responsive from "../components/common/Responsive.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 ---
 
 <!doctype html>
@@ -22,10 +20,7 @@ const t = useTranslations(lang);
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Jorshh - Web Developer | React, Next.js, Node.js</title>
-    <meta
-      name="description"
-      content={t('meta.description')}
-    />
+    <meta name="description" content={t("meta.description")} />
     <meta
       name="keywords"
       content="Full Stack Developer, React Developer, Next.js, Node.js, AWS, REST API, DynamoDB, Software Engineer, Software Architecture, Testing, CI/CD, Agile Development"
@@ -84,7 +79,6 @@ const t = useTranslations(lang);
     --white-color: rgb(var(--white-rgb));
 
     --bg-color: rgb(var(--white-rgb));
-
   }
 
   @font-face {
@@ -103,12 +97,17 @@ const t = useTranslations(lang);
   }
 
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,cOxygen, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      cOxygen,
+      sans-serif;
     color: rgba(var(--black-rgb), 0.9);
     font-size: 18px;
-    
   }
-
 
   ::selection {
     background-color: rgb(80, 120, 243);
@@ -117,21 +116,4 @@ const t = useTranslations(lang);
     z-index: 3;
     position: relative;
   }
-
-  /* ::view-transition-group(page-title) {
-  animation-duration: 300ms;
-  animation-timing-function: ease-in-out;
-} */
-
-::view-transition-old(page),
-::view-transition-new(page) {
-  animation: fade 0.3s ease;
-}
-
-@keyframes fade {
-  from { opacity: 0.7; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
 </style>

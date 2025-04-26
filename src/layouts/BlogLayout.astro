@@ -26,10 +26,7 @@ const { title, description } = Astro.props as Props;
     <title>
       Jorshh Blog – {title ? title : "Insights sobre Desarrollo Web"}
     </title>
-    <meta
-      name="description"
-      content={description}
-    />
+    <meta name="description" content={description} />
 
     <!-- Open Graph (para compartir en redes) -->
     <meta
@@ -38,10 +35,7 @@ const { title, description } = Astro.props as Props;
         ? title
         : "Insights sobre Desarrollo Web"}
     />
-    <meta
-      property="og:description"
-      content={description}
-    />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jorshh.dev/blog" />
     <!-- ajusta según tu dominio -->
@@ -56,10 +50,7 @@ const { title, description } = Astro.props as Props;
         ? title
         : "Insights sobre Desarrollo Web"}
     />
-    <meta
-      name="twitter:description"
-      content={description}
-    />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://jorshh.dev/og-image-blog.png" />
     <!-- misma imagen o personalizada -->
 
@@ -130,5 +121,4 @@ const { title, description } = Astro.props as Props;
   ::selection {
     background-color: rgb(80, 120, 243);
   }
-
 </style>
