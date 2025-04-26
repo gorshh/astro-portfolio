@@ -68,7 +68,7 @@ const t = useTranslations(lang);
     <!-- <Responsive/> -->
     <ScrollBar />
     <Navbar />
-    <main>
+    <main view-transition-name="page">
       <slot />
     </main>
     <Footer />
@@ -117,4 +117,21 @@ const t = useTranslations(lang);
     z-index: 3;
     position: relative;
   }
+
+  /* ::view-transition-group(page-title) {
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+} */
+
+::view-transition-old(page),
+::view-transition-new(page) {
+  animation: fade 0.3s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0.7; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 </style>
