@@ -1,13 +1,14 @@
 ---
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../common/Breadcrumb.astro";
 import PostSources from "../common/PostSources.astro";
+import ArticleFooter from '../../components/ArticleFooter.astro'
 import ArticlesList from "../../components/sections/ArticlesList.astro";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
-import { getEntry } from "astro:content";
-import { getCollection } from "astro:content";
 import { getReadingTime } from "../../utils/readingTime";
 
 type Props = {
@@ -65,11 +66,14 @@ const author = await getEntry("authors", "jorge")!;
       </div>
       {entry.data?.sources && <PostSources sources={entry.data.sources} />}
 
-      <footer class="article-footer">
+      <ArticleFooter/>
+      <!-- <footer class="article-footer">
         <dl>
           <div>
             <dt>Author</dt>
-            <a href={"jorshh.com"}>{author.data.name}</a>
+            <a href="https://jorshh.com" target="_blank" rel="noopener noreferrer" class="footer-author-name">
+              {author.data.name}
+            </a>
             <dd>{author.data.bio}</dd>
             {
               author.data.fields.map((f) => (
@@ -81,7 +85,7 @@ const author = await getEntry("authors", "jorge")!;
             }
           </div>
         </dl>
-      </footer>
+      </footer> -->
       <ArticlesList posts={posts} title={`Continue reading`} />
     </article>
     <aside class="on-this-page" id="toc">

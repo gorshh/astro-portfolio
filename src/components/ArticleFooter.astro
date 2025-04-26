@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+---
+
+<footer class="author-footer">
+  <Image
+    src="https://www.jorgecalderon.dev/profile.png"
+    alt="jorshh avatar"
+    class="author-footer__avatar"
+    width={56}
+    height={56}
+  />
+
+  <div class="author-footer__info">
+    <p class="author-footer__name">
+      <a
+        href="https://jorshh.com/"
+        target="_blank"
+        target="_blank"
+        rel="noopener noreferrer">jorshh</a
+      >
+    </p>
+    <p class="author-footer__bio">Short tech posts when bored.</p>
+    <p class="author-footer__meta">
+      <span>📍 Mexico City</span> •
+      <span>💻 5 years in software dev</span>
+    </p>
+    <p class="author-footer__links">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/jorgecalderon"
+        target="_blank">Twitter</a
+      > ·
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/gorshh/"
+        target="_blank">GitHub</a
+      > ·
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/jorshh/"
+        target="_blank">LinkedIn</a
+      >
+    </p>
+  </div>
+</footer>
+<style>
+  .author-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+    font-size: 0.95rem;
+    color: #ccc;
+
+    .author-footer__meta,
+    .author-footer__bio,
+    .author-footer__name,
+    .author-footer__links {
+      margin-bottom: 0;
+    }
+
+    .author-footer__name {
+      font-family: "PP mori";
+    }
+  }
+
+  .author-footer__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: #1f2023;
+    flex-shrink: 1;
+    align-self: baseline;
+  }
+
+  .author-footer__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .author-footer__name a {
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  .author-footer__name a:hover {
+    text-decoration: underline;
+  }
+
+  .author-footer__bio {
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+
+  .author-footer__meta {
+    /* color: #888; */
+    color: rgb(143,143,153);
+    font-size: 0.85rem;
+  }
+
+  .author-footer__links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: rgb(143,143,153);
+  }
+
+  .author-footer__links a:hover {
+    text-decoration: underline;
+  }
+</style>
