@@ -167,7 +167,12 @@ const posts = shuffle(
     }
 
     .copy-link-button {
-      visibility: hidden;
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+        visibility: hidden;
+      }
     }
 
     h1:hover .copy-link-button,
