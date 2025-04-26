@@ -1,5 +1,6 @@
 ---
 import "minireset.css";
+import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import Responsive from "../components/common/Responsive.astro";
 import NavbarBlog from "../components/NavbarBlog.astro";
@@ -68,6 +69,7 @@ const { title, description } = Astro.props as Props;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
   </head>
   <body>
     <NavbarBlog />
