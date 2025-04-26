@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../common/Breadcrumb.astro";
-import PostSources from '../common/PostSources.astro'
+import PostSources from "../common/PostSources.astro";
 import ArticlesList from "../../components/sections/ArticlesList.astro";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
@@ -15,7 +15,6 @@ type Props = {
 };
 
 const { entry } = Astro.props;
-
 
 const { Content } = await entry.render();
 
@@ -36,7 +35,7 @@ const posts = shuffle(
       description: p.data.description,
       estimatedMinutes: getReadingTime(p.body),
     }))
-).slice(3);
+).slice(0, 2);
 
 const author = await getEntry("authors", "jorge")!;
 ---
@@ -64,16 +63,22 @@ const author = await getEntry("authors", "jorge")!;
       <div>
         <Content />
       </div>
-      {
-        entry.data?.sources && (<PostSources sources={entry.data.sources}/>)
-      }
+      {entry.data?.sources && <PostSources sources={entry.data.sources} />}
 
       <footer class="article-footer">
         <dl>
           <div>
             <dt>Author</dt>
-            <dd>{author.data.name}</dd>
+            <a href={"jorshh.com"}>{author.data.name}</a>
             <dd>{author.data.bio}</dd>
+            {
+              author.data.fields.map((f) => (
+                <>
+                  <dt>{f.name}</dt>
+                  <dd>{f.value}</dd>
+                </>
+              ))
+            }
           </div>
         </dl>
       </footer>
@@ -242,6 +247,10 @@ const author = await getEntry("authors", "jorge")!;
       color: white;
     }
 
+    video {
+      border-radius: 0.5rem;
+  }
+
     ul,
     ol {
       list-style: none;
@@ -264,7 +273,6 @@ const author = await getEntry("authors", "jorge")!;
       }
     }
 
-
     .article-footer {
       margin-top: 2rem;
       margin-bottom: 2rem;
@@ -272,9 +280,10 @@ const author = await getEntry("authors", "jorge")!;
       padding: 1rem 0;
       border-top: 1px solid rgb(31, 32, 35);
       border-bottom: 1px solid rgb(31, 32, 35);
-      display: flex;
-      justify-content: space-between;
+      /* display: flex; */
+      /* justify-content: space-between; */
       align-items: center;
+      border: solid 1px red !important;
 
       dl {
         display: flex;
@@ -295,7 +304,7 @@ const author = await getEntry("authors", "jorge")!;
 
   .on-this-page {
     margin: 0 auto;
-    
+
     height: fit-content;
     /* width: 20px; */
     position: sticky;
@@ -307,7 +316,8 @@ const author = await getEntry("authors", "jorge")!;
     color: rgb(143, 143, 153);
 
     ul {
-      list-style: none;
+      list-style: decimal;
+      margin-left: 1rem;
       color: rgb(143, 143, 153);
 
       li {

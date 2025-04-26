@@ -3,7 +3,7 @@ title: "Middleware Patterns in Express.js: Clean APIs Without the Mess"
 description: "Middleware in Express can be powerful... or a complete mess. In this post, I break down practical patterns I've used to keep things clean, modular, and testable."
 topic: "ExpressJs"
 tags: ["express", "node", "middleware", "api design", "backend"]
-heroImage: "https://imagedelivery.net/XvnvFwe_1cJ9WYiCgLLxVw/c87f470a-deea-4677-1ed7-98976ac90500/public"
+heroImage: "https://jorshh.b-cdn.net/middleware-patterns-in-express-js.webp"
 author: "jorge"
 date: 2025-04-21
 ---

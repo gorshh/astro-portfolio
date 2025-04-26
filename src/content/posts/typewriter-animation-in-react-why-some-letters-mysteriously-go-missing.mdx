@@ -1,0 +1,146 @@
+---
+title: "Typewriter Animation in React – Why Some Letters Mysteriously Go Missing"
+description: "Learn how to build a typewriter animation in React and avoid a common bug where characters disappear. Understand the problem and the simple fix using useRef."
+topic: "React"
+tags: ["react", "hooks", "typewriter", "animation", "bugfix"]
+heroImage: "https://jorshh.b-cdn.net/typewriter-animation-in-react-why-some-letters-mysteriously-go-missing.webp"
+author: "jorge"
+date: 2025-04-25
+sources:
+  - title: "React Documentation – State and Lifecycle"
+    href: "https://react.dev/learn/state-a-components-memory"
+  - title: "React Typewriter Effect Missing Characters Issue on Text Change"
+    href: "https://stackoverflow.com/questions/77648899/react-typewriter-effect-missing-characters-issue-on-text-change"
+  - title: "React useRef Hook"
+    href: "https://react.dev/reference/react/useRef"
+---
+
+
+
+Creating a typewriter animation in React seems simple at first. A few `setTimeout`s or `setInterval`s, a `useState` to hold the displayed text, and you're done, right?
+
+Well, not quite.
+
+Let me show you what happens when it goes wrong — and how to fix it.
+
+---
+
+## The Feature: A Simple Typewriter Effect
+
+The idea is straightforward: we want to display text character by character, like an old-school typewriter. This effect is perfect for building chat interfaces, GPT-style responses, or animated intros.
+
+We built a hook like this:
+
+```js
+const useTypewriterFail = (text, speed = 1) => {
+  const [displayText, setDisplayText] = useState('');
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        setDisplayText(prev => prev + text.charAt(i));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed);
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return { displayText };
+};
+```
+
+It works… kind of.
+
+<video  autoplay muted loop width="100%">
+  <source src="https://jorshh.b-cdn.net/bug-typing.webm" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<img src="https://jorshh.b-cdn.net/bug-typing.gif"/>
+
+---
+
+## The Bug: Missing Characters 😕
+
+When using this hook in production or with multiple pieces of text (like GPT-style responses), you might notice something weird:
+
+- Some characters just **don’t appear**.
+- Often it’s the **second character**.
+- Sometimes it happens only after changing the `text`.
+
+Here’s an actual example reported on Stack Overflow:
+
+> “When I type out the string 'tarot card...', it shows as 'trot card...' — the **a** is missing.”
+
+You read that right. It wasn’t a typo — it was a **state management bug**.
+
+---
+
+## Why This Happens: State Batching and Async Timing
+
+The bug comes down to **how React batches state updates**.
+
+In the broken hook, we use this line inside a loop:
+
+```js
+setDisplayText(prev => prev + text.charAt(i));
+```
+
+But React doesn’t guarantee immediate updates for state. So if `setDisplayText` is called rapidly (like in fast intervals), and `i` is being incremented at the same time, there’s a race condition. The `prev` might be stale, or the `i` might jump by two. The result? Skipped letters.
+
+---
+
+## The Fix: Use Refs for Precision
+
+We solve this by using **refs** instead of relying only on `useState`. Refs are synchronous and not affected by batching.
+
+Here’s the improved version:
+
+```js
+const useTypewriter = (text, speed = 50) => {
+  const [displayText, setDisplayText] = useState('');
+  const index = useRef(0);
+  const currentText = useRef('');
+
+  useEffect(() => {
+    index.current = 0;
+    currentText.current = '';
+    setDisplayText('');
+
+    const interval = setInterval(() => {
+      if (index.current < text.length) {
+        currentText.current += text.charAt(index.current);
+        setDisplayText(currentText.current);
+        index.current++;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return { displayText };
+};
+```
+
+### Why it works:
+- `index` and `currentText` are refs, so they persist between renders without triggering re-renders.
+- State (`displayText`) is updated cleanly, using the accumulated `currentText`.
+
+---
+
+## Bonus: Multiple Responses in a Row
+
+If you're rendering multiple responses (like in a chat UI), make sure you don’t share the same state or index between them. Each text needs its own hook instance or its own isolated typing context.
+
+---
+
+## Final Thoughts
+
+React is powerful, but with that power comes caveats. Timing, batching, and async state updates can trip you up in subtle ways — especially in animations like this.
+
+So if your text starts skipping letters like a haunted typewriter... don’t panic. Just bring in a few `useRef`s, and everything will type out beautifully. 🧵⌨️
+
+---

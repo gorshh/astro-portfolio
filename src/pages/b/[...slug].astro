@@ -47,8 +47,6 @@ type Props = {
 
 const { entry } = Astro.props;
 
-console.log(entry)
-
 const isPost = typeof entry === "object" && "render" in entry;
 const isTopic =
   typeof entry === "string" ||

@@ -1,4 +1,4 @@
-name: "Jorge Calderon"
+name: "jorshh"
 bio: "Short tech posts when bored."
 avatar: "/images/jorge.jpg"
 social:
@@ -7,10 +7,12 @@ social:
   linkedin: "https://linkedin.com/in/jorgecalderon"
 fields:
   - name: "Location"
-    value: "San Francisco, CA"
+    value: "Mexico City"
   - name: "Experience"
     value: "5 years in software development"
   - name: "Skills"
-    value: "JavaScript, Python, React, Node.js"
+    value: "JavaScript, React, Node.js, Astro, CSS"
   - name: "Interests"
     value: "Open source, AI, Web development"
+  - name: "Site"
+    value: "https://jorshh.com/"
