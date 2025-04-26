@@ -22,7 +22,6 @@ const posts = (await getCollection("posts")).map((p) => ({
 }));
 
 const sortedPosts = posts.sort((a, b) => b.date.getTime() - a.date.getTime());
-console.log(posts)
 const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
 
 

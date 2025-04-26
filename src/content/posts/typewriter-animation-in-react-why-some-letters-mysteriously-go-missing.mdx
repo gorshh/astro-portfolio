@@ -53,11 +53,11 @@ const useTypewriterFail = (text, speed = 1) => {
 
 It works… kind of.
 
-<video  autoplay muted loop width="100%">
+<video autoplay muted loop width="100%" playsinline>
   <source src="https://jorshh.b-cdn.net/bug-typing.webm" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
-<img src="https://jorshh.b-cdn.net/bug-typing.gif"/>
+{/* <img src="https://jorshh.b-cdn.net/bug-typing.gif"/> */}
 
 ---
 
@@ -124,6 +124,12 @@ const useTypewriter = (text, speed = 50) => {
   return { displayText };
 };
 ```
+
+<video autoplay muted loop width="100%" playsinline>
+  <source src="https://jorshh.b-cdn.net/fix-typing.webm" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
 
 ### Why it works:
 - `index` and `currentText` are refs, so they persist between renders without triggering re-renders.
