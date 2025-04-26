@@ -49,8 +49,8 @@ const posts = shuffle(
           topic={"Blog/" + entry.data.topic}
           title={entry.data.title}
         />
-        <!-- <h1 view-transition-name="page-title">{entry.data.title}</h1> -->
-        <h1 style="view-transition-name: page-title;">Blog Post Title</h1>
+        <h1 view-transition-name="page-title">{entry.data.title}</h1>
+        <!-- <h1 style="view-transition-name: page-title;">Blog Post Title</h1> -->
         <time class="posted-date" datetime={entry.data.date.toISOString()}
           >{formatDate(entry.data.date)}</time
         >
