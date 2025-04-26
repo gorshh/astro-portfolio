@@ -8,7 +8,8 @@ import { Image } from "astro:assets";
 import LatestArticles from "../../components/sections/ArticlesList.astro";
 import { topicToUrl } from "../../utils/topicToUrl";
 
-const highlightPostId = "typewriter-animation-in-react-why-some-letters-mysteriously-go-missing.mdx";
+const highlightPostId =
+  "typewriter-animation-in-react-why-some-letters-mysteriously-go-missing.mdx";
 
 const posts = (await getCollection("posts")).map((p) => ({
   id: p.id,
@@ -24,13 +25,16 @@ const posts = (await getCollection("posts")).map((p) => ({
 const sortedPosts = posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
 
-
 const topic = highlightPost.topic.toLowerCase().replace(" ", "");
 ---
 
 <BlogLayout description={highlightPost.description}>
   <div class="blog">
-    <a class="highlight-post" href={`/b/${topicToUrl(highlightPost.topic)}/${highlightPost.slug}/`}>
+    <a
+      class="highlight-post"
+      href={`/b/${topicToUrl(highlightPost.topic)}/${highlightPost.slug}/`}
+      class="fade-transition"
+    >
       <article class="highlight-post__header">
         <div class="highlight-post__details">
           <span class="highlight-post__topic">
@@ -48,9 +52,7 @@ const topic = highlightPost.topic.toLowerCase().replace(" ", "");
           >
           <span>{highlightPost.estimatedMinutes}min</span>
         </div>
-        <!-- <h1 style="view-transition-name: page-title;">Blog Post Title</h1> -->
-
-        <h1 view-transition-name="page-title" class="highlight-post__title">{highlightPost.title}</h1>
+        <h1 class="highlight-post__title">{highlightPost.title}</h1>
         <p class="highlight-post__description">
           {highlightPost.description}
         </p>
@@ -77,32 +79,50 @@ const topic = highlightPost.topic.toLowerCase().replace(" ", "");
   .blog {
     margin: 0 auto;
     width: 100%;
-    max-width: 1280px;
-    padding: 0.75rem;
+    padding: 1rem;
     font-size: 1.5rem;
     line-height: 1.6;
     color: white;
+
+    @media (min-width: 768px) {
+      padding: 0.75rem;
+    }
+
+    @media (min-width: 1366px) {
+      max-width: 1280px;
+    }
   }
   .highlight-post {
     display: flex;
     text-decoration: none;
     color: white;
-    /* border: solid 1px red; */
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 1366px) {
+      flex-direction: row;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+    }
   }
   .highlight-post__header {
-    width: 30%;
-    /* background-color: red; */
+    width: 100%;
+    /* border: solid 1px green; */
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+    @media (min-width: 1366px) {
+      width: 30%;
+      margin-bottom: 0rem;
+    }
   }
   .highlight-post__date,
   .highlight-post__details {
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     gap: 0.5rem;
     color: #cfcfd3;
@@ -123,12 +143,21 @@ const topic = highlightPost.topic.toLowerCase().replace(" ", "");
   }
 
   .highlight-post__title {
-    font-size: 48px;
-    line-height: normal;
+    font-size: 28px;
+    line-height: 1.2;
     font-family: "PP Mori";
+
+    @media (min-width: 1366px) {
+      font-size: 48px;
+      line-height: normal;
+    }
   }
   .highlight-post__description {
     /* line-height: normal; */
-    font-size: 20px;
+    font-size: 16px;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
   }
 </style>

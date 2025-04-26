@@ -5,7 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Breadcrumb from "../common/Breadcrumb.astro";
 import PostSources from "../common/PostSources.astro";
-import ArticleFooter from '../../components/ArticleFooter.astro'
+import ArticleFooter from "../../components/ArticleFooter.astro";
 import ArticlesList from "../../components/sections/ArticlesList.astro";
 import { formatDate } from "../../utils/formatDate";
 import { Image } from "astro:assets";
@@ -50,7 +50,6 @@ const posts = shuffle(
           title={entry.data.title}
         />
         <h1 view-transition-name="page-title">{entry.data.title}</h1>
-        <!-- <h1 style="view-transition-name: page-title;">Blog Post Title</h1> -->
         <time class="posted-date" datetime={entry.data.date.toISOString()}
           >{formatDate(entry.data.date)}</time
         >
@@ -66,7 +65,7 @@ const posts = shuffle(
         <Content />
       </div>
       {entry.data?.sources && <PostSources sources={entry.data.sources} />}
-      <ArticleFooter/>
+      <ArticleFooter />
       <ArticlesList posts={posts} title={`Continue reading`} />
     </article>
     <aside class="on-this-page" id="toc">
@@ -88,22 +87,38 @@ const posts = shuffle(
 </BlogLayout>
 
 <style>
+
+  * {
+    outline: 1px red solid;
+  }
   .post {
-    max-width: 1280px;
     margin: 0 auto;
-    /* border: solid 1px red; */
     margin-top: 4rem;
-    padding: 0.75rem;
-    display: flex;
+    width: 100%;
+    padding: 2rem;
+
+    @media (min-width: 768px) {
+      padding: 0.75rem;
+    }
+
+    @media (min-width: 1366px) {
+      max-width: 1280px;
+    }
   }
 
   .article {
     line-height: 1.6;
-
-    border-right: 1px #1f2023 solid;
-    padding-right: 10rem;
     color: white;
-    max-width: 960px;
+    width: 100%;
+    
+
+    @media (min-width: 768px) {
+      border-right: 1px #1f2023 solid;
+      padding-right: 10rem;
+    }
+    @media (min-width: 1024px) {
+      max-width: 960px;
+    }
 
     .posted-date {
       color: rgb(143, 143, 153);
@@ -179,12 +194,6 @@ const posts = shuffle(
       color: rgb(231, 231, 231);
     }
 
-    .github-dark {
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 0.5rem;
-    }
-
     code {
       background-color: rgb(31, 32, 35);
       padding: 0.25rem;
@@ -225,7 +234,10 @@ const posts = shuffle(
     hr {
       border: 1px solid transparent;
       /* border: 1px solid red; */
-      margin: 2rem 0;
+      margin: 1rem 0;
+      @media (min-width: 1024px) {
+        margin: 2rem 0;
+}
     }
 
     a {
@@ -234,7 +246,7 @@ const posts = shuffle(
 
     video {
       border-radius: 0.5rem;
-  }
+    }
 
     ul,
     ol {
@@ -260,17 +272,18 @@ const posts = shuffle(
   }
 
   .on-this-page {
+    display: none;
     margin: 0 auto;
-
     height: fit-content;
-    /* width: 20px; */
     position: sticky;
     top: 90px;
-    margin-left: 1rem;
     font-size: 14px;
-
     line-height: 1.6;
     color: rgb(143, 143, 153);
+    @media (min-width: 768px) {
+      display: block;
+      margin-left: 1rem;
+    }
 
     ul {
       list-style: decimal;

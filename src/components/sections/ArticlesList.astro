@@ -6,7 +6,7 @@ import { topicToUrl } from "../../utils/topicToUrl";
 
 export interface Properties {
   posts: Post[];
-  title:string;
+  title: string;
 }
 
 const { posts, title } = Astro.props as Properties;
@@ -50,17 +50,27 @@ const { posts, title } = Astro.props as Properties;
   }
 
   .blog-title {
-    margin-bottom: 2rem;
     font-weight: 600;
     font-family: "PP Mori";
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    color: red;
+    margin-bottom: 1rem;
+
+    @media (min-width: 1024px) {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
   }
 
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
+
+    @media (min-width: 1024px) {
+      gap: 2rem;
+    }
   }
 
   .post-card {
