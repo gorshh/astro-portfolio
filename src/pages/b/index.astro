@@ -8,7 +8,7 @@ import { Image } from "astro:assets";
 import LatestArticles from "../../components/sections/ArticlesList.astro";
 import { topicToUrl } from "../../utils/topicToUrl";
 
-const highlightPostId = "typewriter-animation-in-react-why-some-letters-mysteriously-go-missing.md";
+const highlightPostId = "typewriter-animation-in-react-why-some-letters-mysteriously-go-missing.mdx";
 
 const posts = (await getCollection("posts")).map((p) => ({
   id: p.id,
@@ -22,7 +22,9 @@ const posts = (await getCollection("posts")).map((p) => ({
 }));
 
 const sortedPosts = posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+console.log(posts)
 const highlightPost = posts.find(({ id }) => id === highlightPostId)!;
+
 
 const topic = highlightPost.topic.toLowerCase().replace(" ", "");
 ---
