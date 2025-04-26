@@ -129,4 +129,19 @@ const { title, description } = Astro.props as Props;
   ::selection {
     background-color: rgb(80, 120, 243);
   }
+
+  ::view-transition-old(page-title),
+::view-transition-new(page-title) {
+  animation: fade 0.5s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 </style>
