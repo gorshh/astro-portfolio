@@ -6,8 +6,7 @@ export default defineConfig({
   integrations: [mdx()],
   markdown: {
     shikiConfig: {
-      theme: 'plastic',
-      wrap: true
+      theme: 'plastic'
     },
   },
 });

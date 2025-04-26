@@ -87,7 +87,6 @@ const posts = shuffle(
 </BlogLayout>
 
 <style>
-
   * {
     /* outline: 1px red solid; */
   }
@@ -112,7 +111,6 @@ const posts = shuffle(
     line-height: 1.6;
     color: white;
     width: 100%;
-    
 
     @media (min-width: 768px) {
       border-right: 1px #1f2023 solid;
@@ -224,6 +222,11 @@ const posts = shuffle(
       cursor: pointer;
       opacity: 0.7;
       transition: opacity 0.2s ease;
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+      }
     }
 
     .copy-button:hover {
@@ -236,6 +239,11 @@ const posts = shuffle(
       border-radius: 0.2rem;
       margin: 1rem 0;
       border-radius: 0.5rem;
+      white-space: pre;
+
+      @media (min-width: 1024px) {
+        white-space: pre-wrap;
+      }
     }
 
     hr {
@@ -244,7 +252,7 @@ const posts = shuffle(
       margin: 1rem 0;
       @media (min-width: 1024px) {
         margin: 2rem 0;
-}
+      }
     }
 
     a {

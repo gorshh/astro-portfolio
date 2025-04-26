@@ -22,8 +22,13 @@ const paths = segments.map(
     {
       segments.map((seg, i) => (
         <span>
-          <a class="breadcrumb--link" href={paths[i].replace("blog","b").replace(" ","-")}>{seg}</a>
-          {i < segments.length && <span>/</span>}
+          <a
+            class="breadcrumb--link"
+            href={paths[i].replace("blog", "b").replace(" ", "-")}
+          >
+            {seg}
+          </a>
+          {i < segments.length && <span class="separator">/</span>}
         </span>
       ))
     }
@@ -36,7 +41,7 @@ const paths = segments.map(
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.2rem;
     font-size: 14px;
     color: #cfcfd3;
     flex-wrap: wrap;
@@ -47,14 +52,35 @@ const paths = segments.map(
     }
   }
 
-
   .breadcrumb li span {
     color: rgb(143, 143, 153);
   }
 
   .breadcrumb--link {
-    color: white ;
+    color: white;
     text-decoration: none;
     font-weight: 500;
   }
+
+  .hide {
+    display: none;
+  }
 </style>
+<script is:inline>
+  function updateBreadcrumbTruncate() {
+    const breadcrumb = document.querySelector(".breadcrumb");
+    if (!breadcrumb) return;
+
+    const spans = breadcrumb.querySelectorAll("span");
+    const lastSpan = spans[spans.length - 1];
+    if (!lastSpan) return;
+    if (window.innerWidth <= 768) {
+      lastSpan.classList.add("hide");
+    } else {
+      lastSpan.classList.remove("hide");
+    }
+  }
+
+  window.addEventListener("resize", updateBreadcrumbTruncate);
+  window.addEventListener("DOMContentLoaded", updateBreadcrumbTruncate);
+</script>
