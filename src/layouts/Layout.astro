@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ScrollBar from "../components/common/ScrollBar.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { ClientRouter } from "astro:transitions";
 import Responsive from "../components/common/Responsive.astro";
 
 const lang = getLangFromUrl(Astro.url);
@@ -58,6 +59,7 @@ const t = useTranslations(lang);
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
   </head>
   <body>
     <!-- <Responsive/> -->
