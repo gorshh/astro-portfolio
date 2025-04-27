@@ -1,0 +1,29 @@
+---
+import Container from "../../components/common/Container.astro";
+import P from "../../components/common/P.astro";
+import Experience from "../../components/sections/Experience.astro";
+import Hero from "../../components/sections/Hero.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const p = ["games-studio", "the-global-website-index", "chat-ai"].map(
+    (p) => ({
+      params: { slug: p },
+      props: { entry: p },
+    })
+  );
+  return p;
+}
+
+const { entry } = Astro.props;
+
+console.log(entry);
+---
+
+<Layout>
+  <Hero />
+  <Experience />
+  <Container>
+    <P>{entry}</P>
+  </Container>
+</Layout>

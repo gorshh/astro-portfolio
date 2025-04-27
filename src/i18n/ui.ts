@@ -36,6 +36,7 @@ export const ui = {
     'catch-me.second-description': `awesome digital products.`,
     'catch-me.create': 'create',
     'catch-me.cta': 'ping me a message',
+    'experience.description':'Im a Full-stack developer with 5 years of experience building high-quality, scalable web solutions. Passionate about frontend and backend technologies, with strong skills in React, TypeScript, Node.js, and cloud services. Recognized for technical leadership, clear communication, and a proactive approach to problem-solving in agile environments like SCRUM. Focused on delivering impactful digital experiences, mentoring teams, and driving projects from idea to deployment.',
     'testimonials.title': 'Nice things people said',
 
     'testimonials.first.description': 'Jorge is a skilled frontend dev with React, TypeScript, and UX/UI expertise. He also led backend tasks, CI/CD, and Docker deployments. Great mentor and team lead, always collaborative and reliable — a strong asset to any team.',
@@ -83,6 +84,9 @@ export const ui = {
     'catch-me.create': 'crear',
     'catch-me.second-description': `productos digitales increíbles.`,
     'catch-me.cta': 'Enviame un mensaje',
+    'experience.description':'Soy un desarrollador full-stack versátil con 5 años de experiencia construyendo aplicaciones web robustas y centradas en el usuario. Experto en React, TypeScript, Node.js y plataformas en la nube. Destacado por su liderazgo técnico claro, ejecución ágil y entrega constante de soluciones escalables que generan impacto real.',
+
+
     'testimonials.title': 'Voces que me acompañan',
 
 

@@ -1,6 +1,7 @@
 ---
 import Link from "../common/Link.astro";
 import Container from "../common/Container.astro";
+import Blotter from '../common/Blotter.astro'
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -17,8 +18,8 @@ const t = useTranslations(lang);
     </div>
     <Link href="#contact" class="cta">{t("hero.cta")}</Link>
   </header>
-  
-  <div id="ascii-container" style="white-space: pre; font-family: monospace; line-height: 1;"></div>
+  <Blotter />
+  <!-- <div id="ascii-container" style="white-space: pre; font-family: monospace; line-height: 1;"></div> -->
 
   <!-- <ScrollDown /> -->
 </Container>
@@ -97,47 +98,3 @@ const t = useTranslations(lang);
   /*  */
 
 </style>
-
-<script>
-  const container = document.getElementById("ascii-container")!;
-  const TOTAL_FRAMES = 174; // cambia este número al total de tus frames
-  const FRAME_PATH = "/frames/frame_";
-  const FRAME_DELAY = 1000 / 30; // 24fps
-  
-
-
-  let currentFrame = 1;
-  const frames = [];
-
-  const loadFrames = async () => {
-  const pad = (num:number, size:number) => String(num).padStart(size, "0");
-
-  const framePromises = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
-    const frameNum = pad(i + 1, 4);
-    return fetch(`${FRAME_PATH}${frameNum}.txt`)
-      .then(res => res.text())
-      .catch(e => {
-        console.error(`Error loading frame ${frameNum}:`, e);
-        return ""; // evita que Promise.all truene
-      });
-  });
-
-  frames.push(...(await Promise.all(framePromises)));
-};
-
-  const playAnimation = () => {
-    // container.innerHTML = frames[0];
-      // currentFrame = (currentFrame + 1) % frames.length;
-    setInterval(() => {
-      container.innerHTML = frames[currentFrame];
-      currentFrame = (currentFrame + 1) % frames.length;
-    }, FRAME_DELAY);
-  };
-
-  const start = async () => {
-    await loadFrames();
-    playAnimation();
-  };
-
-  start();
-</script>

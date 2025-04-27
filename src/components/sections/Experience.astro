@@ -2,25 +2,22 @@
 import { Image } from "astro:assets";
 import Container from "../common/Container.astro";
 import P from "../common/P.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Container as="section" id="experience">
     <P size="display-xxl" as="h2">Experience</P>
     <P size="heading-lg" class="experience--description">
-
-      I'm a Full-Stack Developer with 5+ years of experience in React, Next.js,
-      Astro, Node.js, AWS, RESTful APIs and software architecture. Expert in
-      testing, CI/CD and agile development.
+      {t("experience.description")}
     </P>
   
    
   <div class="experience--list">
     <article class="experience--item">
       <div class="experience--logo">
-        <!-- <img
-          src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png"
-          alt="Globant Logo"
-        /> -->
         <Image src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png" alt="Globant's logo." width="50" height="50" />
 
       </div>
@@ -34,10 +31,6 @@ import P from "../common/P.astro";
 
     <article class="experience--item">
       <div class="experience--logo">
-        <!-- <img
-          src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png"
-          alt="Globant Logo"
-        /> -->
         <Image src="https://statics.globant.com/production/public/Fav-icon_Globant_8_2.png" alt="Globant's logo." width="50" height="50" />
       </div>
 
