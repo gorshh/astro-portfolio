@@ -19,8 +19,8 @@
     width: 45px;
     height: 45px;
     position: absolute;
-    /* left: 1rem; */
-    right: 1rem;
+    left: 0rem;
+    right: 0rem;
     bottom: 15px;
     margin: auto;
     transition: ease-in;
@@ -28,6 +28,10 @@
     -webkit-animation: scroll-down 1.5s infinite;
     transform: rotate(0deg);
     /* border: solid 1px red; */
+
+    @media (max-width: 670px) {
+      display: none;
+    }
   }
   .scroll-down::before {
     content: "";

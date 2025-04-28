@@ -4,7 +4,8 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<div id="canvas" class="content__text" data-greeting={t('hero.greeting')}>
+
+<div id="canvas" class="content__text" data-greeting={t("hero.greeting")}>
   <span class="content__text-inner"></span>
 </div>
 
@@ -40,7 +41,12 @@ const t = useTranslations(lang);
       distance: (x1: n, x2: n, y1: n, y2: n) => Math.hypot(x1 - x2, y1 - y2),
     };
 
-    let winSize = { width: window.innerWidth, height: window.innerHeight };
+    const alignToMultipleOf4 = (value: number) => Math.floor(value / 4) * 4;
+
+    let winSize = {
+      width: alignToMultipleOf4(window.innerWidth),
+      height: alignToMultipleOf4(window.innerHeight)
+    };
 
     const getMousePos = (event: MouseEvent) => ({
       x: event.clientX + window.scrollX,
@@ -89,6 +95,10 @@ const t = useTranslations(lang);
     let blotterScope: any = null;
 
     const createBlotterText = (textParam: string, config: typeof currentSettings) => {
+      if (blotterScope && blotterScope.domElement && blotterScope.domElement.parentNode) {
+        blotterScope.domElement.parentNode.removeChild(blotterScope.domElement);
+      }
+
       const text = new Blotter.Text(textParam, {
         family: "'WienModern'",
         weight: 800,
@@ -99,11 +109,6 @@ const t = useTranslations(lang);
         paddingBottom: config.paddingBottom,
         fill: "#181818",
       });
-
-      // Elimina el anterior Blotter Scope si existía
-      if (blotterScope) {
-        blotterScope.domElement.remove();
-      }
 
       const material = new Blotter.ChannelLiquidMaterial();
       material.uniforms.uSpeed.value = 0.3;
@@ -145,7 +150,7 @@ const t = useTranslations(lang);
 
     createBlotterText(greeting!, currentSettings);
 
-    // ---- Manejar resize de viewport ----
+    // --- Manejo de resize controlado ---
 
     const debounce = (func: () => void, delay = 300) => {
       let timeout: number;
@@ -155,20 +160,29 @@ const t = useTranslations(lang);
       };
     };
 
-    window.addEventListener(
-      "resize",
-      debounce(() => {
-        const newWinSize = { width: window.innerWidth, height: window.innerHeight };
-        const newSettings = getCurrentSettings(newWinSize.width);
+    let lastResizeTimeout: number;
 
-        if (newSettings !== currentSettings) {
-          // Solo si cambiamos de rango de medidas, recreamos
-          currentSettings = newSettings;
+    const handleResize = debounce(() => {
+      const newWinSize = {
+        width: alignToMultipleOf4(window.innerWidth),
+        height: alignToMultipleOf4(window.innerHeight)
+      };
+      const newSettings = getCurrentSettings(newWinSize.width);
+
+      if (newSettings !== currentSettings) {
+        currentSettings = newSettings;
+
+        // Espera adicional para asegurar estabilidad antes de recrear
+        if (lastResizeTimeout) clearTimeout(lastResizeTimeout);
+        lastResizeTimeout = window.setTimeout(() => {
           createBlotterText(greeting!, currentSettings);
-        }
+        }, 200);
+      }
 
-        winSize = newWinSize;
-      })
-    );
+      winSize = newWinSize;
+    }, 300);
+
+    window.addEventListener("resize", handleResize);
   });
+
 </script>

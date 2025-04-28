@@ -3,6 +3,7 @@ import Link from "../common/Link.astro";
 import Container from "../common/Container.astro";
 import Blotter from '../common/Blotter.astro'
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import ScrollDown from "../common/ScrollDown.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -21,7 +22,7 @@ const t = useTranslations(lang);
   <Blotter />
   <!-- <div id="ascii-container" style="white-space: pre; font-family: monospace; line-height: 1;"></div> -->
 
-  <!-- <ScrollDown /> -->
+  <ScrollDown />
 </Container>
 
 <style>
@@ -60,7 +61,7 @@ const t = useTranslations(lang);
     font-size: 0.9rem;
     font-weight: 600;
 
-    @media (max-width: 670px) {
+    @media (max-width: 750px) {
       display: none;
     }
   }
