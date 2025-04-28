@@ -20,6 +20,13 @@ const t = useTranslations(lang);
     overflow: hidden;
     width: 100%;
 
+    transform: scale(0.8);
+
+    /* SMALL (S) — min-width: 480px */
+@media (min-width: 480px) {
+  transform: scale(1);
+}
+
     .b-canvas {
       filter: invert(100%);
     }
@@ -67,7 +74,7 @@ const t = useTranslations(lang);
       const text = new Blotter.Text(textParam, {
         family: "'WienModern'",
         weight: 800,
-        size: 90, // <-- tamaño fijo como Matt
+        size: 90,
         paddingLeft: 100, 
         paddingRight: 100, 
         paddingTop: 100, 
