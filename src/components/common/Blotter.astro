@@ -42,6 +42,21 @@ const t = useTranslations(lang);
 
     let winSize = { width: window.innerWidth, height: window.innerHeight };
 
+    const debounce = (func: () => void, delay = 200) => {
+      let timeout: number;
+      return () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(func, delay);
+      };
+    };
+
+    window.addEventListener(
+      "resize",
+      debounce(() => {
+        winSize = { width: window.innerWidth, height: window.innerHeight };
+      })
+    );
+
     const getMousePos = (event: MouseEvent) => ({
       x: event.clientX + window.scrollX,
       y: event.clientY + window.scrollY,
@@ -56,53 +71,21 @@ const t = useTranslations(lang);
     });
 
     const elem = document.querySelector(".content__text")!;
+    const textEl = elem.querySelector("span.content__text-inner")!;
 
-    const settings = [
-      {
-        minWidth: 0,
-        maxWidth: 768,
-        fontSize: 65,
-        paddingLeft: 100,
-        paddingRight: 100,
-        paddingTop: 60,
-        paddingBottom: 60,
-      },
-      {
-        minWidth: 769,
-        maxWidth: Infinity,
-        fontSize: 120,
+    const createBlotterText = (textParam: string) => {
+      const text = new Blotter.Text(textParam, {
+        family: "'WienModern'",
+        weight: 800,
+        size: 120,
         paddingLeft: 430,
         paddingRight: 430,
         paddingTop: 150,
         paddingBottom: 150,
-      },
-    ];
-
-    const getCurrentSettings = (width: number) => {
-      return settings.find(
-        (s) => width >= s.minWidth && width <= s.maxWidth
-      )!;
-    };
-
-    let currentSettings = getCurrentSettings(winSize.width);
-    let blotterScope: any = null;
-
-    const createBlotterText = (textParam: string, config: typeof currentSettings) => {
-      const text = new Blotter.Text(textParam, {
-        family: "'WienModern'",
-        weight: 800,
-        size: config.fontSize,
-        paddingLeft: config.paddingLeft,
-        paddingRight: config.paddingRight,
-        paddingTop: config.paddingTop,
-        paddingBottom: config.paddingBottom,
         fill: "#181818",
       });
 
-      // Elimina el anterior Blotter Scope si existía
-      if (blotterScope) {
-        blotterScope.domElement.remove();
-      }
+      elem.removeChild(textEl);
 
       const material = new Blotter.ChannelLiquidMaterial();
       material.uniforms.uSpeed.value = 0.3;
@@ -110,8 +93,8 @@ const t = useTranslations(lang);
       material.uniforms.uSeed.value = 1;
 
       const blotter = new Blotter(material, { texts: text });
-      blotterScope = blotter.forText(text);
-      blotterScope.appendTo(elem);
+      const scope = blotter.forText(text);
+      scope.appendTo(elem);
 
       const render = () => {
         const relMousePos = { x: mousePos.x, y: mousePos.y };
@@ -140,34 +123,7 @@ const t = useTranslations(lang);
     };
 
     const canvas = document.querySelector("#canvas")! as HTMLElement;
-    const greeting = canvas.dataset.greeting;
-
-    createBlotterText(greeting!, currentSettings);
-
-    // ---- Manejar resize de viewport ----
-
-    const debounce = (func: () => void, delay = 300) => {
-      let timeout: number;
-      return () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(func, delay);
-      };
-    };
-
-    window.addEventListener(
-      "resize",
-      debounce(() => {
-        const newWinSize = { width: window.innerWidth, height: window.innerHeight };
-        const newSettings = getCurrentSettings(newWinSize.width);
-
-        if (newSettings !== currentSettings) {
-          // Solo si cambiamos de rango de medidas, recreamos
-          currentSettings = newSettings;
-          createBlotterText(greeting!, currentSettings);
-        }
-
-        winSize = newWinSize;
-      })
-    );
+    const greeting = canvas.dataset.greeting;    
+    createBlotterText(greeting!);
   });
 </script>
