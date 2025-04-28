@@ -50,11 +50,12 @@ const t = useTranslations(lang);
       content="Expert in React, Next.js, Node.js, RESTful APIs, AWS, and software architecture. Explore my portfolio and experience."
     />
 
-    <!-- <script src="/blotter.min.js" defer is:inline></script> -->
-    <!-- <script src="/materials.js" defer is:inline></script> -->
+    <!-- <script src="/blotter.min.js" defer is:inline></script>
+    <script src="/materials.js" defer is:inline></script> -->
     <script src="https://madebymatt.io/blotter.js" defer is:raw></script>
-    <script src="https://madebymatt.io/bodymovin.js" defer is:raw></script>
     <script src="https://madebymatt.io/materials.js" defer is:raw></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="/index.js" defer is:raw></script> -->
 
     <!-- <meta name="twitter:image" content="https://jorshh.com/profile-image.jpg"> -->
 
@@ -66,7 +67,8 @@ const t = useTranslations(lang);
     <!-- <Responsive/> -->
     <ScrollBar />
     <Navbar />
-    <main view-transition-name="page">
+    <main>
+      
       <slot />
     </main>
     <Footer />

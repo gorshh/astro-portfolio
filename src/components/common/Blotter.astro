@@ -18,6 +18,7 @@ const t = useTranslations(lang);
     align-items: center;
     height: calc(100dvh - 100px);
     overflow: hidden;
+    width: 100%;
 
     .b-canvas {
       filter: invert(100%);
@@ -33,7 +34,7 @@ const t = useTranslations(lang);
 
   type n = number;
 
-  document.fonts.ready.then(() => {
+  document.fonts.ready.then((e) => {
     const MathUtils = {
       lineEq: (y2: n, y1: n, x2: n, x1: n, val: n) =>
         ((y2 - y1) / (x2 - x1)) * val + y1,
