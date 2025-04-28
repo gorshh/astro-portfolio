@@ -19,7 +19,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'hero.title': 'Developer dedicated to pixel-perfect UI & smooth digital experiences.',
     'hero.cta': `Let's talk`,
-    'hero.greeting': 'Hello',
+    'hero.greeting': 'Hi',
     'about.section-name': 'About me',
     'about.title-first-part': `👋 Hey, I'm Jorge — a developer who cares`,
     'about.title-emphasis': 'just as much',
