@@ -41,11 +41,9 @@ const t = useTranslations(lang);
       distance: (x1: n, x2: n, y1: n, y2: n) => Math.hypot(x1 - x2, y1 - y2),
     };
 
-    const alignToMultipleOf4 = (value: number) => Math.floor(value / 4) * 4;
-
     let winSize = {
-      width: alignToMultipleOf4(window.innerWidth),
-      height: alignToMultipleOf4(window.innerHeight)
+      width: window.innerWidth,
+      height: window.innerHeight
     };
 
     const getMousePos = (event: MouseEvent) => ({
@@ -64,51 +62,19 @@ const t = useTranslations(lang);
     const elem = document.querySelector(".content__text")!;
     const textEl = elem.querySelector("span.content__text-inner")!;
 
-    const settings = [
-      {
-        minWidth: 0,
-        maxWidth: 768,
-        fontSize: 60,
-        paddingLeft: 100,
-        paddingRight: 100,
-        paddingTop: 60,
-        paddingBottom: 60,
-      },
-      {
-        minWidth: 769,
-        maxWidth: Infinity,
-        fontSize: 120,
-        paddingLeft: 430,
-        paddingRight: 430,
-        paddingTop: 150,
-        paddingBottom: 150,
-      },
-    ];
-
-    const getCurrentSettings = (width: number) => {
-      return settings.find(
-        (s) => width >= s.minWidth && width <= s.maxWidth
-      )!;
-    };
-
-    let currentSettings = getCurrentSettings(winSize.width);
-    let blotterScope: any = null;
-
-    const createBlotterText = (textParam: string, config: typeof currentSettings) => {
-      if (blotterScope && blotterScope.domElement && blotterScope.domElement.parentNode) {
-        blotterScope.domElement.parentNode.removeChild(blotterScope.domElement);
-      }
-
+    const createBlotterText = (textParam: string) => {
       const text = new Blotter.Text(textParam, {
         family: "'WienModern'",
         weight: 800,
-        size: config.fontSize,
-        paddingLeft: config.paddingLeft,
-        paddingRight: config.paddingRight,
-        paddingTop: config.paddingTop,
-        paddingBottom: config.paddingBottom,
+        size: 90, // <-- tamaño fijo como Matt
+        paddingLeft: 100, 
+        paddingRight: 100, 
+        paddingTop: 100, 
+        paddingBottom: 100,
         fill: "#181818",
       });
+
+      elem.removeChild(textEl);
 
       const material = new Blotter.ChannelLiquidMaterial();
       material.uniforms.uSpeed.value = 0.3;
@@ -116,8 +82,8 @@ const t = useTranslations(lang);
       material.uniforms.uSeed.value = 1;
 
       const blotter = new Blotter(material, { texts: text });
-      blotterScope = blotter.forText(text);
-      blotterScope.appendTo(elem);
+      const scope = blotter.forText(text);
+      scope.appendTo(elem);
 
       const render = () => {
         const relMousePos = { x: mousePos.x, y: mousePos.y };
@@ -135,8 +101,7 @@ const t = useTranslations(lang);
         );
 
         material.uniforms.uVolatility.value = 0.05 + volatility;
-        material.uniforms.uOffset.value =
-          0.001 + Math.min(volatility / 10, 0.1);
+        material.uniforms.uOffset.value = 0.001 + Math.min(volatility / 10, 0.1);
 
         lastMousePosition = { ...relMousePos };
         requestAnimationFrame(render);
@@ -148,41 +113,7 @@ const t = useTranslations(lang);
     const canvas = document.querySelector("#canvas")! as HTMLElement;
     const greeting = canvas.dataset.greeting;
 
-    createBlotterText(greeting!, currentSettings);
-
-    // --- Manejo de resize controlado ---
-
-    const debounce = (func: () => void, delay = 300) => {
-      let timeout: number;
-      return () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(func, delay);
-      };
-    };
-
-    let lastResizeTimeout: number;
-
-    const handleResize = debounce(() => {
-      const newWinSize = {
-        width: alignToMultipleOf4(window.innerWidth),
-        height: alignToMultipleOf4(window.innerHeight)
-      };
-      const newSettings = getCurrentSettings(newWinSize.width);
-
-      if (newSettings !== currentSettings) {
-        currentSettings = newSettings;
-
-        // Espera adicional para asegurar estabilidad antes de recrear
-        if (lastResizeTimeout) clearTimeout(lastResizeTimeout);
-        lastResizeTimeout = window.setTimeout(() => {
-          createBlotterText(greeting!, currentSettings);
-        }, 200);
-      }
-
-      winSize = newWinSize;
-    }, 300);
-
-    window.addEventListener("resize", handleResize);
+    createBlotterText(greeting!); // <<< Se crea UNA SOLA VEZ
   });
 
 </script>
