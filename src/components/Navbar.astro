@@ -17,39 +17,40 @@ const t = useTranslations(lang);
 </nav>
 
 <style>
-  nav {
-    position: fixed;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    width: fit-content;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    border: 0.0625rem solid #ffffff1a;
 
-    padding: 0.5rem 1rem;
+nav {
+  position: fixed;
+  top: 0.8rem;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid #ffffff1a;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  background-color: #00000080;
+  backdrop-filter: blur(10px);
+  color: #fff;
+  mix-blend-mode: normal;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition:
+    transform 0.4s ease-out,
+    opacity 0.3s ease-out;
+  will-change: transform, opacity;
 
-    border-radius: 0.6rem;
-    background-color: #00000080;
-    backdrop-filter: blur(18.75rem);
-    color: #fff;
-    mix-blend-mode: normal;
-    z-index: 9999;
-    opacity: 0;
-
-    transition:
-      transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
-      opacity 0.4s ease-in-out;
-    will-change: transform, opacity;
-    backdrop-filter: blur(10px);
-    transform: translate3d(0%, 150%, 0);
-
-    @media (max-width: 670px) {
-      display: none;
-    }
+  @media (max-width: 670px) {
+    display: none;
   }
+}
 
+#navbar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
   .nav-logo {
     margin-right: 1rem;
   }
@@ -58,7 +59,7 @@ const t = useTranslations(lang);
     font-size: 0.8rem;
     opacity: 0.8;
     padding: 0.5rem 1rem;
-    font-weight: 200;
+    font-weight: 400;
     text-transform: capitalize;
     font-family: system-ui,-apple-system;
     &::after {
@@ -69,26 +70,19 @@ const t = useTranslations(lang);
       text-decoration: underline;
     }
   }
-  #navbar.show {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
 
 </style>
 
+
 <script>
-  let lastScrollY = window.scrollY;
-  const navbar = document.getElementById("navbar") as HTMLDivElement;
+  const navbar = document.getElementById("navbar")!;
 
   window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > lastScrollY && currentScroll > 100) {
-      navbar.classList.remove("show");
-    } else if (currentScroll < lastScrollY) {
+    const scrollThreshold = window.innerHeight + 200; // 100dvh
+    if (window.scrollY > scrollThreshold) {
       navbar.classList.add("show");
+    } else {
+      navbar.classList.remove("show");
     }
-
-    lastScrollY = currentScroll;
   });
 </script>

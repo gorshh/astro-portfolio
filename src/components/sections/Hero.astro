@@ -11,7 +11,6 @@ const t = useTranslations(lang);
 
 <Container as="section" id="home">
   <header class="hero-header">
-
     <div class="left-side">
       <h1 class="heading-style-header">
         {t("hero.title")}
@@ -20,7 +19,6 @@ const t = useTranslations(lang);
     <Link href="#contact" class="cta">{t("hero.cta")}</Link>
   </header>
   <Blotter />
-  <!-- <div id="ascii-container" style="white-space: pre; font-family: monospace; line-height: 1;"></div> -->
 
   <ScrollDown />
 </Container>
@@ -36,7 +34,6 @@ const t = useTranslations(lang);
     color: rgba(var(--white-rgb), 0.8);
   }
   .hero-header {
-    border-radius: 0.6rem;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0rem;
@@ -67,35 +64,6 @@ const t = useTranslations(lang);
   }
 
   
-  #ascii-container {
-    white-space: pre;
-    line-height: 1;
-    font-size: 12px;
-    
-    width: fit-content;
-    margin: 0 auto;
-    overflow: hidden; /* Evita el desbordamiento */
-    .yellow {
-      color: #D6DA00;
-      display: inline-block;
-    }
-
-    .light {
-      color: #F5FA8A;
-      display: inline-block;
-    }
-    
-    .background {
-      display: inline-block;
-      opacity: 0;
-    }
-
-    .shadow {
-      color: #ffde26;
-      display: inline-block;
-    }
-  }
-
   /*  */
 
 </style>
