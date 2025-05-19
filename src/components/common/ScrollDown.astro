@@ -27,7 +27,11 @@
     animation: down 1.5s infinite;
     -webkit-animation: scroll-down 1.5s infinite;
     transform: rotate(0deg);
-    display: block;
+    /* border: solid 1px red; */
+
+    @media (max-width: 670px) {
+      display: none;
+    }
   }
   .scroll-down::before {
     content: "";
