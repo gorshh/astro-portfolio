@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<nav id="navbar" class="show">
+<nav id="navbar">
   <Logo mode="dark" class="nav-logo" />
   <Link href="#about" class="nav-link">{t('nav.about')}</Link>
   <Link href="#works" class="nav-link">{t('nav.works')}</Link>
