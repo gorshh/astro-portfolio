@@ -172,7 +172,6 @@ const t = useTranslations(lang);
   .testimonial--gallery {
     width: 70%;
     min-width: 70%;
-
     @media (max-width: 1150px) {
       width: 100%;
       min-width: 100%;
@@ -180,6 +179,9 @@ const t = useTranslations(lang);
 
     article {
       padding-top: 1rem;
+      @media (min-width: 768px) {
+      width: 750px;
+      }
 
       .testimonial--description {
         display: flex;
