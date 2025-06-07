@@ -1,8 +1,7 @@
 ---
 import Container from "../../components/common/Container.astro";
 import P from "../../components/common/P.astro";
-import Experience from "../../components/sections/Experience.astro";
-import Hero from "../../components/sections/Hero.astro";
+import Hero from "../../components/sections/WorkHero.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -17,13 +16,88 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
+const covers = {
+  "games-studio": "https://jorshh.b-cdn.net/works/games-studio-cover.webp",
+  "chat-ai": "https://jorshh.b-cdn.net/works/chat-ai-cover.webp",
+  "the-global-website-index": "https://jorshh.b-cdn.net/works/website-index-cover.webp",
+}
+
+const mobileVideos= {
+  "games-studio": "https://jorshh.b-cdn.net/works/games-studio-mobile.mp4",
+  "chat-ai": "https://jorshh.b-cdn.net/works/mobile.mp4",
+  "the-global-website-index": "https://jorshh.b-cdn.net/works/website-index-mobile.mp4",
+
+}
+const desktopVideos= {
+  "games-studio": "https://jorshh.b-cdn.net/works/gaming.mp4",
+  "chat-ai": "https://jorshh.b-cdn.net/works/ai.mp4",
+  "the-global-website-index": "https://jorshh.b-cdn.net/works/website-index-cover.webp",
+  
+
+}
 console.log(entry);
 ---
 
-<Layout>
-  <Hero />
-  <Experience />
+<Layout showMainNavbar={false}>
+  <Hero cover={covers[entry]}/>
+<div style ="display:flex; gap:10px;" class="phone-container"> 
+<div class="phone-mockup">
+  <video
+    autoplay
+    loop
+    muted
+    playsinline
+        poster={covers[entry]}
+  >
+        <source src={mobileVideos[entry]} type="video/webm" />
+    Your browser does not support the video tag.
+  </video>
+  <img
+    class="overlay"
+    src="https://jorshh.b-cdn.net/iphone-holder.png"
+    alt="iPhone frame"
+  />
+
+</div>
+
+</div>
   <Container>
     <P>{entry}</P>
   </Container>
 </Layout>
+<style>
+.phone-container {
+  background-color:var(--white-color);
+  margin: 0 auto;
+  width: 100%;
+}
+  .phone-mockup {
+filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  position: relative;
+  width: 390px;
+  height: 844px;
+  margin: 0 auto;
+}
+
+.phone-mockup video {
+  position: absolute;
+  top: -5.7%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  scale: 80%;
+  object-fit: cover;
+  border-radius: 50px; 
+}
+
+.phone-mockup .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 89%;
+  pointer-events: none;
+
+}
+
+</style>

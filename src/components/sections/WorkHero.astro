@@ -1,0 +1,29 @@
+---
+import Container from "../common/Container.astro";
+interface Props {
+  cover:string;
+}
+
+const { cover} = Astro.props
+---
+<Container class="section">
+  <img class="cover" src={cover}/>
+</Container>
+<style>
+.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+    /* margin-top: 4rem; */
+    background-color: var(--white-color);
+    width: 100%;
+  }
+  .cover {
+    width: 95%;
+  /* width: 100%; */
+ height: calc(100dvh-2rem);
+  aspect-ratio: 16/9;
+  display: block;
+    margin: 0 auto;
+  border-radius: 1rem;
+  }
+</style>

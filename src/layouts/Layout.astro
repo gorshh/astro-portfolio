@@ -9,7 +9,11 @@ import Noise from "../components/common/Noise.astro"
 // import { ClientRouter } from "astro:transitions";
 import Responsive from "../components/common/Responsive.astro";
 
+interface Props {
+  showMainNavbar?: boolean;
+}
 const lang = getLangFromUrl(Astro.url);
+const {showMainNavbar=true} = Astro.props
 const t = useTranslations(lang);
 ---
 
@@ -67,7 +71,9 @@ const t = useTranslations(lang);
   <body>
     <!-- <Responsive/> -->
     <ScrollBar />
-    <Navbar />
+    {
+ showMainNavbar   && <Navbar />
+    }
     <!-- <Noise/> -->
     <main>
       
